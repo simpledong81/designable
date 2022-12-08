@@ -7,12 +7,22 @@
     "npm": ">=3.0.0"
   },
   "scripts": {
-    "build": "rimraf dist && webpack-cli --config config/webpack.prod.ts",
-    "start": "webpack-dev-server --config config/webpack.dev.ts"
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
   },
   "devDependencies": {
     "ts-loader": "^7.0.4",
-    "typescript": "^4.9.0"
+    "typescript": "^4.9.0",
+    "@types/glob": "^7.2.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-is": "^17.0.3",
+    "@vitejs/plugin-basic-ssl": "^0.1.2",
+    "@vitejs/plugin-react": "^2.1.0",
+    "@formily/react": "^2.0.2",
+    "less": "^3.13.1",
+    "vite": "^3.1.8"
   },
   "dependencies": {
     "@pind/designable-core": "2.0.0-beta.1",
@@ -23,9 +33,8 @@
     "@formily/reactive": "^2.0.2",
     "@formily/reactive-react": "^2.0.2",
     "antd": "^5.0.0",
-    "react": "^16.8.x",
-    "react-dom": "^16.8.x",
-    "react-jss": "^10.4.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "gitHead": "820790a9ae32c2348bb36b3de7ca5f1051ed392c"
 }

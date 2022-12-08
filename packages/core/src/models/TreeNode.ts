@@ -23,13 +23,13 @@ import { GlobalRegistry } from '../registry'
 import { mergeLocales } from '../internals'
 
 export interface ITreeNode {
-  componentName?: string
+  componentName: string
   sourceName?: string
   operation?: Operation
   hidden?: boolean
   isSourceNode?: boolean
   id?: string
-  props?: Record<string | number | symbol, any>
+  props: Record<string | number | symbol, any>
   children?: ITreeNode[]
 }
 
@@ -107,7 +107,7 @@ export class TreeNode {
 
   root: TreeNode
 
-  rootOperation: Operation
+  rootOperation?: Operation
 
   id: string
 
@@ -119,13 +119,13 @@ export class TreeNode {
 
   sourceName = ''
 
-  props: ITreeNode['props'] = {}
+  props: Required<ITreeNode>['props'] = {}
 
   children: TreeNode[] = []
 
   isSelfSourceNode: boolean
 
-  constructor(node?: ITreeNode, parent?: TreeNode) {
+  constructor(node: ITreeNode, parent?: TreeNode) {
     if (node instanceof TreeNode) {
       return node
     }
@@ -213,7 +213,7 @@ export class TreeNode {
   }
 
   get descendants(): TreeNode[] {
-    return this.children.reduce((buf, node) => {
+    return this.children.reduce<TreeNode[]>((buf, node) => {
       return buf.concat(node).concat(node.descendants)
     }, [])
   }
@@ -263,7 +263,9 @@ export class TreeNode {
   }
 
   getElementRect(area: 'viewport' | 'outline' = 'viewport') {
-    return this[area]?.getElementRect(this.getElement(area))
+    const element = this.getElement(area)
+    if (!element) return
+    return this[area]?.getElementRect(element)
   }
 
   getValidElementRect(area: 'viewport' | 'outline' = 'viewport') {
@@ -271,7 +273,9 @@ export class TreeNode {
   }
 
   getElementOffsetRect(area: 'viewport' | 'outline' = 'viewport') {
-    return this[area]?.getElementOffsetRect(this.getElement(area))
+    const element = this.getElement(area)
+    if (!element) return
+    return this[area]?.getElementOffsetRect(element)
   }
 
   getValidElementOffsetRect(area: 'viewport' | 'outline' = 'viewport') {
@@ -344,13 +348,14 @@ export class TreeNode {
     } else if (isFn(callback)) {
       return callback()
     }
+    return defaults as T
   }
 
-  find(finder: INodeFinder): TreeNode {
+  find(finder: INodeFinder): TreeNode | undefined {
     if (finder(this)) {
       return this
     } else {
-      let result = undefined
+      let result: TreeNode | undefined = undefined
       this.eachChildren((node) => {
         if (finder(node)) {
           result = node
@@ -362,7 +367,7 @@ export class TreeNode {
   }
 
   findAll(finder: INodeFinder): TreeNode[] {
-    const results = []
+    const results: TreeNode[] = []
     if (finder(this)) {
       results.push(this)
     }
@@ -388,7 +393,7 @@ export class TreeNode {
     if (this.parent !== node.parent) return []
     const minIndex = Math.min(this.index, node.index)
     const maxIndex = Math.max(this.index, node.index)
-    const results = []
+    const results: TreeNode[] = []
     for (let i = minIndex + 1; i < maxIndex; i++) {
       results.push(this.parent.children[i])
     }
@@ -450,7 +455,7 @@ export class TreeNode {
     return this.designerProps.deletable ?? true
   }
 
-  findById(id: string) {
+  findById(id?: string) {
     if (!id) return
     if (this.id === id) return this
     if (this.children?.length > 0) {
@@ -499,7 +504,7 @@ export class TreeNode {
     return this.triggerMutation(
       new UpdateNodePropsEvent({
         target: this,
-        source: null,
+        source: [],
       }),
       () => {
         Object.assign(this.props, props)
@@ -580,7 +585,7 @@ export class TreeNode {
           source: newNodes,
         }),
         () => {
-          parent.children = parent.children.reduce((buf, node) => {
+          parent.children = parent.children.reduce<TreeNode[]>((buf, node) => {
             if (node === this) {
               return buf.concat([node]).concat(newNodes)
             } else {
@@ -609,7 +614,7 @@ export class TreeNode {
           source: newNodes,
         }),
         () => {
-          parent.children = parent.children.reduce((buf, node) => {
+          parent.children = parent.children.reduce<TreeNode[]>((buf, node) => {
             if (node === this) {
               return buf.concat(newNodes).concat([node])
             } else {
@@ -637,12 +642,15 @@ export class TreeNode {
           source: newNodes,
         }),
         () => {
-          this.children = this.children.reduce((buf, node, index) => {
-            if (index === start) {
-              return buf.concat(newNodes).concat([node])
-            }
-            return buf.concat([node])
-          }, [])
+          this.children = this.children.reduce<TreeNode[]>(
+            (buf, node, index) => {
+              if (index === start) {
+                return buf.concat(newNodes).concat([node])
+              }
+              return buf.concat([node])
+            },
+            []
+          )
           return newNodes
         },
         []
@@ -680,7 +688,7 @@ export class TreeNode {
     return this.triggerMutation(
       new RemoveNodeEvent({
         target: this,
-        source: null,
+        source: [],
       }),
       () => {
         removeNode(this)
@@ -823,17 +831,19 @@ export class TreeNode {
         ) {
           insertPoint.insertAfter(cloned)
           insertPoint = insertPoint.next
-        } else if (node.operation.selection.length === 1) {
+        } else if (node.operation?.selection.length === 1) {
           const targetNode = node.operation?.tree.findById(
-            node.operation.selection.first
+            node.operation?.selection.first
           )
-          let cloneNodes = parents.get(targetNode)
-          if (!cloneNodes) {
-            cloneNodes = []
-            parents.set(targetNode, cloneNodes)
-          }
-          if (targetNode && targetNode.allowAppend([cloned])) {
-            cloneNodes.push(cloned)
+          if (targetNode) {
+            let cloneNodes = parents.get(targetNode)
+            if (!cloneNodes) {
+              cloneNodes = []
+              parents.set(targetNode, cloneNodes)
+            }
+            if (targetNode.allowAppend([cloned])) {
+              cloneNodes.push(cloned)
+            }
           }
         }
       })
@@ -865,7 +875,7 @@ export class TreeNode {
   }
 
   static filterDraggable(nodes: TreeNode[] = []) {
-    return nodes.reduce((buf, node) => {
+    return nodes.reduce<TreeNode[]>((buf, node) => {
       if (!node.allowDrag()) return buf
       if (isFn(node?.designerProps?.getDragNodes)) {
         const transformed = node.designerProps.getDragNodes(node)
@@ -878,7 +888,7 @@ export class TreeNode {
   }
 
   static filterDroppable(nodes: TreeNode[] = [], parent: TreeNode) {
-    return nodes.reduce((buf, node) => {
+    return nodes.reduce<TreeNode[]>((buf, node) => {
       if (!node.allowDrop(parent)) return buf
       if (isFn(node.designerProps?.getDropNodes)) {
         const cloned = node.isSourceNode ? node.clone(node.parent) : node

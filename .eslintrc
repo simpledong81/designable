@@ -5,7 +5,7 @@
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
+    "prettier",
     "plugin:markdown/recommended"
   ],
   "globals": {
