@@ -17,43 +17,48 @@
     "npm": ">=3.0.0"
   },
   "scripts": {
+    "dev": "vite --host --config playground/vite.config.ts",
     "build": "rimraf -rf lib esm dist && npm run build:cjs && npm run build:esm && ts-node copy",
     "build:cjs": "tsc --project tsconfig.build.json",
     "build:esm": "tsc --project tsconfig.build.json --module es2015 --outDir esm",
-    "build:playground": "webpack-cli --config playground/webpack.prod.ts",
-    "start": "webpack-dev-server --config playground/webpack.dev.ts"
+    "build:playground": "webpack-cli --config playground/webpack.prod.ts"
   },
   "devDependencies": {
     "@pind/designable-react-settings-form": "2.0.0-beta.1",
-    "@formily/antd": "^3.0.0-alpha.1",
-    "@formily/core": "^2.0.2",
-    "@formily/react": "^2.0.2",
-    "@formily/reactive": "^2.0.2",
-    "@formily/shared": "^2.0.2",
+    "@formily/antd": "3.0.0-alpha.1",
+    "@formily/core": "^2.2.14",
+    "@formily/react": "^2.2.14",
+    "@formily/reactive": "^2.2.14",
+    "@formily/shared": "^2.2.14",
     "ts-loader": "^7.0.4",
     "typescript": "^4.9.0",
-    "webpack": "^4.41.5",
-    "webpack-bundle-analyzer": "^3.9.0",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
+    "@types/glob": "^7.2.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-is": "^17.0.3",
+    "@vitejs/plugin-basic-ssl": "^0.1.2",
+    "@vitejs/plugin-react": "^2.1.0",
+    "less": "^3.13.1",
+    "vite": "^3.1.8"
   },
   "peerDependencies": {
-    "@formily/antd": "^3.0.0-alpha.1",
-    "@formily/core": "^2.0.2",
-    "@formily/react": "^2.0.2",
-    "@formily/reactive": "^2.0.2",
-    "@formily/shared": "^2.0.2",
-    "@types/react": ">=16.8.0 || >=17.0.0",
-    "@types/react-dom": ">=16.8.0 || >=17.0.0",
-    "react": ">=16.8.0 || >=17.0.0",
+    "@formily/antd": "3.0.0-alpha.1",
+    "@formily/core": "^2.2.14",
+    "@formily/react": "^2.2.14",
+    "@formily/reactive": "^2.2.14",
+    "@formily/shared": "^2.2.14",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
     "react-dom": ">=16.8.0",
-    "react-is": ">=16.8.0 || >=17.0.0"
+    "react-is": "^18.0.0"
   },
   "dependencies": {
     "@pind/designable-core": "2.0.0-beta.1",
     "@pind/designable-formily-setters": "2.0.0-beta.1",
     "@pind/designable-formily-transformer": "2.0.0-beta.1",
-    "@pind/designable-react": "2.0.0-beta.1"
+    "@pind/designable-react": "2.0.0-beta.1",
+    "antd": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"

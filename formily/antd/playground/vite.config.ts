@@ -6,7 +6,7 @@ import fs from 'fs-extra'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
 const getWorkspaceAlias = () => {
-  const basePath = resolve(__dirname, '../../')
+  const basePath = resolve(__dirname, '../../../')
   const pkg = fs.readJSONSync(resolve(basePath, 'package.json')) || {}
   const alias: Alias[] = []
   const workspaces = pkg.workspaces
@@ -29,6 +29,7 @@ const getWorkspaceAlias = () => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: '.',
   plugins: [react(), basicSsl()],
   resolve: {
     alias: [
@@ -36,7 +37,7 @@ export default defineConfig({
       { find: '@', replacement: resolve(__dirname, 'src') },
       {
         find: '@formily/react',
-        replacement: resolve(__dirname, './node_modules/@formily/react'),
+        replacement: resolve(__dirname, '../node_modules/@formily/react'),
       },
       ...getWorkspaceAlias(),
     ],

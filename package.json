@@ -9,6 +9,9 @@
     "formily/*",
     "examples/*"
   ],
+  "resolutions": {
+    "@formily/react": "^2.2.14"
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
@@ -39,11 +42,6 @@
     "prelease": "lerna publish --dist-tag next",
     "lint": "eslint --ext .ts,.tsx,.js  --fix",
     "postinstall": "opencollective-postinstall"
-  },
-  "resolutions": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "yargs": "^16.x"
   },
   "devDependencies": {
     "@alifd/next": "^1.26.9",

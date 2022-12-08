@@ -1,33 +1,33 @@
-import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import {
-  Designer,
-  IconWidget,
-  Workbench,
-  ViewPanel,
-  DesignerToolsWidget,
-  ViewToolsWidget,
-  OutlineTreeWidget,
-  ResourceWidget,
-  StudioPanel,
-  CompositePanel,
-  WorkspacePanel,
-  ToolbarPanel,
-  ViewportPanel,
-  SettingsPanel,
-  HistoryWidget,
-} from '@pind/designable-react'
-import { SettingsForm, MonacoInput } from '@pind/designable-react-settings-form'
+import { GithubOutlined } from '@ant-design/icons'
 import { observer } from '@formily/react'
 import {
+  createBehavior,
   createDesigner,
   createResource,
-  createBehavior,
   GlobalRegistry,
 } from '@pind/designable-core'
+import {
+  CompositePanel,
+  Designer,
+  DesignerToolsWidget,
+  HistoryWidget,
+  IconWidget,
+  OutlineTreeWidget,
+  ResourceWidget,
+  SettingsPanel,
+  StudioPanel,
+  ToolbarPanel,
+  ViewPanel,
+  ViewportPanel,
+  ViewToolsWidget,
+  Workbench,
+  WorkspacePanel,
+} from '@pind/designable-react'
+import { MonacoInput, SettingsForm } from '@pind/designable-react-settings-form'
+import { Button, Radio, Space } from 'antd'
+import React, { useEffect } from 'react'
+import { createRoot } from 'react-dom/client'
 import { Content } from './content'
-import { Space, Button, Radio } from 'antd'
-import { GithubOutlined } from '@ant-design/icons'
 
 const RootBehavior = createBehavior({
   name: 'Root',
@@ -423,7 +423,7 @@ const App = () => {
           <WorkspacePanel>
             <ToolbarPanel>
               <DesignerToolsWidget />
-              <ViewToolsWidget />{' '}
+              <ViewToolsWidget />
             </ToolbarPanel>
             <ViewportPanel>
               <ViewPanel type="DESIGNABLE">{() => <Content />}</ViewPanel>
@@ -450,5 +450,10 @@ const App = () => {
     </Designer>
   )
 }
-
-ReactDOM.render(<App />, document.getElementById('root'))
+const container = document.getElementById('root')
+if (container) {
+  const root = createRoot(container)
+  root.render(<App />)
+} else {
+  console.error('dom root is non-existent')
+}
