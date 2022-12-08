@@ -1,6 +1,6 @@
 {
-  "name": "@designable/react-sandbox",
-  "version": "1.0.0-beta.45",
+  "name": "@pind/designable-react-sandbox",
+  "version": "2.0.0-beta.1",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -26,8 +26,8 @@
     "react": "16.x || 17.x"
   },
   "dependencies": {
-    "@designable/react": "1.0.0-beta.45",
-    "@designable/shared": "1.0.0-beta.45"
+    "@pind/designable-react": "2.0.0-beta.1",
+    "@pind/designable-shared": "2.0.0-beta.1"
   },
   "publishConfig": {
     "access": "public"

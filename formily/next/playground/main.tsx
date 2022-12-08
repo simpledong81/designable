@@ -18,14 +18,14 @@ import {
   ViewPanel,
   SettingsPanel,
   ComponentTreeWidget,
-} from '@designable/react'
-import { SettingsForm } from '@designable/react-settings-form'
+} from '@pind/designable-react'
+import { SettingsForm } from '@pind/designable-react-settings-form'
 import {
   createDesigner,
   GlobalRegistry,
   Shortcut,
   KeyCode,
-} from '@designable/core'
+} from '@pind/designable-core'
 import {
   LogoWidget,
   ActionsWidget,

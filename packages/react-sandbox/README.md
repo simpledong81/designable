@@ -1,1 +1,1 @@
-# @designable/react-sandbox
+# @pind/designable-react-sandbox

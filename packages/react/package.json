@@ -1,6 +1,6 @@
 {
-  "name": "@designable/react",
-  "version": "1.0.0-beta.45",
+  "name": "@pind/designable-react",
+  "version": "2.0.0-beta.1",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -29,12 +29,12 @@
   "peerDependencies": {
     "@formily/reactive": "^2.0.2",
     "@formily/reactive-react": "^2.0.2",
-    "antd": "^4.15.4",
     "react": "16.x || 17.x"
   },
   "dependencies": {
-    "@designable/core": "1.0.0-beta.45",
-    "@designable/shared": "1.0.0-beta.45",
+    "@pind/designable-core": "2.0.0-beta.1",
+    "@pind/designable-shared": "2.0.0-beta.1",
+    "antd": "^5",
     "dateformat": "^4.5.1"
   },
   "publishConfig": {
