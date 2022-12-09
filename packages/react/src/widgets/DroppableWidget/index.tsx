@@ -1,6 +1,6 @@
 import React from 'react'
 import { TreeNode } from '@pind/designable-core'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { useTreeNode, useNodeIdProps } from '../../hooks'
 import { NodeTitleWidget } from '../NodeTitleWidget'
 import {
@@ -19,7 +19,7 @@ export interface IDroppableWidgetProps {
   hasChildren?: boolean
 }
 
-export const DroppableWidget: React.FC<IDroppableWidgetProps> = observer(
+export const DroppableWidget: ReactFC<IDroppableWidgetProps> = observer(
   ({
     node,
     actions,

@@ -51,7 +51,7 @@ export const queryNodesByComponentPath = (
     }
   }
   return matchComponent(node, path[0])
-    ? node.children.reduce((buf, child) => {
+    ? node.children.reduce<TreeNode[]>((buf, child) => {
         return buf.concat(queryNodesByComponentPath(child, path.slice(1)))
       }, [])
     : []
@@ -60,7 +60,7 @@ export const queryNodesByComponentPath = (
 export const findNodeByComponentPath = (
   node: TreeNode,
   path: ComponentNameMatcher[]
-): TreeNode => {
+): TreeNode | undefined => {
   if (path?.length === 0) return
   if (path?.length === 1) {
     if (matchComponent(node, path[0])) {

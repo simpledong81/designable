@@ -19,7 +19,7 @@ import {
   useComponents,
   DnFC,
 } from '@pind/designable-react'
-import { isArr, isStr } from '@pind/designable-shared'
+import { isArr, isStr } from '@formily/shared'
 import { Container } from '../../common/Container'
 import { AllLocales } from '../../locales'
 

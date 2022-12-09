@@ -8,39 +8,43 @@ import { FormItemSwitcher } from '../../common/FormItemSwitcher'
 import { AllSchemas } from '../../schemas'
 
 export const createComponentSchema = (
-  component: ISchema,
-  decorator: ISchema
-) => {
+  component?: ISchema,
+  decorator?: ISchema
+): Record<string, ISchema> => {
   return {
-    'component-group': component && {
-      type: 'void',
-      'x-component': 'CollapseItem',
-      'x-reactions': {
-        fulfill: {
-          state: {
-            visible: '{{!!$form.values["x-component"]}}',
+    'component-group': component
+      ? {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-reactions': {
+            fulfill: {
+              state: {
+                visible: '{{!!$form.values["x-component"]}}',
+              },
+            },
           },
-        },
-      },
-      properties: {
-        'x-component-props': component,
-      },
-    },
-    'decorator-group': decorator && {
-      type: 'void',
-      'x-component': 'CollapseItem',
-      'x-component-props': { defaultExpand: false },
-      'x-reactions': {
-        fulfill: {
-          state: {
-            visible: '{{!!$form.values["x-decorator"]}}',
+          properties: {
+            'x-component-props': component,
           },
-        },
-      },
-      properties: {
-        'x-decorator-props': decorator,
-      },
-    },
+        }
+      : {},
+    'decorator-group': decorator
+      ? {
+          type: 'void',
+          'x-component': 'CollapseItem',
+          'x-component-props': { defaultExpand: false },
+          'x-reactions': {
+            fulfill: {
+              state: {
+                visible: '{{!!$form.values["x-decorator"]}}',
+              },
+            },
+          },
+          properties: {
+            'x-decorator-props': decorator,
+          },
+        }
+      : {},
     'component-style-group': {
       type: 'void',
       'x-component': 'CollapseItem',
@@ -149,7 +153,7 @@ export const createFieldSchema = (
 export const createVoidFieldSchema = (
   component?: ISchema,
   decorator: ISchema = AllSchemas.FormItem
-) => {
+): ISchema => {
   return {
     type: 'object',
     properties: {

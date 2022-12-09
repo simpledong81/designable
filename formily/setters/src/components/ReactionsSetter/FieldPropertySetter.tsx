@@ -14,7 +14,7 @@ export interface IFieldPropertySetterProps {
   onChange?: (value: IFieldProperty) => void
 }
 
-const template = (code: string) => {
+const template = (code?: string) => {
   if (!code) return
   return code.trim()
 }

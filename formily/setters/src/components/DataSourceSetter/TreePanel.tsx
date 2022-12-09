@@ -28,14 +28,16 @@ export interface ITreePanelProps {
 
 export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
   const prefix = usePrefix('data-source-setter')
-  const dropHandler = (info: Parameters<TreeProps['onDrop']>[0]) => {
+  const dropHandler = (info: Parameters<Required<TreeProps>['onDrop']>[0]) => {
     const dropKey = info.node?.key
     const dragKey = info.dragNode?.key
     const dropPos = info.node.pos.split('-')
     const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1])
     const data = [...props.treeDataSource.dataSource]
     // Find dragObject
-    let dragObj: INodeItem
+    let dragObj: INodeItem = {
+      key: '',
+    }
     traverseTree(data, (item, index, arr) => {
       if (arr[index].key === dragKey) {
         arr.splice(index, 1)
@@ -61,8 +63,8 @@ export const TreePanel: React.FC<ITreePanelProps> = observer((props) => {
         }
       })
     } else {
-      let ar: any[]
-      let i: number
+      let ar: any[] = []
+      let i = 0
       traverseTree(data, (item, index, arr) => {
         if (item.key === dropKey) {
           ar = arr

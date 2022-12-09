@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { TreeNode } from '@pind/designable-core'
 import { useSelectedNode } from '@pind/designable-react'
 import { TreeSelectProps, TreeSelect } from 'antd'
@@ -21,7 +21,7 @@ const transformDataSource = (node: TreeNode) => {
     return dots
   }
   const targetPath = (parentNode: TreeNode, targetNode: TreeNode) => {
-    const path = []
+    const path: string[] = []
     const transform = (node: TreeNode) => {
       if (node && node !== parentNode) {
         path.push(node.props.name || node.id)
@@ -57,8 +57,15 @@ const transformDataSource = (node: TreeNode) => {
       targetNode
     )}`
   }
+  interface IChildren {
+    label: ReactNode
+    value: ReactNode
+    node: TreeNode
+    children: IChildren[]
+  }
+
   const transformChildren = (children: TreeNode[], path = []) => {
-    return children.reduce((buf, node) => {
+    return children.reduce<IChildren[]>((buf, node) => {
       if (node === currentNode) return buf
       if (node.props.type === 'array' && !node.contains(currentNode)) return buf
       if (node.props.type === 'void' && !hasNoVoidChildren(node)) return buf
@@ -89,7 +96,7 @@ const transformDataSource = (node: TreeNode) => {
 
 export const PathSelector: React.FC<IPathSelectorProps> = (props) => {
   const baseNode = useSelectedNode()
-  const dataSource = transformDataSource(baseNode)
+  const dataSource = transformDataSource(baseNode as TreeNode)
   const findNode = (dataSource: any[], value: string) => {
     for (let i = 0; i < dataSource.length; i++) {
       const item = dataSource[i]
@@ -104,7 +111,7 @@ export const PathSelector: React.FC<IPathSelectorProps> = (props) => {
     <TreeSelect
       {...props}
       onChange={(value) => {
-        props.onChange(value, findNode(dataSource, value))
+        props.onChange?.(value, findNode(dataSource, value))
       }}
       treeDefaultExpandAll
       treeData={dataSource}

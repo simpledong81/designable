@@ -75,7 +75,7 @@ export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer(
           >
             <div className={`${prefix + '-layout-item left'}`}>
               <TreePanel
-                defaultOptionValue={defaultOptionValue}
+                defaultOptionValue={defaultOptionValue as any}
                 allowTree={allowTree}
                 treeDataSource={treeDataSource}
               ></TreePanel>

@@ -134,7 +134,7 @@ FormCollapse.Behavior = createBehavior(
       droppable: true,
       allowAppend: (target, source) =>
         target.children.length === 0 ||
-        source.every(
+        !!source?.every(
           (node) => node.props['x-component'] === 'FormCollapse.CollapsePanel'
         ),
       propsSchema: createVoidFieldSchema(AllSchemas.FormCollapse),

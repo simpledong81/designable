@@ -197,11 +197,13 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
               <SchemaField>
                 <SchemaField.Void
                   x-component="FormCollapse"
-                  x-component-props={{
-                    formCollapse,
-                    defaultActiveKey: ['deps', 'state'],
-                    style: { marginBottom: 10 },
-                  }}
+                  x-component-props={
+                    {
+                      formCollapse,
+                      defaultActiveKey: ['deps', 'state'],
+                      style: { marginBottom: 10 },
+                    } as any
+                  }
                 >
                   <SchemaField.Void
                     x-component="FormCollapse.CollapsePanel"
@@ -220,12 +222,14 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
                       <SchemaField.Object>
                         <SchemaField.Void
                           x-component="ArrayTable.Column"
-                          x-component-props={{
-                            title: GlobalRegistry.getDesignerMessage(
-                              'SettingComponents.ReactionsSetter.sourceField'
-                            ),
-                            width: 240,
-                          }}
+                          x-component-props={
+                            {
+                              title: GlobalRegistry.getDesignerMessage(
+                                'SettingComponents.ReactionsSetter.sourceField'
+                              ) as string,
+                              width: 240,
+                            } as any
+                          }
                         >
                           <SchemaField.String
                             name="source"
@@ -240,12 +244,14 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
                         </SchemaField.Void>
                         <SchemaField.Void
                           x-component="ArrayTable.Column"
-                          x-component-props={{
-                            title: GlobalRegistry.getDesignerMessage(
-                              'SettingComponents.ReactionsSetter.sourceProperty'
-                            ),
-                            width: 200,
-                          }}
+                          x-component-props={
+                            {
+                              title: GlobalRegistry.getDesignerMessage(
+                                'SettingComponents.ReactionsSetter.sourceProperty'
+                              ),
+                              width: 200,
+                            } as any
+                          }
                         >
                           <SchemaField.String
                             name="property"
@@ -258,12 +264,14 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
                         </SchemaField.Void>
                         <SchemaField.Void
                           x-component="ArrayTable.Column"
-                          x-component-props={{
-                            title: GlobalRegistry.getDesignerMessage(
-                              'SettingComponents.ReactionsSetter.variableName'
-                            ),
-                            width: 200,
-                          }}
+                          x-component-props={
+                            {
+                              title: GlobalRegistry.getDesignerMessage(
+                                'SettingComponents.ReactionsSetter.variableName'
+                              ),
+                              width: 200,
+                            } as any
+                          }
                         >
                           <SchemaField.String
                             name="name"
@@ -301,16 +309,18 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
 
                         <SchemaField.Void
                           x-component="ArrayTable.Column"
-                          x-component-props={{
-                            title: GlobalRegistry.getDesignerMessage(
-                              'SettingComponents.ReactionsSetter.variableType'
-                            ),
-                            ellipsis: {
-                              showTitle: false,
-                            },
-                            width: 200,
-                            align: 'center',
-                          }}
+                          x-component-props={
+                            {
+                              title: GlobalRegistry.getDesignerMessage(
+                                'SettingComponents.ReactionsSetter.variableType'
+                              ),
+                              ellipsis: {
+                                showTitle: false,
+                              },
+                              width: 200,
+                              align: 'center',
+                            } as any
+                          }
                         >
                           <SchemaField.String
                             name="type"
@@ -350,13 +360,15 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
                         </SchemaField.Void>
                         <SchemaField.Void
                           x-component="ArrayTable.Column"
-                          x-component-props={{
-                            title: GlobalRegistry.getDesignerMessage(
-                              'SettingComponents.ReactionsSetter.operations'
-                            ),
-                            align: 'center',
-                            width: 80,
-                          }}
+                          x-component-props={
+                            {
+                              title: GlobalRegistry.getDesignerMessage(
+                                'SettingComponents.ReactionsSetter.operations'
+                              ),
+                              align: 'center',
+                              width: 80,
+                            } as any
+                          }
                         >
                           <SchemaField.Markup
                             type="void"

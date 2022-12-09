@@ -106,7 +106,7 @@ export const ArrayCards: DnFC<CardProps> = observer((props) => {
     ])
     return (
       <ArrayBase disabled>
-        <ArrayBase.Item index={0} record={null}>
+        <ArrayBase.Item index={0} record={() => null}>
           <Card
             {...props}
             title={

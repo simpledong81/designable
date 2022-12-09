@@ -25,9 +25,7 @@ export interface MonacoInputProps extends EditorProps {
   onChange?: (value: string) => void
 }
 
-export const MonacoInput: React.FC<MonacoInputProps> & {
-  loader?: typeof loader
-} = ({
+const InternalMonacoInput: React.FC<MonacoInputProps> = ({
   className,
   language,
   defaultLanguage,
@@ -342,5 +340,6 @@ export const MonacoInput: React.FC<MonacoInputProps> & {
     </div>
   )
 }
-
-MonacoInput.loader = loader
+export const MonacoInput = Object.assign(InternalMonacoInput, {
+  loader,
+})

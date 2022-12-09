@@ -307,8 +307,10 @@ importers:
     specifiers:
       '@formily/antd': 3.0.0-alpha.1
       '@formily/core': ^2.2.14
+      '@formily/json-schema': ^2.2.14
       '@formily/react': ^2.2.14
       '@formily/reactive': ^2.2.14
+      '@formily/reactive-react': ^2.2.14
       '@formily/shared': ^2.2.14
       '@pind/designable-core': 2.0.0-beta.1
       '@pind/designable-formily-setters': 2.0.0-beta.1
@@ -322,6 +324,7 @@ importers:
       '@vitejs/plugin-basic-ssl': ^0.1.2
       '@vitejs/plugin-react': ^2.1.0
       antd: ^5.0.0
+      classnames: ^2.3.2
       less: ^3.13.1
       react: ^18.0.0
       react-dom: '>=16.8.0'
@@ -335,14 +338,17 @@ importers:
       '@pind/designable-formily-transformer': link:../transformer
       '@pind/designable-react': link:../../packages/react
       antd: 5.0.5_biqbaboplfbrettd7655fr4n2y
+      classnames: 2.3.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-is: 18.2.0
     devDependencies:
       '@formily/antd': 3.0.0-alpha.1_3djxtplu6vw52wd2gogfcdkfae
       '@formily/core': 2.2.14
+      '@formily/json-schema': 2.2.14_typescript@4.9.4
       '@formily/react': 2.2.14_gy2jcindbd2cqrfc5bqbaxpbry
       '@formily/reactive': 2.2.14
+      '@formily/reactive-react': 2.2.14_jfvhv3b24ogqbdlaxzhinjpfxi
       '@formily/shared': 2.2.14
       '@pind/designable-react-settings-form': link:../../packages/react-settings-form
       '@types/glob': 7.2.0
@@ -401,30 +407,42 @@ importers:
     specifiers:
       '@formily/antd': 3.0.0-alpha.1
       '@formily/core': ^2.2.14
+      '@formily/json-schema': ^2.2.14
       '@formily/react': ^2.2.14
+      '@formily/reactive': ^2.2.14
+      '@formily/reactive-react': ^2.2.14
       '@formily/shared': ^2.2.14
       '@pind/designable-core': 2.0.0-beta.1
       '@pind/designable-formily-transformer': 2.0.0-beta.1
       '@pind/designable-react': 2.0.0-beta.1
       '@pind/designable-react-settings-form': 2.0.0-beta.1
+      '@pind/designable-shared': 2.0.0-beta.1
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
+      antd: ^5.0.0
+      classnames: ^2.3.2
       react: ^18.0.0
       react-dom: ^18.0.0
       react-is: ^18.0.0
     dependencies:
+      '@formily/json-schema': 2.2.14_typescript@4.9.4
       '@pind/designable-core': link:../../packages/core
       '@pind/designable-formily-transformer': link:../transformer
       '@pind/designable-react': link:../../packages/react
       '@pind/designable-react-settings-form': link:../../packages/react-settings-form
+      '@pind/designable-shared': link:../../packages/shared
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
+      classnames: 2.3.2
       react-is: 18.2.0
     devDependencies:
       '@formily/antd': 3.0.0-alpha.1_3djxtplu6vw52wd2gogfcdkfae
       '@formily/core': 2.2.14
       '@formily/react': 2.2.14_gy2jcindbd2cqrfc5bqbaxpbry
+      '@formily/reactive': 2.2.14
+      '@formily/reactive-react': 2.2.14_jfvhv3b24ogqbdlaxzhinjpfxi
       '@formily/shared': 2.2.14
+      antd: 5.0.5_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 

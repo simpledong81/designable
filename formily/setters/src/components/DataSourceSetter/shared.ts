@@ -14,7 +14,7 @@ export const traverseTree = <T extends INode>(
   for (let i = 0; i < data.length; i++) {
     callback(data[i], i, data)
     if (data[i]?.children) {
-      traverseTree(data[i]?.children, callback)
+      traverseTree(data[i]?.children || [], callback)
     }
   }
 }
@@ -25,8 +25,8 @@ export const transformValueToData = (value: IDataSourceItem[]): INodeItem[] => {
     const dataItem = {
       key: '',
       duplicateKey: '',
-      map: [],
-      children: [],
+      map: [] as { label: string; value: any }[],
+      children: [] as INode[],
     }
     for (const [key, value] of Object.entries(dataSource[i] || {})) {
       if (key !== 'children') dataItem.map.push({ label: key, value: value })

@@ -27,7 +27,7 @@ const parseTabs = (parent: TreeNode) => {
   return tabs
 }
 
-const getCorrectActiveKey = (activeKey: string, tabs: TreeNode[]) => {
+const getCorrectActiveKey = (activeKey?: string, tabs: TreeNode[] = []) => {
   if (tabs.length === 0) return
   if (tabs.some((node) => node.id === activeKey)) return activeKey
   return tabs[tabs.length - 1].id
@@ -143,7 +143,10 @@ FormTab.Behavior = createBehavior(
       droppable: true,
       allowAppend: (target, source) =>
         target.children.length === 0 ||
-        source.every((node) => node.props['x-component'] === 'FormTab.TabPane'),
+        source?.every(
+          (node) => node.props['x-component'] === 'FormTab.TabPane'
+        ) ||
+        false,
       propsSchema: createVoidFieldSchema(AllSchemas.FormTab),
     },
     designerLocales: AllLocales.FormTab,

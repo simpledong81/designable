@@ -1,9 +1,9 @@
 import React from 'react'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { DroppableWidget } from '@pind/designable-react'
 import './styles.less'
 
-export const Container: React.FC = observer((props) => {
+export const Container: ReactFC = observer((props) => {
   return <DroppableWidget>{props.children}</DroppableWidget>
 })
 

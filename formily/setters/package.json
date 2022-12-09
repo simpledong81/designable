@@ -27,25 +27,34 @@
     "@formily/core": "^2.2.14",
     "@formily/react": "^2.2.14",
     "@formily/shared": "^2.2.14",
+    "@formily/reactive": "^2.2.14",
+    "@formily/reactive-react": "^2.2.14",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "antd": "^5.0.0"
   },
   "peerDependencies": {
     "@formily/antd": "3.0.0-alpha.1",
     "@formily/core": "^2.2.14",
     "@formily/react": "^2.2.14",
     "@formily/shared": "^2.2.14",
+    "@formily/json-schema": "^2.2.14",
+    "@formily/reactive": "^2.2.14",
+    "@formily/reactive-react": "^2.2.14",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-is": "^18.0.0"
+    "react-is": "^18.0.0",
+    "antd": "^5.0.0"
   },
   "dependencies": {
     "@pind/designable-core": "2.0.0-beta.1",
     "@pind/designable-formily-transformer": "2.0.0-beta.1",
     "@pind/designable-react": "2.0.0-beta.1",
-    "@pind/designable-react-settings-form": "2.0.0-beta.1"
+    "@pind/designable-shared": "2.0.0-beta.1",
+    "@pind/designable-react-settings-form": "2.0.0-beta.1",
+    "classnames": "^2.3.2"
   },
   "publishConfig": {
     "access": "public"

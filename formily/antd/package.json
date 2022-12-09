@@ -29,7 +29,9 @@
     "@formily/core": "^2.2.14",
     "@formily/react": "^2.2.14",
     "@formily/reactive": "^2.2.14",
+    "@formily/reactive-react": "^2.2.14",
     "@formily/shared": "^2.2.14",
+    "@formily/json-schema": "^2.2.14",
     "ts-loader": "^7.0.4",
     "typescript": "^4.9.0",
     "@types/glob": "^7.2.0",
@@ -46,7 +48,9 @@
     "@formily/core": "^2.2.14",
     "@formily/react": "^2.2.14",
     "@formily/reactive": "^2.2.14",
+    "@formily/reactive-react": "^2.2.14",
     "@formily/shared": "^2.2.14",
+    "@formily/json-schema": "^2.2.14",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
@@ -58,7 +62,8 @@
     "@pind/designable-formily-setters": "2.0.0-beta.1",
     "@pind/designable-formily-transformer": "2.0.0-beta.1",
     "@pind/designable-react": "2.0.0-beta.1",
-    "antd": "^5.0.0"
+    "antd": "^5.0.0",
+    "classnames": "^2.3.2"
   },
   "publishConfig": {
     "access": "public"
