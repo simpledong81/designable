@@ -18,7 +18,7 @@ Switch.Behavior = createBehavior({
   designerLocales: AllLocales.Switch,
 })
 
-Switch.Resource = createResource({
+Switch.Resource = createResource('Inputs', {
   icon: 'SwitchSource',
   elements: [
     {

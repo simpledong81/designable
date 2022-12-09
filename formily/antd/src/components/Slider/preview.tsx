@@ -18,7 +18,7 @@ Slider.Behavior = createBehavior({
   designerLocales: AllLocales.Slider,
 })
 
-Slider.Resource = createResource({
+Slider.Resource = createResource('Inputs', {
   icon: 'SliderSource',
   elements: [
     {

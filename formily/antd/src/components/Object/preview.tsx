@@ -18,7 +18,7 @@ ObjectContainer.Behavior = createBehavior({
   designerLocales: AllLocales.ObjectLocale,
 })
 
-ObjectContainer.Resource = createResource({
+ObjectContainer.Resource = createResource('Inputs', {
   icon: 'ObjectSource',
   elements: [
     {

@@ -19,7 +19,7 @@ Select.Behavior = createBehavior({
   designerLocales: AllLocales.Select,
 })
 
-Select.Resource = createResource({
+Select.Resource = createResource('Inputs', {
   icon: 'SelectSource',
   elements: [
     {

@@ -56,7 +56,7 @@ Form.Behavior = createBehavior({
   designerLocales: AllLocales.Form,
 })
 
-Form.Resource = createResource({
+Form.Resource = createResource('Inputs', {
   title: { 'zh-CN': '表单', 'en-US': 'Form' },
   icon: 'FormLayoutSource',
   elements: [

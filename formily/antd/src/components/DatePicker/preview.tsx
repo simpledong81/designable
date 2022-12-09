@@ -31,6 +31,7 @@ DatePicker.Behavior = createBehavior(
 )
 
 DatePicker.Resource = createResource(
+  'Inputs',
   {
     icon: 'DatePickerSource',
     elements: [

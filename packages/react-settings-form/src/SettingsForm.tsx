@@ -69,6 +69,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer(
                 wrapperAlign="right"
                 feedbackLayout="none"
                 tooltipLayout="text"
+                // size="small"
               >
                 <SchemaField
                   schema={schema}

@@ -104,7 +104,7 @@ FormGrid.Behavior = createBehavior(
   }
 )
 
-FormGrid.Resource = createResource({
+FormGrid.Resource = createResource('Layouts', {
   icon: 'GridSource',
   elements: [
     {

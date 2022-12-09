@@ -31,6 +31,7 @@ TimePicker.Behavior = createBehavior(
 )
 
 TimePicker.Resource = createResource(
+  'Inputs',
   {
     icon: 'TimePickerSource',
     elements: [

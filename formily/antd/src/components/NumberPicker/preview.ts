@@ -20,7 +20,7 @@ NumberPicker.Behavior = createBehavior({
   designerLocales: AllLocales.NumberPicker,
 })
 
-NumberPicker.Resource = createResource({
+NumberPicker.Resource = createResource('Inputs', {
   icon: 'NumberPickerSource',
   elements: [
     {

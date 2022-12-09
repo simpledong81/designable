@@ -19,7 +19,7 @@ Password.Behavior = createBehavior({
   designerLocales: AllLocales.Password,
 })
 
-Password.Resource = createResource({
+Password.Resource = createResource('Inputs', {
   icon: 'PasswordSource',
   elements: [
     {

@@ -22,7 +22,7 @@ Space.Behavior = createBehavior({
   designerLocales: AllLocales.Space,
 })
 
-Space.Resource = createResource({
+Space.Resource = createResource('Layouts', {
   icon: 'SpaceSource',
   elements: [
     {

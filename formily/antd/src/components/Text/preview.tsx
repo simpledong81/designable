@@ -38,7 +38,7 @@ Text.Behavior = createBehavior({
   designerLocales: AllLocales.Text,
 })
 
-Text.Resource = createResource({
+Text.Resource = createResource('Displays', {
   icon: 'TextSource',
   elements: [
     {

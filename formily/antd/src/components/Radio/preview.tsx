@@ -19,7 +19,7 @@ Radio.Behavior = createBehavior({
   designerLocales: AllLocales.RadioGroup,
 })
 
-Radio.Resource = createResource({
+Radio.Resource = createResource('Inputs', {
   icon: 'RadioGroupSource',
   elements: [
     {

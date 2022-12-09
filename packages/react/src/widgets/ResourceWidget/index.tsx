@@ -14,7 +14,7 @@ import cls from 'classnames'
 import './styles.less'
 
 export type SourceMapper = (resource: IResource) => React.ReactNode
-export interface IResourcesWidgetProps {
+export interface IResourceWidgetProps {
   title: React.ReactNode
   sources?: IResourceLike[]
   className?: string
@@ -67,7 +67,7 @@ const ResourceNodeWidget: React.FC<IResourceNodeWidgetProps> = observer(
   }
 )
 
-export const ResourceWidget: ReactFC<IResourcesWidgetProps> = observer(
+export const ResourceWidget: ReactFC<IResourceWidgetProps> = observer(
   ({ className, title, defaultExpand, ...props }) => {
     const prefix = usePrefix('resource')
     const [expand, setExpand] = useState(defaultExpand)
@@ -108,11 +108,15 @@ export const ResourceWidget: ReactFC<IResourcesWidgetProps> = observer(
         </div>
         <div className={prefix + '-content-wrapper'}>
           <div className={prefix + '-content'}>
-            {sources.map((source) =>
+            {sources.map((source, index) =>
               isFn(props.children) ? (
                 props.children(source)
               ) : (
-                <ResourceNodeWidget prefix={prefix} source={source} />
+                <ResourceNodeWidget
+                  key={index}
+                  prefix={prefix}
+                  source={source}
+                />
               )
             )}
             {remainItems ? (

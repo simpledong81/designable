@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { isValid } from '@pind/designable-shared'
 import cls from 'classnames'
 import { IconWidget, TextWidget } from '../widgets'
@@ -94,24 +94,13 @@ export const CompositePanel: ReactFC<ICompositePanelProps> & {
             <div className={prefix + '-tabs-header-extra'}>
               {currentItem.extra}
             </div>
-            {!pinning && (
-              <IconWidget
-                infer="PushPinOutlined"
-                className={prefix + '-tabs-header-pin'}
-                onClick={() => {
-                  setPinning(!pinning)
-                }}
-              />
-            )}
-            {pinning && (
-              <IconWidget
-                infer="PushPinFilled"
-                className={prefix + '-tabs-header-pin-filled'}
-                onClick={() => {
-                  setPinning(!pinning)
-                }}
-              />
-            )}
+            <IconWidget
+              infer={pinning ? 'PushPinFilled' : 'PushPinOutlined'}
+              className={prefix + '-tabs-header-pin'}
+              onClick={() => {
+                setPinning(!pinning)
+              }}
+            />
             <IconWidget
               infer="Close"
               className={prefix + '-tabs-header-close'}
@@ -156,33 +145,34 @@ export const CompositePanel: ReactFC<ICompositePanelProps> & {
           const shape = item.shape ?? 'tab'
           const Comp = shape === 'link' ? 'a' : 'div'
           return (
-            <Comp
-              className={cls(prefix + '-tabs-pane', {
-                active: activeKey === item.key,
-              })}
-              key={index}
-              href={item.href}
-              onClick={(e: any) => {
-                if (shape === 'tab') {
-                  if (activeKey === item.key) {
-                    setVisible(!visible)
-                  } else {
-                    setVisible(true)
+            <Fragment key={`tab_${index}`}>
+              <Comp
+                className={cls(prefix + '-tabs-pane', {
+                  active: activeKey === item.key,
+                })}
+                href={item.href}
+                onClick={(e: any) => {
+                  if (shape === 'tab') {
+                    if (activeKey === item.key) {
+                      setVisible(!visible)
+                    } else {
+                      setVisible(true)
+                    }
+                    if (!props?.activeKey || !props?.onChange)
+                      setActiveKey(item.key)
                   }
-                  if (!props?.activeKey || !props?.onChange)
-                    setActiveKey(item.key)
-                }
-                item.onClick?.(e)
-                props.onChange?.(item.key)
-              }}
-            >
-              {takeTab()}
-              {props.showNavTitle && item.title ? (
-                <div className={prefix + '-tabs-pane-title'}>
-                  <TextWidget>{item.title}</TextWidget>
-                </div>
-              ) : null}
-            </Comp>
+                  item.onClick?.(e)
+                  props.onChange?.(item.key)
+                }}
+              >
+                {takeTab()}
+                {props.showNavTitle && item.title ? (
+                  <div className={prefix + '-tabs-pane-title'}>
+                    <TextWidget>{item.title}</TextWidget>
+                  </div>
+                ) : null}
+              </Comp>
+            </Fragment>
           )
         })}
       </div>

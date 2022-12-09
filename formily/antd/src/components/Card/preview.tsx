@@ -33,7 +33,7 @@ Card.Behavior = createBehavior({
   designerLocales: AllLocales.Card,
 })
 
-Card.Resource = createResource({
+Card.Resource = createResource('Layouts', {
   icon: 'CardSource',
   elements: [
     {

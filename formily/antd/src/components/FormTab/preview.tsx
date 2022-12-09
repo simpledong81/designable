@@ -164,7 +164,7 @@ FormTab.Behavior = createBehavior(
   }
 )
 
-FormTab.Resource = createResource({
+FormTab.Resource = createResource('Layouts', {
   icon: 'TabSource',
   elements: [
     {

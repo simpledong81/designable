@@ -21,7 +21,7 @@ FormLayout.Behavior = createBehavior({
   designerLocales: AllLocales.FormLayout,
 })
 
-FormLayout.Resource = createResource({
+FormLayout.Resource = createResource('Layouts', {
   icon: 'FormLayoutSource',
   elements: [
     {

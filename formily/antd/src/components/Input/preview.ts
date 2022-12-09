@@ -31,6 +31,7 @@ Input.Behavior = createBehavior(
 )
 
 Input.Resource = createResource(
+  'Inputs',
   {
     icon: 'InputSource',
     elements: [

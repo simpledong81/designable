@@ -254,7 +254,7 @@ ArrayBase.mixin(ArrayCards)
 
 ArrayCards.Behavior = createArrayBehavior('ArrayCards')
 
-ArrayCards.Resource = createResource({
+ArrayCards.Resource = createResource('Arrays', {
   icon: 'ArrayCardsSource',
   elements: [
     {

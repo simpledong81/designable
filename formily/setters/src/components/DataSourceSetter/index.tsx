@@ -37,17 +37,17 @@ export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer(
     } = props
     const theme = useTheme()
     const prefix = usePrefix('data-source-setter')
-    const [modalVisible, setModalVisible] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
     const treeDataSource: ITreeDataSource = useMemo(
       () =>
         observable({
           dataSource: transformValueToData(value),
           selectedKey: '',
         }),
-      [value, modalVisible]
+      [value, modalOpen]
     )
-    const openModal = () => setModalVisible(true)
-    const closeModal = () => setModalVisible(false)
+    const openModal = () => setModalOpen(true)
+    const closeModal = () => setModalOpen(false)
     return (
       <Fragment>
         <Button block onClick={openModal}>
@@ -61,7 +61,7 @@ export const DataSourceSetter: React.FC<IDataSourceSetterProps> = observer(
           bodyStyle={{ padding: 10 }}
           transitionName=""
           maskTransitionName=""
-          visible={modalVisible}
+          open={modalOpen}
           onCancel={closeModal}
           onOk={() => {
             onChange(transformDataToValue(treeDataSource.dataSource))

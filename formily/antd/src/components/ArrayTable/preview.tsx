@@ -445,7 +445,7 @@ ArrayTable.Behavior = createBehavior(createArrayBehavior('ArrayTable'), {
   designerLocales: AllLocales.ArrayTableColumn,
 })
 
-ArrayTable.Resource = createResource({
+ArrayTable.Resource = createResource('Arrays', {
   icon: 'ArrayTableSource',
   elements: [
     {

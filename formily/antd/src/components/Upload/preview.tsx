@@ -31,6 +31,7 @@ Upload.Behavior = createBehavior(
 )
 
 Upload.Resource = createResource(
+  'Inputs',
   {
     icon: 'UploadSource',
     elements: [

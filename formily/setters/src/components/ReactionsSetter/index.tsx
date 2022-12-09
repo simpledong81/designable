@@ -137,22 +137,22 @@ const FieldStateValueTypes = {
 }
 
 export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
   const [innerVisible, setInnerVisible] = useState(false)
   const prefix = usePrefix('reactions-setter')
   const form = useMemo(() => {
     return createForm({
       values: clone(props.value),
     })
-  }, [modalVisible, props.value])
+  }, [modalOpen, props.value])
   const formCollapse = useMemo(
     () => FormCollapse.createFormCollapse(['deps', 'state']),
-    [modalVisible]
+    [modalOpen]
   )
-  const openModal = () => setModalVisible(true)
-  const closeModal = () => setModalVisible(false)
+  const openModal = () => setModalOpen(true)
+  const closeModal = () => setModalOpen(false)
   useEffect(() => {
-    if (modalVisible) {
+    if (modalOpen) {
       requestIdle(
         () => {
           initDeclaration().then(() => {
@@ -166,7 +166,7 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
     } else {
       setInnerVisible(false)
     }
-  }, [modalVisible])
+  }, [modalOpen])
   return (
     <>
       <Button block onClick={openModal}>
@@ -181,7 +181,7 @@ export const ReactionsSetter: React.FC<IReactionsSetterProps> = (props) => {
         bodyStyle={{ padding: 10 }}
         transitionName=""
         maskTransitionName=""
-        visible={modalVisible}
+        open={modalOpen}
         onCancel={closeModal}
         destroyOnClose
         onOk={() => {

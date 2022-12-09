@@ -19,7 +19,7 @@ Transfer.Behavior = createBehavior({
   designerLocales: AllLocales.Transfer,
 })
 
-Transfer.Resource = createResource({
+Transfer.Resource = createResource('Inputs', {
   icon: 'TransferSource',
   elements: [
     {

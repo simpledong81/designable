@@ -19,7 +19,7 @@ Checkbox.Behavior = createBehavior({
   designerLocales: AllLocales.CheckboxGroup,
 })
 
-Checkbox.Resource = createResource({
+Checkbox.Resource = createResource('Inputs', {
   icon: 'CheckboxGroupSource',
   elements: [
     {

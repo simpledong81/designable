@@ -155,7 +155,7 @@ FormCollapse.Behavior = createBehavior(
   }
 )
 
-FormCollapse.Resource = createResource({
+FormCollapse.Resource = createResource('Inputs', {
   icon: 'CollapseSource',
   elements: [
     {

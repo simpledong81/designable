@@ -19,7 +19,7 @@ TreeSelect.Behavior = createBehavior({
   designerLocales: AllLocales.TreeSelect,
 })
 
-TreeSelect.Resource = createResource({
+TreeSelect.Resource = createResource('Inputs', {
   icon: 'TreeSelectSource',
   elements: [
     {

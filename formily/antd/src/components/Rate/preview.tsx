@@ -18,7 +18,7 @@ Rate.Behavior = createBehavior({
   designerLocales: AllLocales.Rate,
 })
 
-Rate.Resource = createResource({
+Rate.Resource = createResource('Inputs', {
   icon: 'RateSource',
   elements: [
     {

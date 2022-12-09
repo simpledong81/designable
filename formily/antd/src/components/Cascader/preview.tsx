@@ -19,7 +19,7 @@ Cascader.Behavior = createBehavior({
   designerLocales: AllLocales.Cascader,
 })
 
-Cascader.Resource = createResource({
+Cascader.Resource = createResource('Inputs', {
   icon: 'CascaderSource',
   elements: [
     {
