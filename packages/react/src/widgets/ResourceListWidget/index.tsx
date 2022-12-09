@@ -45,7 +45,7 @@ export const ResourceListWidget: React.FC<IResourceListWidgetProps> = observer(
           <ResourceWidget
             key={type}
             {...props}
-            title={type}
+            title={`sources.${type}`}
             sources={[sources || []]}
             defaultExpand={expandSource?.includes(type) ?? props.defaultExpand}
           />

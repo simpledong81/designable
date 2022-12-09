@@ -494,7 +494,7 @@ export class Viewport {
     )
   }
 
-  getValidNodeRect(node: TreeNode): Rect | undefined {
+  getValidNodeRect(node?: TreeNode): Rect | undefined {
     if (!node) return
     const rect = this.getElementRectById(node.id)
     if (node && node === node.root && node.isInOperation) {
