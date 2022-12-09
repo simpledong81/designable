@@ -8,7 +8,7 @@ export interface IMarkupSchemaWidgetProps {
 }
 
 const transformToMarkupSchemaCode = (tree: TreeNode) => {
-  const printAttribute = (node: TreeNode) => {
+  const printAttribute = (node?: TreeNode) => {
     if (!node) return ''
     const props = { ...node.props }
     if (node.depth !== 0) {
@@ -31,7 +31,7 @@ const transformToMarkupSchemaCode = (tree: TreeNode) => {
       })
       .join(' ')}`
   }
-  const printChildren = (node: TreeNode) => {
+  const printChildren = (node?: TreeNode) => {
     if (!node) return ''
     return node.children
       .map((child) => {

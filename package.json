@@ -6,7 +6,8 @@
   },
   "workspaces": [
     "packages/*",
-    "formily/*"
+    "formily/*",
+    "examples/*"
   ],
   "resolutions": {
     "@formily/react": "^2.2.14"
@@ -105,6 +106,7 @@
     "raw-loader": "^4.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^3.7.0",
+    "dayjs": "^1.11.7",
     "rollup-plugin-external-globals": "^0.7.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.34.1",

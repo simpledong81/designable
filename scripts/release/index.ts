@@ -1,7 +1,7 @@
 import ghRelease from 'gh-release'
 import fs from 'fs-extra'
 import path from 'path'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { compareTwoStrings } from 'string-similarity'
 import {
   listCommits,
@@ -37,7 +37,7 @@ const isPublishMessage = (str: string) => {
 }
 
 const getCurrentChanges = (from = lastTag(), to = 'HEAD') => {
-  const summarys = []
+  const summarys: string[] = []
   return listCommits(from, to).filter(({ summary }) => {
     if (summarys.some((target) => compareTwoStrings(target, summary) > 0.5))
       return false
@@ -76,8 +76,8 @@ const createChangelog = (from = lastTag(), to = 'HEAD') => {
   const headVersion = isHead ? LernaJSON?.version : to
   const changes = getGroupChanges(from, to)
   const nowDate = isHead
-    ? moment().format('YYYY-MM-DD')
-    : moment(getTaggedTime(to), 'YYYY-MM-DD').format('YYYY-MM-DD')
+    ? dayjs().format('YYYY-MM-DD')
+    : dayjs(getTaggedTime(to), 'YYYY-MM-DD').format('YYYY-MM-DD')
   const log = changes
     .map(([group, contents]) => {
       return `

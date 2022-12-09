@@ -28,6 +28,7 @@ importers:
       cross-env: ^7.0.3
       css-loader: ^6.7.2
       cz-conventional-changelog: ^3.3.0
+      dayjs: ^1.11.7
       escape-string-regexp: ^5.0.0
       eslint: ^8.29.0
       eslint-config-prettier: ^8.5.0
@@ -107,6 +108,7 @@ importers:
       cross-env: 7.0.3
       css-loader: 6.7.2_webpack@5.75.0
       cz-conventional-changelog: 3.3.0
+      dayjs: 1.11.7
       escape-string-regexp: 5.0.0
       eslint: 8.29.0
       eslint-config-prettier: 8.5.0_eslint@8.29.0
@@ -451,14 +453,12 @@ importers:
       classnames: ^2.3.2
       dateformat: ^4.6.3
       react: ^18.2.0
-      react-error-boundary: ^3.1.4
     dependencies:
       '@pind/designable-core': link:../core
       '@pind/designable-shared': link:../shared
       antd: 5.0.5_biqbaboplfbrettd7655fr4n2y
       classnames: 2.3.2
       dateformat: 4.6.3
-      react-error-boundary: 3.1.4_react@18.2.0
     devDependencies:
       '@formily/reactive': 2.2.14
       '@formily/reactive-react': 2.2.14_jfvhv3b24ogqbdlaxzhinjpfxi
@@ -19439,6 +19439,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       react: 18.2.0
+    dev: true
 
   /react-is/16.13.1:
     resolution:
