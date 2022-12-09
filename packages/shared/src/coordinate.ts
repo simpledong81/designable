@@ -342,7 +342,8 @@ export function calcRectByStartEndPoint(
   }
 }
 
-export function calcEdgeLinesOfRect(rect: IRect): IRectEdgeLines | undefined {
+export function calcEdgeLinesOfRect(rect?: IRect): IRectEdgeLines | undefined {
+  if (!rect) return
   return {
     v: [
       new LineSegment(

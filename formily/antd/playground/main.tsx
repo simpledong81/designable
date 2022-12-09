@@ -36,9 +36,9 @@ import {
 } from './widgets'
 import { saveSchema } from './service'
 import { sources } from '@pind/designable-formily-antd'
-
+import { Alert } from 'antd'
 setNpmCDNRegistry('//unpkg.com')
-
+const { ErrorBoundary } = Alert
 GlobalRegistry.registerDesignerLocales({
   'zh-CN': {
     sources: {
@@ -101,28 +101,30 @@ const App = () => {
         </CompositePanel>
         <Workspace id="form">
           <WorkspacePanel>
-            <ToolbarPanel>
-              <DesignerToolsWidget />
-              <ViewToolsWidget
-                use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']}
-              />
-            </ToolbarPanel>
-            <ViewportPanel style={{ height: '100%' }}>
-              <ViewPanel type="DESIGNABLE">
-                {() => <ComponentTreeWidget components={{ ...sources }} />}
-              </ViewPanel>
-              <ViewPanel type="JSONTREE" scrollable={false}>
-                {(tree, onChange) => (
-                  <SchemaEditorWidget tree={tree} onChange={onChange} />
-                )}
-              </ViewPanel>
-              <ViewPanel type="MARKUP" scrollable={false}>
-                {(tree) => <MarkupSchemaWidget tree={tree} />}
-              </ViewPanel>
-              <ViewPanel type="PREVIEW">
-                {(tree) => <PreviewWidget tree={tree} />}
-              </ViewPanel>
-            </ViewportPanel>
+            <ErrorBoundary>
+              <ToolbarPanel>
+                <DesignerToolsWidget />
+                <ViewToolsWidget
+                  use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']}
+                />
+              </ToolbarPanel>
+              <ViewportPanel style={{ height: '100%' }}>
+                <ViewPanel type="DESIGNABLE">
+                  {() => <ComponentTreeWidget components={{ ...sources }} />}
+                </ViewPanel>
+                <ViewPanel type="JSONTREE" scrollable={false}>
+                  {(tree, onChange) => (
+                    <SchemaEditorWidget tree={tree} onChange={onChange} />
+                  )}
+                </ViewPanel>
+                <ViewPanel type="MARKUP" scrollable={false}>
+                  {(tree) => <MarkupSchemaWidget tree={tree} />}
+                </ViewPanel>
+                <ViewPanel type="PREVIEW">
+                  {(tree) => <PreviewWidget tree={tree} />}
+                </ViewPanel>
+              </ViewportPanel>
+            </ErrorBoundary>
           </WorkspacePanel>
         </Workspace>
         <SettingsPanel title="panels.PropertySettings">

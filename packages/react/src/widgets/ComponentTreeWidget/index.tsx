@@ -7,9 +7,6 @@ import { useComponents, useDesigner, usePrefix, useTree } from '../../hooks'
 import { IDesignerComponents } from '../../types'
 import './styles.less'
 
-import { Alert } from 'antd'
-const { ErrorBoundary } = Alert
-
 export interface IComponentTreeWidgetProps {
   style?: React.CSSProperties
   className?: string
@@ -93,9 +90,7 @@ export const ComponentTreeWidget: ReactFC<IComponentTreeWidgetProps> = observer(
         {...dataId}
       >
         <DesignerComponentsContext.Provider value={props.components}>
-          <ErrorBoundary>
-            <TreeNodeWidget node={tree} />
-          </ErrorBoundary>
+          <TreeNodeWidget node={tree} />
         </DesignerComponentsContext.Provider>
       </div>
     )
