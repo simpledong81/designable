@@ -10,14 +10,16 @@ export const useTranslateEffect = (engine: Engine) => {
     if (!currentWorkspace) return
     const helper = currentWorkspace.operation.transformHelper
     if (handler) {
-      const type = handler.getAttribute(engine.props.nodeTranslateAttrName)
+      const type = handler.getAttribute(
+        engine.props.nodeTranslateAttrName as string
+      )
       if (type) {
         const selectionElement = handler.closest(
           `*[${engine.props.nodeSelectionIdAttrName}]`
         ) as HTMLElement
         if (selectionElement) {
           const nodeId = selectionElement.getAttribute(
-            engine.props.nodeSelectionIdAttrName
+            engine.props.nodeSelectionIdAttrName as string
           )
           if (nodeId) {
             const node = engine.findNodeById(nodeId)
@@ -34,11 +36,13 @@ export const useTranslateEffect = (engine: Engine) => {
     const currentWorkspace =
       event.context?.workspace ?? engine.workbench.activeWorkspace
     const helper = currentWorkspace?.operation.transformHelper
+    if (!helper) return
     const dragNodes = helper.dragNodes
     if (!dragNodes.length) return
     helper.dragMove()
     dragNodes.forEach((node) => {
       const element = node.getElement()
+      if (!element) return
       helper.translate(node, (translate) => {
         element.style.position = 'absolute'
         element.style.left = '0px'

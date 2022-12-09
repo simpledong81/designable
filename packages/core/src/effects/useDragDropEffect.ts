@@ -30,7 +30,7 @@ export const useDragDropEffect = (engine: Engine) => {
       `*[${engine.props.nodeSelectionIdAttrName}]`
     )
     if (!el?.getAttribute && !handler) return
-    const props = engine.props as Required<IEngineProps<Engine>>
+    const props = engine.props
     const sourceId = el?.getAttribute(props.sourceIdAttrName)
     const outlineId = el?.getAttribute(props.outlineNodeIdAttrName)
     const handlerId = helper?.getAttribute(props.nodeSelectionIdAttrName)
@@ -75,7 +75,7 @@ export const useDragDropEffect = (engine: Engine) => {
       event.data.topClientX as number,
       event.data.topClientY as number
     )
-    const props = engine.props as Required<IEngineProps<Engine>>
+    const props = engine.props
     const nodeId = el?.getAttribute(props.nodeIdAttrName)
     const outlineId = el?.getAttribute(props.outlineNodeIdAttrName)
     engine.workbench.eachWorkspace((currentWorkspace) => {
@@ -121,7 +121,7 @@ export const useDragDropEffect = (engine: Engine) => {
     *[${engine.props.nodeIdAttrName}],
     *[${engine.props.outlineNodeIdAttrName}]
   `)
-    const props = engine.props as Required<IEngineProps<Engine>>
+    const props = engine.props
     const nodeId = viewportNodeElement?.getAttribute(props.nodeIdAttrName)
     const outlineNodeId = outlineNodeElement?.getAttribute(
       props.outlineNodeIdAttrName

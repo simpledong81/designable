@@ -59,13 +59,14 @@ export const createBehavior = (
 }
 
 export const createResource = (...sources: IResourceCreator[]): IResource[] => {
-  return sources.reduce((buf, source) => {
+  return sources.reduce<IResource[]>((buf, source) => {
     return buf.concat({
       ...source,
       node: new TreeNode({
         componentName: '$$ResourceNode$$',
         isSourceNode: true,
         children: source.elements || [],
+        props: {},
       }),
     })
   }, [])

@@ -10,9 +10,9 @@ import { IEngineContext, WorkbenchTypes } from '../types'
 export class Workbench {
   workspaces: Workspace[]
 
-  currentWorkspace: Workspace
+  currentWorkspace?: Workspace
 
-  activeWorkspace: Workspace
+  activeWorkspace?: Workspace
 
   engine: Engine
 
@@ -21,8 +21,8 @@ export class Workbench {
   constructor(engine: Engine) {
     this.engine = engine
     this.workspaces = []
-    this.currentWorkspace = null
-    this.activeWorkspace = null
+    this.currentWorkspace = undefined
+    this.activeWorkspace = undefined
     this.makeObservable()
   }
 
@@ -44,8 +44,6 @@ export class Workbench {
     return {
       engine: this.engine,
       workbench: this.engine.workbench,
-      workspace: null,
-      viewport: null,
     }
   }
 
@@ -95,14 +93,14 @@ export class Workbench {
     }
   }
 
-  ensureWorkspace(props: IWorkspaceProps = {}) {
+  ensureWorkspace(props: IWorkspaceProps) {
     const workspace = this.findWorkspaceById(props.id)
     if (workspace) return workspace
     this.addWorkspace(props)
     return this.currentWorkspace
   }
 
-  findWorkspaceById(id: string) {
+  findWorkspaceById(id?: string) {
     return this.workspaces.find((item) => item.id === id)
   }
 

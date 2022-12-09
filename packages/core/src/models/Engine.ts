@@ -1,10 +1,10 @@
+import { Event, globalThisPolyfill, uid } from '@pind/designable-shared'
 import { IEngineProps } from '../types'
-import { ITreeNode, TreeNode } from './TreeNode'
-import { Workbench } from './Workbench'
 import { Cursor } from './Cursor'
 import { Keyboard } from './Keyboard'
 import { Screen, ScreenType } from './Screen'
-import { Event, uid, globalThisPolyfill } from '@pind/designable-shared'
+import { ITreeNode, TreeNode } from './TreeNode'
+import { Workbench } from './Workbench'
 
 /**
  * 设计器引擎
@@ -23,7 +23,7 @@ export class Engine extends Event {
 
   screen: Screen
 
-  constructor(props: IEngineProps<Engine>) {
+  constructor(props: Partial<IEngineProps<Engine>>) {
     super(props)
     this.props = {
       ...Engine.defaultProps,
@@ -64,7 +64,7 @@ export class Engine extends Event {
   }
 
   findMovingNodes(): TreeNode[] {
-    const results = []
+    const results: TreeNode[] = []
     this.workbench.eachWorkspace((workspace) => {
       workspace.operation.moveHelper.dragNodes?.forEach((node) => {
         if (!results.includes(node)) {

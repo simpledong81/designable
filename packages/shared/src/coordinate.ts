@@ -34,9 +34,9 @@ export function isLineSegment(val: any): val is ILineSegment {
 export class Point implements IPoint {
   x: number
   y: number
-  constructor(x = 0, y = 0) {
-    this.x = x
-    this.y = y
+  constructor(x?: number, y?: number) {
+    this.x = x || 0
+    this.y = y || 0
   }
 }
 
@@ -45,11 +45,11 @@ export class Rect implements IRect {
   y = 0
   width = 0
   height = 0
-  constructor(x: number, y: number, width = 0, height = 0) {
+  constructor(x: number, y: number, width?: number, height?: number) {
     this.x = x
     this.y = y
-    this.width = width
-    this.height = height
+    this.width = width || 0
+    this.height = height || 0
   }
 
   get left() {
@@ -118,9 +118,11 @@ export function isPointInRect(point: IPoint, rect: IRect, sensitive = true) {
   )
 }
 
-export function isEqualRect(target: IRect, source: IRect) {
+export function isEqualRect(target?: IRect, source?: IRect) {
   return (
-    target?.x === source?.x &&
+    target &&
+    source &&
+    target.x === source.x &&
     target.y === source.y &&
     target.width === source.width &&
     target.height === source.height
@@ -340,8 +342,7 @@ export function calcRectByStartEndPoint(
   }
 }
 
-export function calcEdgeLinesOfRect(rect?: IRect): IRectEdgeLines | undefined {
-  if (!rect) return
+export function calcEdgeLinesOfRect(rect: IRect): IRectEdgeLines | undefined {
   return {
     v: [
       new LineSegment(
@@ -553,9 +554,10 @@ export function calcOffsetOfSnapLineSegmentToEdge(
 
 export function calcDistanceOfSnapLineToEdges(
   line: ILineSegment,
-  edges: IRectEdgeLines
+  edges?: IRectEdgeLines
 ) {
   let distance = Infinity
+  if (!edges) return distance
   if (line?.start?.y === line?.end?.y) {
     edges.h.forEach((target) => {
       const _distance = Math.abs(target.start.y - line.start.y)

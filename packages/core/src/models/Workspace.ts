@@ -24,10 +24,10 @@ export interface IWorkspace {
 
 export interface IWorkspaceProps {
   id?: string
-  title?: string
-  description?: string
-  contentWindow?: Window
-  viewportElement?: HTMLElement
+  title: string
+  description: string
+  contentWindow: Window
+  viewportElement: HTMLElement
 }
 
 //工作区模型
@@ -61,7 +61,7 @@ export class Workspace {
       workspace: this,
       viewportElement: props.viewportElement,
       contentWindow: props.contentWindow,
-      nodeIdAttrName: this.engine.props.nodeIdAttrName,
+      nodeIdAttrName: this.engine.props.nodeIdAttrName as string,
       moveSensitive: true,
       moveInsertionType: 'all',
     })
@@ -70,7 +70,7 @@ export class Workspace {
       workspace: this,
       viewportElement: props.viewportElement,
       contentWindow: props.contentWindow,
-      nodeIdAttrName: this.engine.props.outlineNodeIdAttrName,
+      nodeIdAttrName: this.engine.props.outlineNodeIdAttrName as string,
       moveSensitive: false,
       moveInsertionType: 'block',
     })

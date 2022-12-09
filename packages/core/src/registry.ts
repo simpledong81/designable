@@ -36,7 +36,7 @@ const reSortBehaviors = (target: IBehavior[], sources: IDesignerBehaviors) => {
   const findTargetBehavior = (behavior: IBehavior) => target.includes(behavior)
   const findSourceBehavior = (name: string) => {
     for (let key in sources) {
-      const { Behavior } = sources[key]
+      const { Behavior = [] } = sources[key]
       for (let i = 0; i < Behavior.length; i++) {
         if (Behavior[i].name === name) return Behavior[i]
       }
@@ -45,18 +45,20 @@ const reSortBehaviors = (target: IBehavior[], sources: IDesignerBehaviors) => {
   each(sources, (item) => {
     if (!item) return
     if (!isBehaviorHost(item)) return
-    const { Behavior } = item
+    const { Behavior = [] } = item
     each(Behavior, (behavior) => {
       if (findTargetBehavior(behavior)) return
       const name = behavior.name
-      each(behavior.extends, (dep) => {
-        const behavior = findSourceBehavior(dep)
-        if (!behavior)
-          throw new Error(`No ${dep} behavior that ${name} depends on`)
-        if (!findTargetBehavior(behavior)) {
-          target.unshift(behavior)
-        }
-      })
+      if (behavior.extends) {
+        each(behavior.extends, (dep) => {
+          const behavior = findSourceBehavior(dep)
+          if (!behavior)
+            throw new Error(`No ${dep} behavior that ${name} depends on`)
+          if (!findTargetBehavior(behavior)) {
+            target.unshift(behavior)
+          }
+        })
+      }
       target.push(behavior)
     })
   })
@@ -81,7 +83,7 @@ const DESIGNER_GlobalRegistry = {
     DESIGNER_BEHAVIORS_STORE.value = behaviors.reduce<IBehavior[]>(
       (buf, behavior) => {
         if (isBehaviorHost(behavior)) {
-          return buf.concat(behavior.Behavior)
+          return buf.concat(behavior.Behavior || [])
         } else if (isBehaviorList(behavior)) {
           return buf.concat(behavior)
         }

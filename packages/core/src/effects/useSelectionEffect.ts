@@ -35,7 +35,7 @@ export const useSelectionEffect = (engine: Engine) => {
       }
       return
     }
-    const props = engine.props as Required<IEngineProps<Engine>>
+    const props = engine.props
     const nodeId = el.getAttribute(props.nodeIdAttrName)
     const structNodeId = el.getAttribute(props.outlineNodeIdAttrName)
     const operation = currentWorkspace.operation

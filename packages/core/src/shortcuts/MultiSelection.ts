@@ -21,7 +21,7 @@ export const SelectAllNodes = new Shortcut({
     [KeyCode.Control, KeyCode.A],
   ],
   handler(context) {
-    const operation = context?.workspace.operation
+    const operation = context.workspace?.operation
     if (operation) {
       const tree = operation.tree
       const selection = operation.selection

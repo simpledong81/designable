@@ -7,7 +7,7 @@ import { KeyCode, Shortcut, TreeNode } from '../models'
 export const DeleteNodes = new Shortcut({
   codes: [[KeyCode.Backspace], [KeyCode.Delete]],
   handler(context) {
-    const operation = context?.workspace.operation
+    const operation = context.workspace?.operation
     if (operation) {
       TreeNode.remove(operation.selection.selectedNodes)
     }
@@ -28,7 +28,7 @@ export const CopyNodes = new Shortcut({
     [KeyCode.Control, KeyCode.C],
   ],
   handler(context) {
-    const operation = context?.workspace.operation
+    const operation = context.workspace?.operation
     if (operation) {
       Clipboard.nodes = operation.selection.selectedNodes
     }
@@ -41,7 +41,7 @@ export const PasteNodes = new Shortcut({
     [KeyCode.Control, KeyCode.V],
   ],
   handler(context) {
-    const operation = context?.workspace.operation
+    const operation = context.workspace?.operation
     if (operation) {
       TreeNode.clone(Clipboard.nodes)
     }

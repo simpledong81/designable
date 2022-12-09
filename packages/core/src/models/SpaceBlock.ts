@@ -17,9 +17,9 @@ export type ISpaceBlockType =
 
 export interface ISpaceBlock {
   id?: string
-  refer?: TreeNode
-  rect?: Rect
-  distance?: number
+  refer: TreeNode
+  rect: Rect
+  distance: number
   type?: ISpaceBlockType
 }
 
@@ -31,7 +31,7 @@ export class SpaceBlock {
   refer: TreeNode
   helper: TransformHelper
   rect: Rect
-  type: ISpaceBlockType
+  type?: ISpaceBlockType
   constructor(helper: TransformHelper, box: ISpaceBlock) {
     this.helper = helper
     this.distance = box.distance
@@ -41,7 +41,6 @@ export class SpaceBlock {
   }
 
   get referRect() {
-    if (!this.refer) return
     return this.helper.getNodeRect(this.refer)
   }
 
@@ -59,7 +58,7 @@ export class SpaceBlock {
 
   get extendsLine() {
     if (!this.needExtendsLine) return
-    const dragNodesRect = this.helper.dragNodesRect
+    const dragNodesRect = this.helper.dragNodesRect as Rect
     return calcExtendsLineSegmentOfRect(dragNodesRect, this.referRect)
   }
 
@@ -102,7 +101,7 @@ export class SpaceBlock {
   }
 
   get crossDragNodesRect() {
-    const dragNodesRect = this.helper.dragNodesRect
+    const dragNodesRect = this.helper.dragNodesRect as Rect
     if (this.type === 'top' || this.type === 'bottom') {
       return new Rect(
         dragNodesRect.x,

@@ -4,7 +4,7 @@ import { IEngineProps } from '../types'
 
 export const useResizeEffect = (engine: Engine) => {
   const findStartNodeHandler = (target: HTMLElement) => {
-    const props = engine.props as Required<IEngineProps<Engine>>
+    const props = engine.props
     const handler = target?.closest(`*[${props.nodeResizeHandlerAttrName}]`)
     if (handler) {
       const direction = handler.getAttribute(
@@ -34,7 +34,7 @@ export const useResizeEffect = (engine: Engine) => {
     const handler = findStartNodeHandler(target)
     const helper = currentWorkspace.operation.transformHelper
     if (handler) {
-      const props = engine.props as Required<IEngineProps<Engine>>
+      const props = engine.props
       const selectionElement = handler.element.closest(
         `*[${props.nodeSelectionIdAttrName}]`
       ) as HTMLElement

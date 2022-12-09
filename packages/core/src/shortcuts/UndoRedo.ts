@@ -9,8 +9,8 @@ export const UndoMutation = new Shortcut({
     const workspace = context?.workspace
     if (workspace) {
       workspace.history.undo()
+      workspace.operation.hover.clear()
     }
-    workspace.operation.hover.clear()
   },
 })
 
@@ -23,7 +23,7 @@ export const RedoMutation = new Shortcut({
     const workspace = context?.workspace
     if (workspace) {
       workspace.history.redo()
+      workspace.operation.hover.clear()
     }
-    workspace.operation.hover.clear()
   },
 })

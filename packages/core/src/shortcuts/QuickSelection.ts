@@ -24,7 +24,7 @@ export const SelectPrevNode = new Shortcut({
     [KeyCode.ArrowLeft],
   ],
   handler(context) {
-    const operation = context?.workspace.operation
+    const operation = context.workspace?.operation
     if (operation) {
       const tree = operation.tree
       const selection = operation.selection
@@ -61,7 +61,7 @@ export const SelectNextNode = new Shortcut({
     [KeyCode.ArrowRight],
   ],
   handler(context) {
-    const operation = context?.workspace.operation
+    const operation = context.workspace?.operation
     if (operation) {
       const tree = operation.tree
       const selection = operation.selection

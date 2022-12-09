@@ -12,33 +12,28 @@ export type ISnapLineType = 'ruler' | 'space-block' | 'normal'
 
 export type ISnapLine = ILineSegment & {
   type?: ISnapLineType
-  distance?: number
+  distance: number
   id?: string
   refer?: TreeNode
 }
 
 export class SnapLine {
-  _id: string
+  id: string
   type: ISnapLineType
   distance: number
-  refer: TreeNode
+  refer?: TreeNode
   start: IPoint
   end: IPoint
   helper: TransformHelper
   constructor(helper: TransformHelper, line: ISnapLine) {
     this.helper = helper
     this.type = line.type || 'normal'
-    this._id = line.id
     this.refer = line.refer
     this.start = { ...line.start }
     this.end = { ...line.end }
     this.distance = line.distance
-  }
-
-  get id() {
-    return (
-      this._id ?? `${this.start.x}-${this.start.y}-${this.end.x}-${this.end.y}`
-    )
+    this.id =
+      line.id || `${this.start.x}-${this.start.y}-${this.end.x}-${this.end.y}`
   }
 
   get direction() {
@@ -57,8 +52,8 @@ export class SnapLine {
   translate(node: TreeNode, translate: IPoint) {
     if (!node || !node?.parent) return
     const parent = node.parent
-    const dragNodeRect = node.getValidElementOffsetRect()
-    const parentRect = parent.getValidElementOffsetRect()
+    const dragNodeRect = node.getValidElementOffsetRect() as Rect
+    const parentRect = parent.getValidElementOffsetRect() as Rect
     const edgeOffset = calcOffsetOfSnapLineSegmentToEdge(this, dragNodeRect)
     if (this.direction === 'h') {
       translate.y = this.start.y - parentRect.y - edgeOffset.y
@@ -70,10 +65,10 @@ export class SnapLine {
   resize(node: TreeNode, rect: Rect) {
     if (!node || !node?.parent) return
     const parent = node.parent
-    const dragNodeRect = node.getValidElementOffsetRect()
-    const parentRect = parent.getValidElementOffsetRect()
+    const dragNodeRect = node.getValidElementOffsetRect() as Rect
+    const parentRect = parent.getValidElementOffsetRect() as Rect
     const edgeOffset = calcOffsetOfSnapLineSegmentToEdge(this, dragNodeRect)
-    const cursorRect = this.helper.cursorDragNodesRect
+    const cursorRect = this.helper.cursorDragNodesRect as Rect
     const snapEdge = this.snapEdge(rect)
     if (this.direction === 'h') {
       const y = this.start.y - parentRect.y - edgeOffset.y

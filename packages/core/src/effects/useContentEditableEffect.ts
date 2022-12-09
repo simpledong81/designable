@@ -1,8 +1,7 @@
-import { IEngineProps } from './../types'
 import { Path } from '@formily/path'
-import { requestIdle, globalThisPolyfill } from '@pind/designable-shared'
+import { globalThisPolyfill, requestIdle } from '@pind/designable-shared'
+import { MouseClickEvent, MouseDoubleClickEvent } from '../events'
 import { Engine, TreeNode } from '../models'
-import { MouseDoubleClickEvent, MouseClickEvent } from '../events'
 
 type GlobalState = {
   activeElements: Map<HTMLInputElement, TreeNode>
@@ -140,7 +139,7 @@ export const useContentEditableEffect = (engine: Engine) => {
   function findTargetNodeId(element: Element) {
     if (!element) return
 
-    const props = engine.props as Required<IEngineProps<Engine>>
+    const props = engine.props
     const nodeId = element.getAttribute(props.contentEditableNodeIdAttrName)
     if (nodeId) return nodeId
     const parent = element.closest(`*[${props.nodeIdAttrName}]`)
@@ -176,8 +175,8 @@ export const useContentEditableEffect = (engine: Engine) => {
       `*[${engine.props.contentEditableAttrName}]`
     ) as HTMLInputElement
     const workspace = engine.workbench.activeWorkspace
-    const tree = workspace.operation.tree
-    if (editableElement) {
+    const tree = workspace?.operation.tree
+    if (editableElement && tree) {
       const editable = editableElement.getAttribute('contenteditable')
       if (editable === 'false' || !editable) {
         const nodeId = findTargetNodeId(editableElement)

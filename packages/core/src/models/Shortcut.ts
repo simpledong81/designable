@@ -4,15 +4,15 @@ import { IEngineContext } from '../types'
 export { KeyCode }
 
 export interface IShortcutProps {
-  codes?: KeyCode[] | KeyCode[][]
+  codes: KeyCode[] | KeyCode[][]
   matcher?: (codes: KeyCode[]) => boolean
   handler?: (context: IEngineContext) => void
 }
 
 export class Shortcut {
   codes: KeyCode[][]
-  handler: (context: IEngineContext) => void
-  matcher: (codes: KeyCode[]) => boolean
+  handler?: (context: IEngineContext) => void
+  matcher?: (codes: KeyCode[]) => boolean
   constructor(props: IShortcutProps) {
     this.codes = this.parseCodes(props.codes)
     this.handler = props.handler
