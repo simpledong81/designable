@@ -3,7 +3,7 @@ import { Engine } from '../models/Engine'
 import { ViewportScrollEvent } from '../events'
 
 export class ViewportScrollDriver extends EventDriver<Engine> {
-  request = null
+  request = 0
 
   onScroll = (e: UIEvent) => {
     e.preventDefault()
@@ -17,7 +17,7 @@ export class ViewportScrollDriver extends EventDriver<Engine> {
           innerHeight: this.contentWindow.innerHeight,
           innerWidth: this.contentWindow.innerWidth,
           view: this.contentWindow,
-          target: e.target,
+          target: e.target as EventTarget,
         })
       )
       cancelAnimationFrame(this.request)

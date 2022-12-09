@@ -1,3 +1,4 @@
+import { IEngineProps } from './../types'
 import { Path } from '@formily/path'
 import { requestIdle, globalThisPolyfill } from '@pind/designable-shared'
 import { Engine, TreeNode } from '../models'
@@ -11,7 +12,11 @@ type GlobalState = {
 }
 
 function getAllRanges(sel: Selection) {
-  const ranges = []
+  const ranges: {
+    collapsed: boolean
+    startOffset: number
+    endOffset: number
+  }[] = []
   for (let i = 0; i < sel.rangeCount; i++) {
     const range = sel.getRangeAt(i)
     ranges[i] = {
@@ -28,16 +33,19 @@ function setEndOfContenteditable(contentEditableElement: Element) {
   range.selectNodeContents(contentEditableElement)
   range.collapse(false)
   const selection = globalThisPolyfill.getSelection()
+  if (!selection) return
   selection.removeAllRanges()
   selection.addRange(range)
 }
 
 function createCaretCache(el: Element) {
   const currentSelection = globalThisPolyfill.getSelection()
+  if (!currentSelection) return
   if (currentSelection.containsNode(el)) return
   const ranges = getAllRanges(currentSelection)
   return (offset = 0) => {
     const sel = globalThisPolyfill.getSelection()
+    if (!sel) return
     const firstNode = el.childNodes[0]
     if (!firstNode) return
     sel.removeAllRanges()
@@ -83,7 +91,7 @@ export const useContentEditableEffect = (engine: Engine) => {
         )
         requestIdle(() => {
           node.takeSnapshot('update:node:props')
-          restore()
+          restore?.()
         })
       }
       globalState.queue.push(handler)
@@ -103,7 +111,7 @@ export const useContentEditableEffect = (engine: Engine) => {
   function onCompositionHandler(event: CompositionEvent) {
     if (event.type === 'compositionend') {
       globalState.isComposition = false
-      onInputHandler(event as any)
+      onInputHandler(event as unknown as InputEvent)
     } else {
       clearTimeout(globalState.requestTimer)
       globalState.isComposition = true
@@ -113,10 +121,11 @@ export const useContentEditableEffect = (engine: Engine) => {
   function onPastHandler(event: ClipboardEvent) {
     event.preventDefault()
     const node = globalState.activeElements.get(this)
-    const text = event.clipboardData.getData('text')
+    const text = event.clipboardData?.getData('text')
     const selObj = globalThisPolyfill.getSelection()
     const target = event.target as Element
-    const selRange = selObj.getRangeAt(0)
+    const selRange = selObj?.getRangeAt(0)
+    if (!selRange || !node || !text) return
     const restore = createCaretCache(target)
     selRange.deleteContents()
     selRange.insertNode(document.createTextNode(text))
@@ -125,17 +134,17 @@ export const useContentEditableEffect = (engine: Engine) => {
       this.getAttribute(engine.props.contentEditableAttrName),
       target.textContent
     )
-    restore(text.length)
+    restore?.(text.length)
   }
 
   function findTargetNodeId(element: Element) {
     if (!element) return
-    const nodeId = element.getAttribute(
-      engine.props.contentEditableNodeIdAttrName
-    )
+
+    const props = engine.props as Required<IEngineProps<Engine>>
+    const nodeId = element.getAttribute(props.contentEditableNodeIdAttrName)
     if (nodeId) return nodeId
-    const parent = element.closest(`*[${engine.props.nodeIdAttrName}]`)
-    if (parent) return parent.getAttribute(engine.props.nodeIdAttrName)
+    const parent = element.closest(`*[${props.nodeIdAttrName}]`)
+    if (parent) return parent.getAttribute(props.nodeIdAttrName)
   }
 
   engine.subscribeTo(MouseClickEvent, (event) => {

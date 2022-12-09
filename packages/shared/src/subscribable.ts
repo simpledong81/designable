@@ -8,7 +8,7 @@ export interface ISubscriber<Payload = any> {
 
 export class Subscribable<ExtendsType = any> {
   private subscribers: {
-    index?: number
+    index: number
     [key: number]: ISubscriber
   } = {
     index: 0,
@@ -28,7 +28,7 @@ export class Subscribable<ExtendsType = any> {
   }
 
   subscribe(subscriber: ISubscriber) {
-    let id: number
+    let id = 0
     if (isFn(subscriber)) {
       id = this.subscribers.index + 1
       this.subscribers[id] = subscriber

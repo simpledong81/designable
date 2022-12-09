@@ -12,6 +12,7 @@ import {
   ViewportScrollEvent,
 } from '../events'
 import { Point } from '@pind/designable-shared'
+import { IEngineProps } from '../types'
 
 export const useDragDropEffect = (engine: Engine) => {
   engine.subscribeTo(DragStartEvent, (event) => {
@@ -29,15 +30,17 @@ export const useDragDropEffect = (engine: Engine) => {
       `*[${engine.props.nodeSelectionIdAttrName}]`
     )
     if (!el?.getAttribute && !handler) return
-    const sourceId = el?.getAttribute(engine.props.sourceIdAttrName)
-    const outlineId = el?.getAttribute(engine.props.outlineNodeIdAttrName)
-    const handlerId = helper?.getAttribute(engine.props.nodeSelectionIdAttrName)
-    const nodeId = el?.getAttribute(engine.props.nodeIdAttrName)
+    const props = engine.props as Required<IEngineProps<Engine>>
+    const sourceId = el?.getAttribute(props.sourceIdAttrName)
+    const outlineId = el?.getAttribute(props.outlineNodeIdAttrName)
+    const handlerId = helper?.getAttribute(props.nodeSelectionIdAttrName)
+    const nodeId = el?.getAttribute(props.nodeIdAttrName)
     engine.workbench.eachWorkspace((currentWorkspace) => {
       const operation = currentWorkspace.operation
       const moveHelper = operation.moveHelper
-      if (nodeId || outlineId || handlerId) {
-        const node = engine.findNodeById(outlineId || nodeId || handlerId)
+      const id = nodeId || outlineId || handlerId
+      if (id) {
+        const node = engine.findNodeById(id)
         if (node) {
           if (!node.allowDrag()) return
           if (node === node.root) return
@@ -68,16 +71,23 @@ export const useDragDropEffect = (engine: Engine) => {
       *[${engine.props.nodeIdAttrName}],
       *[${engine.props.outlineNodeIdAttrName}]
     `)
-    const point = new Point(event.data.topClientX, event.data.topClientY)
-    const nodeId = el?.getAttribute(engine.props.nodeIdAttrName)
-    const outlineId = el?.getAttribute(engine.props.outlineNodeIdAttrName)
+    const point = new Point(
+      event.data.topClientX as number,
+      event.data.topClientY as number
+    )
+    const props = engine.props as Required<IEngineProps<Engine>>
+    const nodeId = el?.getAttribute(props.nodeIdAttrName)
+    const outlineId = el?.getAttribute(props.outlineNodeIdAttrName)
     engine.workbench.eachWorkspace((currentWorkspace) => {
       const operation = currentWorkspace.operation
       const moveHelper = operation.moveHelper
       const dragNodes = moveHelper.dragNodes
       const tree = operation.tree
       if (!dragNodes.length) return
-      const touchNode = tree.findById(outlineId || nodeId)
+      const id = nodeId || outlineId
+      if (!id) return
+      const touchNode = tree.findById(id)
+      if (!touchNode) return
       moveHelper.dragMove({
         point,
         touchNode,
@@ -89,8 +99,8 @@ export const useDragDropEffect = (engine: Engine) => {
     if (engine.cursor.type !== CursorType.Normal) return
     if (engine.cursor.dragType !== CursorDragType.Move) return
     const point = new Point(
-      engine.cursor.position.topClientX,
-      engine.cursor.position.topClientY
+      engine.cursor.position.topClientX as number,
+      engine.cursor.position.topClientY as number
     )
     const currentWorkspace =
       event?.context?.workspace ?? engine.workbench.activeWorkspace
@@ -111,13 +121,15 @@ export const useDragDropEffect = (engine: Engine) => {
     *[${engine.props.nodeIdAttrName}],
     *[${engine.props.outlineNodeIdAttrName}]
   `)
-    const nodeId = viewportNodeElement?.getAttribute(
-      engine.props.nodeIdAttrName
-    )
+    const props = engine.props as Required<IEngineProps<Engine>>
+    const nodeId = viewportNodeElement?.getAttribute(props.nodeIdAttrName)
     const outlineNodeId = outlineNodeElement?.getAttribute(
-      engine.props.outlineNodeIdAttrName
+      props.outlineNodeIdAttrName
     )
-    const touchNode = tree.findById(outlineNodeId || nodeId)
+    const id = nodeId || outlineNodeId
+    if (!id) return
+    const touchNode = tree.findById(id)
+    if (!touchNode) return
     moveHelper.dragMove({ point, touchNode })
   })
 

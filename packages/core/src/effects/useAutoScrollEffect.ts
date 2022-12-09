@@ -9,15 +9,15 @@ import {
 } from '@pind/designable-shared'
 
 export const useAutoScrollEffect = (engine: Engine) => {
-  let xScroller: IAutoScrollBasicInfo = null
-  let yScroller: IAutoScrollBasicInfo = null
-  let xScrollerAnimationStop = null
-  let yScrollerAnimationStop = null
+  let xScroller: IAutoScrollBasicInfo | null = null
+  let yScroller: IAutoScrollBasicInfo | null = null
+  let xScrollerAnimationStop: Function | null = null
+  let yScrollerAnimationStop: Function | null = null
 
   const scrolling = (point: IPoint, viewport: Viewport) => {
     if (engine.cursor.status === CursorStatus.Dragging) {
-      xScroller = calcAutoScrollBasicInfo(point, 'x', viewport.rect)
-      yScroller = calcAutoScrollBasicInfo(point, 'y', viewport.rect)
+      xScroller = calcAutoScrollBasicInfo(point, 'x', viewport.rect as DOMRect)
+      yScroller = calcAutoScrollBasicInfo(point, 'y', viewport.rect as DOMRect)
       if (xScroller) {
         if (xScrollerAnimationStop) {
           xScrollerAnimationStop()
@@ -61,7 +61,10 @@ export const useAutoScrollEffect = (engine: Engine) => {
     engine.workbench.eachWorkspace((workspace) => {
       const viewport = workspace.viewport
       const outline = workspace.outline
-      const point = new Point(event.data.topClientX, event.data.topClientY)
+      const point = new Point(
+        event.data.topClientX as number,
+        event.data.topClientY as number
+      )
       if (outline.isPointInViewport(point)) {
         scrolling(point, outline)
       } else if (viewport.isPointInViewport(point)) {

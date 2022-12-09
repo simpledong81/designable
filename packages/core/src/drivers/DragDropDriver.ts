@@ -4,9 +4,9 @@ import { DragStartEvent, DragMoveEvent, DragStopEvent } from '../events'
 
 const GlobalState = {
   dragging: false,
-  onMouseDownAt: 0,
-  startEvent: null,
-  moveEvent: null,
+  onMouseDownAt: 0 as number | null,
+  startEvent: null as MouseEvent | null,
+  moveEvent: null as MouseEvent | null,
 }
 
 export class DragDropDriver extends EventDriver<Engine> {
@@ -19,8 +19,8 @@ export class DragDropDriver extends EventDriver<Engine> {
       return
     }
     if (
-      e.target['isContentEditable'] ||
-      e.target['contentEditable'] === 'true'
+      e.target?.['isContentEditable'] ||
+      e.target?.['contentEditable'] === 'true'
     ) {
       return true
     }
@@ -107,11 +107,12 @@ export class DragDropDriver extends EventDriver<Engine> {
   }
 
   onDistanceChange = (e: MouseEvent) => {
+    if (!GlobalState.startEvent) return
     const distance = Math.sqrt(
       Math.pow(e.pageX - GlobalState.startEvent.pageX, 2) +
         Math.pow(e.pageY - GlobalState.startEvent.pageY, 2)
     )
-    const timeDelta = Date.now() - GlobalState.onMouseDownAt
+    const timeDelta = Date.now() - (GlobalState.onMouseDownAt || 0)
     if (timeDelta > 10 && e !== GlobalState.startEvent && distance > 4) {
       this.batchRemoveEventListener('mousemove', this.onDistanceChange)
       this.onStartDrag(e)

@@ -35,10 +35,6 @@ export default defineConfig({
     alias: [
       { find: /^~/, replacement: '' },
       { find: '@', replacement: resolve(__dirname, 'src') },
-      {
-        find: '@formily/react',
-        replacement: resolve(__dirname, '../node_modules/@formily/react'),
-      },
       ...getWorkspaceAlias(),
     ],
   },

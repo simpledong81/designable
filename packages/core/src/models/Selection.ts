@@ -14,7 +14,7 @@ export class Selection {
   selected: string[] = []
   indexes: Record<string, boolean> = {}
 
-  constructor(props?: ISelection) {
+  constructor(props: ISelection) {
     if (props.selected) {
       this.selected = props.selected
     }
@@ -85,7 +85,9 @@ export class Selection {
   }
 
   get selectedNodes() {
-    return this.selected.map((id) => this.operation.tree.findById(id))
+    return this.selected
+      .map((id) => this.operation.tree.findById(id))
+      .filter<TreeNode>((node): node is TreeNode => node !== undefined)
   }
 
   get first() {

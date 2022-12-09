@@ -109,7 +109,7 @@ export class EventDriver<Engine extends Event = Event, Context = any>
 
   contentWindow: Window = globalThisPolyfill
 
-  context: Context
+  context?: Context
 
   constructor(engine: Engine, context?: Context) {
     this.engine = engine
@@ -138,11 +138,11 @@ export class EventDriver<Engine extends Event = Event, Context = any>
     return this.engine.subscribeWith(type, subscriber)
   }
 
-  attach(container: EventDriverContainer) {
+  attach() {
     console.error('attach must implement.')
   }
 
-  detach(container: EventDriverContainer) {
+  detach() {
     console.error('attach must implement.')
   }
 
@@ -282,7 +282,7 @@ export class EventDriver<Engine extends Event = Event, Context = any>
 export class Event extends Subscribable<ICustomEvent<any>> {
   private drivers: IEventDriverClass<any>[] = []
   private containers: EventContainer[] = []
-  constructor(props?: IEventProps) {
+  constructor(props: IEventProps) {
     super()
     if (isArr(props?.effects)) {
       props.effects.forEach((plugin) => {

@@ -2,7 +2,7 @@ import { EventDriver } from '@pind/designable-shared'
 import { Engine } from '../models/Engine'
 import { MouseMoveEvent } from '../events'
 export class MouseMoveDriver extends EventDriver<Engine> {
-  request = null
+  request = 0
 
   onMouseMove = (e: MouseEvent) => {
     this.request = requestAnimationFrame(() => {

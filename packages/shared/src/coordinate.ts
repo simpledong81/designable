@@ -34,7 +34,7 @@ export function isLineSegment(val: any): val is ILineSegment {
 export class Point implements IPoint {
   x: number
   y: number
-  constructor(x: number, y: number) {
+  constructor(x = 0, y = 0) {
     this.x = x
     this.y = y
   }
@@ -45,7 +45,7 @@ export class Rect implements IRect {
   y = 0
   width = 0
   height = 0
-  constructor(x: number, y: number, width: number, height: number) {
+  constructor(x: number, y: number, width = 0, height = 0) {
     this.x = x
     this.y = y
     this.width = width
@@ -340,7 +340,8 @@ export function calcRectByStartEndPoint(
   }
 }
 
-export function calcEdgeLinesOfRect(rect: IRect): IRectEdgeLines {
+export function calcEdgeLinesOfRect(rect?: IRect): IRectEdgeLines | undefined {
+  if (!rect) return
   return {
     v: [
       new LineSegment(
@@ -608,7 +609,10 @@ export function calcClosestEdges(
   line: ILineSegment,
   edges: IRectEdgeLines
 ): [number, ILineSegment] {
-  let result: ILineSegment
+  let result: ILineSegment = {
+    start: { x: 0, y: 0 },
+    end: { x: 0, y: 0 },
+  }
   let distance = Infinity
   if (line?.start?.y === line?.end?.y) {
     edges.h.forEach((target) => {

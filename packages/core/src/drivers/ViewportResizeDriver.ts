@@ -5,9 +5,9 @@ import { ResizeObserver } from '@juggle/resize-observer'
 import { globalThisPolyfill } from '@pind/designable-shared'
 
 export class ViewportResizeDriver extends EventDriver<Engine> {
-  request = null
+  request = 0
 
-  resizeObserver: ResizeObserver = null
+  resizeObserver: ResizeObserver | null = null
 
   onResize = (e: any) => {
     if (e.preventDefault) e.preventDefault()

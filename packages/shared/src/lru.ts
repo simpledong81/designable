@@ -130,7 +130,7 @@ export class LRUMap<K, V> {
     if (this.newest) {
       // link previous tail to the new tail (entry)
       this.newest[NEWER] = entry
-      entry[OLDER] = this.newest
+      entry && (entry[OLDER] = this.newest)
     } else {
       // we're first in -- yay
       this.oldest = entry

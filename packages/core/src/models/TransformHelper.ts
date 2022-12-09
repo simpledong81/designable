@@ -63,7 +63,7 @@ export class TransformHelper {
 
   aroundSnapLines: SnapLine[] = []
 
-  aroundSpaceBlocks: AroundSpaceBlock = null
+  aroundSpaceBlocks?: AroundSpaceBlock
 
   viewportRectsStore: Record<string, Rect> = {}
 
@@ -75,7 +75,7 @@ export class TransformHelper {
 
   cacheDragNodesReact: Rect
 
-  dragStartNodesRect: IRect = null
+  dragStartNodesRect?: IRect
 
   snapping = false
 
@@ -120,13 +120,14 @@ export class TransformHelper {
       return new Rect(
         this.cursorPosition.x - this.dragStartCursorOffset.x,
         this.cursorPosition.y - this.dragStartCursorOffset.y,
-        this.dragNodesRect.width,
-        this.dragNodesRect.height
+        this.dragNodesRect?.width,
+        this.dragNodesRect?.height
       )
     } else if (this.type === 'resize') {
       const dragNodesRect = this.dragStartNodesRect
       const deltaX = this.cursor.dragStartToCurrentDelta.clientX
       const deltaY = this.cursor.dragStartToCurrentDelta.clientY
+      if (!dragNodesRect || !deltaX || !deltaY) return
       switch (this.direction) {
         case 'left-top':
           return new Rect(

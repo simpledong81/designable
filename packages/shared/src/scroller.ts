@@ -24,7 +24,7 @@ export const calcAutoScrollBasicInfo = (
   let begin: number
   let end: number
   let pos: number
-  let speedFactor: number
+  let speedFactor = 0
   if (axis === 'x') {
     begin = left
     end = right

@@ -24,7 +24,10 @@
   },
   "devDependencies": {
     "@formily/reactive": "^2.2.14",
-    "@formily/reactive-react": "^2.2.14"
+    "@formily/reactive-react": "^2.2.14",
+    "react": "^18.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
   },
   "peerDependencies": {
     "@formily/reactive": "^2.2.14",

@@ -5,6 +5,7 @@ import {
   isCrossRectInRect,
   isRectInRect,
   Point,
+  Rect,
 } from '@pind/designable-shared'
 
 export const useFreeSelectionEffect = (engine: Engine) => {
@@ -20,8 +21,8 @@ export const useFreeSelectionEffect = (engine: Engine) => {
       )
       const dragStartOffsetPoint = viewport.getOffsetPoint(
         new Point(
-          engine.cursor.dragStartPosition.topClientX,
-          engine.cursor.dragStartPosition.topClientY
+          engine.cursor.dragStartPosition?.topClientX,
+          engine.cursor.dragStartPosition?.topClientY
         )
       )
       const dragEndOffsetPoint = viewport.getOffsetPoint(
@@ -38,14 +39,14 @@ export const useFreeSelectionEffect = (engine: Engine) => {
         viewport.dragScrollXDelta,
         viewport.dragScrollYDelta
       )
-      const selected: [TreeNode, DOMRect][] = []
+      const selected: [TreeNode, Rect][] = []
       tree.eachChildren((node) => {
         const nodeRect = viewport.getValidNodeOffsetRect(node)
         if (nodeRect && isCrossRectInRect(selectionRect, nodeRect)) {
           selected.push([node, nodeRect])
         }
       })
-      const selectedNodes: TreeNode[] = selected.reduce(
+      const selectedNodes = selected.reduce<TreeNode[]>(
         (buf, [node, nodeRect]) => {
           if (isRectInRect(nodeRect, selectionRect)) {
             if (selected.some(([selectNode]) => selectNode.isMyParents(node))) {

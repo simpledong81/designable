@@ -101,9 +101,9 @@ export class Cursor {
 
   position: ICursorPosition = DEFAULT_POSITION
 
-  dragStartPosition: ICursorPosition
+  dragStartPosition?: ICursorPosition
 
-  dragEndPosition: ICursorPosition
+  dragEndPosition?: ICursorPosition
 
   dragAtomDelta: ICursorPosition = DEFAULT_POSITION
 
@@ -139,8 +139,8 @@ export class Cursor {
 
   get speed() {
     return Math.sqrt(
-      Math.pow(this.dragAtomDelta.clientX, 2) +
-        Math.pow(this.dragAtomDelta.clientY, 2)
+      Math.pow(this.dragAtomDelta.clientX as number, 2) +
+        Math.pow(this.dragAtomDelta.clientY as number, 2)
     )
   }
 
@@ -162,22 +162,22 @@ export class Cursor {
     })
   }
 
-  setPosition(position?: ICursorPosition) {
+  setPosition(position: ICursorPosition) {
     this.dragAtomDelta = calcPositionDelta(this.position, position)
     this.position = { ...position }
     if (this.status === CursorStatus.Dragging) {
       this.dragStartToCurrentDelta = calcPositionDelta(
         this.position,
-        this.dragStartPosition
+        this.dragStartPosition as ICursorPosition
       )
     }
   }
 
-  setDragStartPosition(position?: ICursorPosition) {
+  setDragStartPosition(position?: ICursorPosition | null) {
     if (position) {
       this.dragStartPosition = { ...position }
     } else {
-      this.dragStartPosition = null
+      this.dragStartPosition = undefined
       this.dragStartToCurrentDelta = DEFAULT_POSITION
     }
   }
@@ -191,7 +191,7 @@ export class Cursor {
         this.dragEndPosition
       )
     } else {
-      this.dragEndPosition = null
+      this.dragEndPosition = undefined
       this.dragStartToEndDelta = DEFAULT_POSITION
     }
   }

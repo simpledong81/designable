@@ -6,8 +6,8 @@ export interface ICursorEventOriginData {
   clientY: number
   pageX: number
   pageY: number
-  target: EventTarget
-  view: Window
+  target: EventTarget | null
+  view: Window | null
 }
 
 export interface ICursorEventData extends ICursorEventOriginData {
@@ -36,7 +36,11 @@ export class AbstractCursorEvent {
 
   transformCoordinates() {
     const { frameElement } = this.data?.view || {}
-    if (frameElement && this.data.view !== globalThisPolyfill) {
+    if (
+      frameElement &&
+      this.data.view &&
+      this.data.view !== globalThisPolyfill
+    ) {
       const frameRect = frameElement.getBoundingClientRect()
       const scale = frameRect.width / frameElement['offsetWidth']
       this.data.topClientX = this.data.clientX * scale + frameRect.x

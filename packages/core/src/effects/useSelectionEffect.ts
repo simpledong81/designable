@@ -1,11 +1,12 @@
 import { Engine, CursorStatus } from '../models'
 import { MouseClickEvent } from '../events'
 import { KeyCode, Point } from '@pind/designable-shared'
+import { IEngineProps } from '../types'
 
 export const useSelectionEffect = (engine: Engine) => {
   engine.subscribeTo(MouseClickEvent, (event) => {
     if (engine.cursor.status !== CursorStatus.Normal) return
-    const target: HTMLElement = event.data.target as any
+    const target = event.data.target as HTMLElement
     const el = target?.closest?.(`
       *[${engine.props.nodeIdAttrName}],
       *[${engine.props.outlineNodeIdAttrName}]
@@ -17,7 +18,10 @@ export const useSelectionEffect = (engine: Engine) => {
       event.context?.workspace ?? engine.workbench.activeWorkspace
     if (!currentWorkspace) return
     if (!el?.getAttribute) {
-      const point = new Point(event.data.topClientX, event.data.topClientY)
+      const point = new Point(
+        event.data.topClientX as number,
+        event.data.topClientY as number
+      )
       const operation = currentWorkspace.operation
       const viewport = currentWorkspace.viewport
       const outline = currentWorkspace.outline
@@ -31,12 +35,15 @@ export const useSelectionEffect = (engine: Engine) => {
       }
       return
     }
-    const nodeId = el.getAttribute(engine.props.nodeIdAttrName)
-    const structNodeId = el.getAttribute(engine.props.outlineNodeIdAttrName)
+    const props = engine.props as Required<IEngineProps<Engine>>
+    const nodeId = el.getAttribute(props.nodeIdAttrName)
+    const structNodeId = el.getAttribute(props.outlineNodeIdAttrName)
     const operation = currentWorkspace.operation
     const selection = operation.selection
     const tree = operation.tree
-    const node = tree.findById(nodeId || structNodeId)
+    const id = nodeId || structNodeId
+    if (!id) return
+    const node = tree.findById(id)
     if (node) {
       engine.keyboard.requestClean()
       if (

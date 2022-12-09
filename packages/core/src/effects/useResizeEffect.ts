@@ -1,23 +1,19 @@
 import { Engine, CursorDragType } from '../models'
 import { DragStartEvent, DragMoveEvent, DragStopEvent } from '../events'
+import { IEngineProps } from '../types'
 
 export const useResizeEffect = (engine: Engine) => {
   const findStartNodeHandler = (target: HTMLElement) => {
-    const handler = target?.closest(
-      `*[${engine.props.nodeResizeHandlerAttrName}]`
-    )
+    const props = engine.props as Required<IEngineProps<Engine>>
+    const handler = target?.closest(`*[${props.nodeResizeHandlerAttrName}]`)
     if (handler) {
       const direction = handler.getAttribute(
-        engine.props.nodeResizeHandlerAttrName
+        props.nodeResizeHandlerAttrName as string
       )
       if (direction) {
-        const element = handler.closest(
-          `*[${engine.props.nodeSelectionIdAttrName}]`
-        )
+        const element = handler.closest(`*[${props.nodeSelectionIdAttrName}]`)
         if (element) {
-          const nodeId = element.getAttribute(
-            engine.props.nodeSelectionIdAttrName
-          )
+          const nodeId = element.getAttribute(props.nodeSelectionIdAttrName)
           if (nodeId) {
             const node = engine.findNodeById(nodeId)
             if (node) {
@@ -38,12 +34,13 @@ export const useResizeEffect = (engine: Engine) => {
     const handler = findStartNodeHandler(target)
     const helper = currentWorkspace.operation.transformHelper
     if (handler) {
+      const props = engine.props as Required<IEngineProps<Engine>>
       const selectionElement = handler.element.closest(
-        `*[${engine.props.nodeSelectionIdAttrName}]`
+        `*[${props.nodeSelectionIdAttrName}]`
       ) as HTMLElement
       if (selectionElement) {
         const nodeId = selectionElement.getAttribute(
-          engine.props.nodeSelectionIdAttrName
+          props.nodeSelectionIdAttrName
         )
         if (nodeId) {
           const node = engine.findNodeById(nodeId)
@@ -69,6 +66,7 @@ export const useResizeEffect = (engine: Engine) => {
     helper.dragMove()
     dragNodes.forEach((node) => {
       const element = node.getElement()
+      if (!element) return
       helper.resize(node, (rect) => {
         element.style.width = rect.width + 'px'
         element.style.height = rect.height + 'px'
