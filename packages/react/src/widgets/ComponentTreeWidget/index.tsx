@@ -1,11 +1,14 @@
-import React, { Fragment, useEffect } from 'react'
-import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
-import { TreeNodeContext, DesignerComponentsContext } from '../../context'
-import { IDesignerComponents } from '../../types'
-import { TreeNode, GlobalRegistry } from '@pind/designable-core'
 import { observer, ReactFC } from '@formily/reactive-react'
+import { GlobalRegistry, TreeNode } from '@pind/designable-core'
 import cls from 'classnames'
+import React, { Fragment, useEffect } from 'react'
+import { DesignerComponentsContext, TreeNodeContext } from '../../context'
+import { useComponents, useDesigner, usePrefix, useTree } from '../../hooks'
+import { IDesignerComponents } from '../../types'
 import './styles.less'
+
+import { Alert } from 'antd'
+const { ErrorBoundary } = Alert
 
 export interface IComponentTreeWidgetProps {
   style?: React.CSSProperties
@@ -90,7 +93,9 @@ export const ComponentTreeWidget: ReactFC<IComponentTreeWidgetProps> = observer(
         {...dataId}
       >
         <DesignerComponentsContext.Provider value={props.components}>
-          <TreeNodeWidget node={tree} />
+          <ErrorBoundary>
+            <TreeNodeWidget node={tree} />
+          </ErrorBoundary>
         </DesignerComponentsContext.Provider>
       </div>
     )

@@ -30,7 +30,7 @@ const isNormalText = (value: any) => {
 }
 
 const takeNumber = (value: any) => {
-  const num = String(value).replace(/[^\d\.]+/, '')
+  const num = String(value).replace(/[^\-?\d\.]+/, '')
   if (num === '') return
   return Number(num)
 }

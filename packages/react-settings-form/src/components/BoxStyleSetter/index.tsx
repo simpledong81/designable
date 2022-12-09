@@ -24,7 +24,7 @@ const PositionMap = {
 }
 
 const BoxRex =
-  /([\d\.]+[^\d\s\.+-]+)(?:\s+([\d\.]+[^\d\s\.+-]+)(?:\s+([\d\.]+[^\d\s\.+-]+)(?:\s+([\d\.]+[^\d\s\.+-]+))?)?)?/
+  /(\-?[\d\.]+[^\d\s\.+-]+)(?:\s+(\-?[\d\.]+[^\d\s\.+-]+)(?:\s+(\-?[\d\.]+[^\d\s\.+-]+)(?:\s+(\-?[\d\.]+[^\d\s\.+-]+))?)?)?/
 
 export const BoxStyleSetter: React.FC<IMarginStyleSetterProps> = observer(
   (props) => {
