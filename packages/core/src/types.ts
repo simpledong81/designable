@@ -161,12 +161,16 @@ export interface IBehaviorHost {
 
 export type IBehaviorLike = IBehavior[] | IBehaviorHost
 
-export interface IResource {
-  title?: string | IDesignerMiniLocales
-  description?: string | IDesignerMiniLocales
-  icon?: any
-  thumb?: string
-  span?: number
+export type SourceType =
+  | 'Inputs'
+  | 'Layouts'
+  | 'Arrays'
+  | 'Displays'
+  | 'Others'
+  | (string & {})
+
+export interface IResource extends IResourceCreator {
+  type: SourceType
   node: TreeNode
 }
 
@@ -175,6 +179,7 @@ export interface IResourceHost {
 }
 
 export type IResourceLike = IResource[] | IResourceHost
+
 export interface IResourceCreator {
   title?: string | IDesignerMiniLocales
   description?: string | IDesignerMiniLocales

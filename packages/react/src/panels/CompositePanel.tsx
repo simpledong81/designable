@@ -12,10 +12,10 @@ export interface ICompositePanelProps {
   defaultPinning?: boolean
   defaultActiveKey?: number
   activeKey?: number | string
-  onChange?: (activeKey: number | string) => void
+  onChange?: (activeKey?: number | string) => void
 }
 export interface ICompositePanelItemProps {
-  key: number | string
+  key?: number | string
   shape?: 'tab' | 'button' | 'link'
   title?: React.ReactNode
   icon?: React.ReactNode
@@ -55,7 +55,7 @@ const getDefaultKey = (children: React.ReactNode) => {
 }
 
 export const CompositePanel: ReactFC<ICompositePanelProps> & {
-  Item: React.FC<ICompositePanelItemProps>
+  Item: ReactFC<ICompositePanelItemProps>
 } = (props) => {
   const prefix = usePrefix('composite-panel')
   const [activeKey, setActiveKey] = useState<string | number | undefined>(

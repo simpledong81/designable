@@ -18,7 +18,7 @@ type DesignerToolsType = 'HISTORY' | 'CURSOR' | 'SCREEN_TYPE'
 export type IDesignerToolsWidgetProps = {
   className?: string
   style?: React.CSSProperties
-  use: DesignerToolsType[]
+  use?: DesignerToolsType[]
 }
 
 export const DesignerToolsWidget: ReactFC<IDesignerToolsWidgetProps> = observer(
@@ -30,7 +30,7 @@ export const DesignerToolsWidget: ReactFC<IDesignerToolsWidgetProps> = observer(
     const sizeRef = useRef<{ width?: any; height?: any }>({})
     const prefix = usePrefix('designer-tools')
     const renderHistoryController = () => {
-      if (!props.use.includes('HISTORY')) return null
+      if (!props.use?.includes('HISTORY')) return null
       return (
         <Button.Group size="small" style={{ marginRight: 20 }}>
           <Button
@@ -57,7 +57,7 @@ export const DesignerToolsWidget: ReactFC<IDesignerToolsWidgetProps> = observer(
 
     const renderCursorController = () => {
       if (workbench.type !== 'DESIGNABLE') return null
-      if (!props.use.includes('CURSOR')) return null
+      if (!props.use?.includes('CURSOR')) return null
       return (
         <Button.Group size="small" style={{ marginRight: 20 }}>
           <Button
@@ -83,7 +83,7 @@ export const DesignerToolsWidget: ReactFC<IDesignerToolsWidgetProps> = observer(
     }
 
     const renderResponsiveController = () => {
-      if (!props.use.includes('SCREEN_TYPE')) return null
+      if (!props.use?.includes('SCREEN_TYPE')) return null
       if (screen.type !== ScreenType.Responsive) return null
       return (
         <Fragment>
@@ -134,7 +134,7 @@ export const DesignerToolsWidget: ReactFC<IDesignerToolsWidgetProps> = observer(
     }
 
     const renderScreenTypeController = () => {
-      if (!props.use.includes('SCREEN_TYPE')) return null
+      if (!props.use?.includes('SCREEN_TYPE')) return null
       return (
         <Button.Group size="small" style={{ marginRight: 20 }}>
           <Button
@@ -169,7 +169,7 @@ export const DesignerToolsWidget: ReactFC<IDesignerToolsWidgetProps> = observer(
     }
 
     const renderMobileController = () => {
-      if (!props.use.includes('SCREEN_TYPE')) return null
+      if (!props.use?.includes('SCREEN_TYPE')) return null
       if (screen.type !== ScreenType.Mobile) return
       return (
         <Button

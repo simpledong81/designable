@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { requestIdle } from '@pind/designable-shared'
-import { observer } from '@formily/reactive-react'
-import { TextWidget, IconWidget } from '../widgets'
-import { usePrefix, useWorkbench } from '../hooks'
 import cls from 'classnames'
+import React, { useEffect, useState } from 'react'
+import { usePrefix, useWorkbench } from '../hooks'
+import { IconWidget, TextWidget } from '../widgets'
 export interface ISettingPanelProps {
   title?: React.ReactNode
   extra?: React.ReactNode
 }
 
-export const SettingsPanel: React.FC<ISettingPanelProps> = observer((props) => {
+export const SettingsPanel: ReactFC<ISettingPanelProps> = observer((props) => {
   const prefix = usePrefix('settings-panel')
   const workbench = useWorkbench()
   const [innerVisible, setInnerVisible] = useState(true)

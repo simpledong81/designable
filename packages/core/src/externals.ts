@@ -11,6 +11,7 @@ import {
   IBehavior,
   IBehaviorHost,
   IResourceHost,
+  SourceType,
 } from './types'
 import { mergeLocales } from './internals'
 
@@ -58,10 +59,20 @@ export const createBehavior = (
   }, [])
 }
 
-export const createResource = (...sources: IResourceCreator[]): IResource[] => {
+export function createResource(
+  type: SourceType | IResourceCreator,
+  ...sources: IResourceCreator[]
+): IResource[] {
+  let _type = 'Others'
+  if (typeof type === 'object') {
+    sources.unshift(type)
+  } else {
+    _type = type
+  }
   return sources.reduce<IResource[]>((buf, source) => {
     return buf.concat({
       ...source,
+      type: _type,
       node: new TreeNode({
         componentName: '$$ResourceNode$$',
         isSourceNode: true,
