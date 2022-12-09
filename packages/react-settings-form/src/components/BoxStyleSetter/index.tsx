@@ -28,6 +28,7 @@ const BoxRex =
 
 export const BoxStyleSetter: React.FC<IMarginStyleSetterProps> = observer(
   (props) => {
+    const { labels = [] } = props
     const field = useField()
     const prefix = usePrefix('box-style-setter')
     const createPositionHandler = (
@@ -73,25 +74,25 @@ export const BoxStyleSetter: React.FC<IMarginStyleSetterProps> = observer(
         </FoldItem.Base>
         <FoldItem.Extra>
           <InputItems width="50%">
-            <InputItems.Item icon={props.labels[0]}>
+            <InputItems.Item icon={labels[0]}>
               <SizeInput
                 {...createPositionHandler('top', props)}
                 exclude={['inherit', 'auto']}
               />
             </InputItems.Item>
-            <InputItems.Item icon={props.labels[1]}>
+            <InputItems.Item icon={labels[1]}>
               <SizeInput
                 {...createPositionHandler('right', props)}
                 exclude={['inherit', 'auto']}
               />
             </InputItems.Item>
-            <InputItems.Item icon={props.labels[2]}>
+            <InputItems.Item icon={labels[2]}>
               <SizeInput
                 {...createPositionHandler('bottom', props)}
                 exclude={['inherit', 'auto']}
               />
             </InputItems.Item>
-            <InputItems.Item icon={props.labels[3]}>
+            <InputItems.Item icon={labels[3]}>
               <SizeInput
                 {...createPositionHandler('left', props)}
                 exclude={['inherit', 'auto']}

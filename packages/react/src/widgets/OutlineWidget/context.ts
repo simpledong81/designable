@@ -1,9 +1,9 @@
 import { TreeNode } from '@pind/designable-core'
 import React, { createContext } from 'react'
 
-interface INodeContext {
+export interface INodeContext {
   renderTitle?: (node: TreeNode) => React.ReactNode
   renderActions?: (node: TreeNode) => React.ReactNode
 }
 
-export const NodeContext = createContext<INodeContext>(null)
+export const NodeContext = createContext<INodeContext>({})

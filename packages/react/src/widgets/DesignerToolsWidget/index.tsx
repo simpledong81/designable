@@ -18,7 +18,7 @@ type DesignerToolsType = 'HISTORY' | 'CURSOR' | 'SCREEN_TYPE'
 export type IDesignerToolsWidgetProps = {
   className?: string
   style?: React.CSSProperties
-  use?: DesignerToolsType[]
+  use: DesignerToolsType[]
 }
 
 export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =

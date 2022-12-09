@@ -38,8 +38,8 @@ const getEventValue = (event: any) => {
 
 const createTypes = (
   types: PolyTypes,
-  exclude: string[],
-  include: string[]
+  exclude?: string[],
+  include?: string[]
 ) => {
   return types.filter(({ type }) => {
     if (Array.isArray(include) && include.length) {

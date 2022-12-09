@@ -33,7 +33,7 @@ export class Operation {
   moveHelper: MoveHelper
 
   requests = {
-    snapshot: null,
+    snapshot: 0,
   }
 
   constructor(workspace: Workspace) {
@@ -43,6 +43,7 @@ export class Operation {
       componentName: this.engine.props.rootComponentName,
       ...this.engine.props.defaultComponentTree,
       operation: this,
+      props: this.engine.props.defaultComponentTree?.props || {},
     })
     this.hover = new Hover({
       operation: this,

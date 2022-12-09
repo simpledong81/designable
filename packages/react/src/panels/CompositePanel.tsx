@@ -3,6 +3,7 @@ import { isValid } from '@pind/designable-shared'
 import cls from 'classnames'
 import { IconWidget, TextWidget } from '../widgets'
 import { usePrefix } from '../hooks'
+import { ReactFC } from '@formily/reactive-react'
 
 export interface ICompositePanelProps {
   direction?: 'left' | 'right'
@@ -14,10 +15,10 @@ export interface ICompositePanelProps {
   onChange?: (activeKey: number | string) => void
 }
 export interface ICompositePanelItemProps {
+  key: number | string
   shape?: 'tab' | 'button' | 'link'
   title?: React.ReactNode
   icon?: React.ReactNode
-  key?: number | string
   href?: string
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   extra?: React.ReactNode
@@ -26,7 +27,9 @@ export interface ICompositePanelItemProps {
 const parseItems = (
   children: React.ReactNode
 ): React.PropsWithChildren<ICompositePanelItemProps>[] => {
-  const items = []
+  const items: {
+    key: string | number
+  }[] = []
   React.Children.forEach(children, (child, index) => {
     if (child?.['type'] === CompositePanel.Item) {
       items.push({ key: child['key'] ?? index, ...child['props'] })
@@ -37,7 +40,7 @@ const parseItems = (
 
 const findItem = (
   items: React.PropsWithChildren<ICompositePanelItemProps>[],
-  key: string | number
+  key?: string | number
 ) => {
   for (let index = 0; index < items.length; index++) {
     const item = items[index]
@@ -51,14 +54,14 @@ const getDefaultKey = (children: React.ReactNode) => {
   return items?.[0].key
 }
 
-export const CompositePanel: React.FC<ICompositePanelProps> & {
+export const CompositePanel: ReactFC<ICompositePanelProps> & {
   Item: React.FC<ICompositePanelItemProps>
 } = (props) => {
   const prefix = usePrefix('composite-panel')
-  const [activeKey, setActiveKey] = useState<string | number>(
+  const [activeKey, setActiveKey] = useState<string | number | undefined>(
     props.defaultActiveKey ?? getDefaultKey(props.children)
   )
-  const activeKeyRef = useRef(null)
+  const activeKeyRef = useRef<string | number>()
   const [pinning, setPinning] = useState(props.defaultPinning ?? false)
   const [visible, setVisible] = useState(props.defaultOpen ?? true)
   const items = parseItems(props.children)

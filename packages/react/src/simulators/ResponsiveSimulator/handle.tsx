@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDesigner, usePrefix } from '../../hooks'
 import cls from 'classnames'
+import { PropsWithChildren } from 'react'
 export enum ResizeHandleType {
   Resize = 'RESIZE',
   ResizeWidth = 'RESIZE_WIDTH',
@@ -11,7 +12,9 @@ export interface IResizeHandleProps {
   type?: ResizeHandleType
 }
 
-export const ResizeHandle: React.FC<IResizeHandleProps> = (props) => {
+export const ResizeHandle: React.FC<PropsWithChildren<IResizeHandleProps>> = (
+  props
+) => {
   const prefix = usePrefix('resize-handle')
   const designer = useDesigner()
   return (

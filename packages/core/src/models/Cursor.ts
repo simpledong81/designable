@@ -156,7 +156,8 @@ export class Cursor {
     this.dragType = type
   }
 
-  setStyle(style: string) {
+  setStyle(style?: string) {
+    if (!style) return
     this.engine.workbench.eachWorkspace((workspace) => {
       setCursorStyle(workspace.viewport.contentWindow, style)
     })

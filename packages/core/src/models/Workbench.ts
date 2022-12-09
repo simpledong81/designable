@@ -56,7 +56,7 @@ export class Workbench {
     return this.currentWorkspace
   }
 
-  setActiveWorkspace(workspace: Workspace) {
+  setActiveWorkspace(workspace?: Workspace) {
     this.activeWorkspace = workspace
     return workspace
   }

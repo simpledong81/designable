@@ -1,7 +1,8 @@
-import React from 'react'
-import { usePrefix, usePosition } from '../hooks'
-import { Layout } from '../containers'
+import { ReactFC } from '@formily/reactive-react'
 import cls from 'classnames'
+import React from 'react'
+import { Layout } from '../containers'
+import { usePosition, usePrefix } from '../hooks'
 export interface IStudioPanelProps {
   style?: React.CSSProperties
   className?: string
@@ -12,7 +13,7 @@ export interface IStudioPanelProps {
   position?: React.ComponentProps<typeof Layout>['position']
 }
 
-const StudioPanelInternal: React.FC<IStudioPanelProps> = ({
+const StudioPanelInternal: ReactFC<IStudioPanelProps> = ({
   logo,
   actions,
   ...props

@@ -167,7 +167,7 @@ export interface IResource {
   icon?: any
   thumb?: string
   span?: number
-  node?: TreeNode
+  node: TreeNode
 }
 
 export interface IResourceHost {

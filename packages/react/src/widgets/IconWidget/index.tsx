@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useEffect, useRef } from 'react'
 import { isStr, isFn, isObj, isPlainObj } from '@pind/designable-shared'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { Tooltip, TooltipProps } from 'antd'
 import { usePrefix, useRegistry, useTheme } from '../../hooks'
 import cls from 'classnames'
 import './styles.less'
 
-const IconContext = createContext<IconProviderProps>(null)
+const IconContext = createContext<IconProviderProps>({})
 
 const isNumSize = (val: any) => /^[\d.]+$/.test(val)
 export interface IconProviderProps {
@@ -24,10 +24,7 @@ export interface IIconWidgetProps extends React.HTMLAttributes<HTMLElement> {
   size?: number | string
 }
 
-export const IconWidget: React.FC<IIconWidgetProps> & {
-  Provider?: React.FC<IconProviderProps>
-  ShadowSVG?: React.FC<IShadowSVGProps>
-} = observer((props: React.PropsWithChildren<IIconWidgetProps>) => {
+const InternalIconWidget: ReactFC<IIconWidgetProps> = observer((props) => {
   const theme = useTheme()
   const context = useContext(IconContext)
   const registry = useRegistry()
@@ -57,7 +54,7 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
           viewBox: infer.props.viewBox || '0 0 1024 1024',
           focusable: 'false',
           'aria-hidden': 'true',
-        })
+        } as any)
       } else if (infer.type === 'path' || infer.type === 'g') {
         return (
           <svg
@@ -74,8 +71,8 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
       }
       return infer
     } else if (isPlainObj(infer)) {
-      if (infer[theme]) {
-        return takeIcon(infer[theme])
+      if (infer[theme as string]) {
+        return takeIcon(infer[theme as string])
       } else if (infer['shadow']) {
         return (
           <IconWidget.ShadowSVG
@@ -121,13 +118,13 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
         cursor: props.onClick ? 'pointer' : props.style?.cursor,
       }}
     >
-      {takeIcon(props.infer)}
+      {takeIcon(props.infer as string)}
     </span>
   )
 })
 
-IconWidget.ShadowSVG = (props) => {
-  const ref = useRef<HTMLDivElement>()
+const ShadowSVG: ReactFC<IShadowSVGProps> = (props) => {
+  const ref = useRef<HTMLDivElement>(null)
   const width = isNumSize(props.width) ? `${props.width}px` : props.width
   const height = isNumSize(props.height) ? `${props.height}px` : props.height
   useEffect(() => {
@@ -141,8 +138,13 @@ IconWidget.ShadowSVG = (props) => {
   return <div ref={ref}></div>
 }
 
-IconWidget.Provider = (props) => {
+const Provider: ReactFC<IconProviderProps> = (props) => {
   return (
     <IconContext.Provider value={props}>{props.children}</IconContext.Provider>
   )
 }
+
+export const IconWidget = Object.assign(InternalIconWidget, {
+  Provider,
+  ShadowSVG,
+})

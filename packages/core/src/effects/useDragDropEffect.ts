@@ -12,7 +12,6 @@ import {
   ViewportScrollEvent,
 } from '../events'
 import { Point } from '@pind/designable-shared'
-import { IEngineProps } from '../types'
 
 export const useDragDropEffect = (engine: Engine) => {
   engine.subscribeTo(DragStartEvent, (event) => {

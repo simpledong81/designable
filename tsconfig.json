@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@pind/designable-*": ["./packages/*/src"]
-    }
+    },
+    "lib": ["DOm", "DOM.Iterable"]
   }
 }

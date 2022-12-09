@@ -7,6 +7,7 @@ import { Copy } from './Copy'
 import { Delete } from './Delete'
 import { DragHandler } from './DragHandler'
 import cls from 'classnames'
+import { globalThisPolyfill } from '@pind/designable-shared'
 
 const HELPER_DEBOUNCE_TIMEOUT = 100
 
@@ -27,11 +28,11 @@ export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
   const prefix = usePrefix('aux-helpers')
   const viewport = useViewport()
   const unmountRef = useRef(false)
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState('top-right')
 
   useLayoutEffect(() => {
-    let request = null
+    let request = 0
 
     const getYInViewport = (nodeRect: DOMRect, helpersRect: DOMRect) => {
       if (nodeRect.top - viewport.scrollY > helpersRect.height) {
@@ -89,7 +90,7 @@ export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
       ],
       () => {
         clearTimeout(request)
-        request = setTimeout(update, HELPER_DEBOUNCE_TIMEOUT)
+        request = globalThisPolyfill.setTimeout(update, HELPER_DEBOUNCE_TIMEOUT)
       }
     )
   }, [viewport, nodeRect])

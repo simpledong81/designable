@@ -6,10 +6,11 @@ import { GhostWidget } from '../widgets'
 import { useDesigner } from '../hooks'
 import { Layout } from './Layout'
 import * as icons from '../icons'
+import { ReactFC } from '@formily/reactive-react'
 
 GlobalRegistry.registerDesignerIcons(icons)
 
-export const Designer: React.FC<IDesignerProps> = (props) => {
+export const Designer: ReactFC<IDesignerProps> = (props) => {
   const engine = useDesigner()
   const ref = useRef<Engine>()
   useEffect(() => {

@@ -5,7 +5,7 @@ import {
   CursorStatus,
   DragMoveEvent,
 } from '@pind/designable-core'
-import { isFn } from '@pind/designable-shared'
+import { globalThisPolyfill, isFn } from '@pind/designable-shared'
 import { autorun } from '@formily/reactive'
 import { observer } from '@formily/reactive-react'
 import {
@@ -31,9 +31,9 @@ export const OutlineTreeNode: React.FC<IOutlineTreeNodeProps> = observer(
   ({ node, className, style, workspaceId }) => {
     const prefix = usePrefix('outline-tree-node')
     const engine = useDesigner()
-    const ref = useRef<HTMLDivElement>()
+    const ref = useRef<HTMLDivElement>(null)
     const ctx = useContext(NodeContext)
-    const request = useRef(null)
+    const request = useRef(0)
     const cursor = useCursor()
     const selection = useSelection(workspaceId)
     const moveHelper = useMoveHelper(workspaceId)
@@ -54,16 +54,16 @@ export const OutlineTreeNode: React.FC<IOutlineTreeNodeProps> = observer(
           if (!ref.current.classList.contains('expanded')) {
             if (request.current) {
               clearTimeout(request.current)
-              request.current = null
+              request.current = 0
             }
-            request.current = setTimeout(() => {
-              ref.current.classList.add('expanded')
+            request.current = globalThisPolyfill.setTimeout(() => {
+              ref.current?.classList.add('expanded')
             }, 600)
           }
         } else {
           if (request.current) {
             clearTimeout(request.current)
-            request.current = null
+            request.current = 0
           }
           if (ref.current.classList.contains('droppable')) {
             ref.current.classList.remove('droppable')

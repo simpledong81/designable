@@ -7,6 +7,7 @@ export const useKeyboardEffect = (engine: Engine) => {
     if (!keyboard) return
     const workspace =
       engine.workbench.activeWorkspace || engine.workbench.currentWorkspace
+    if (!workspace) return
     keyboard.handleKeyboard(event, workspace.getEventContext())
   })
 
@@ -15,6 +16,7 @@ export const useKeyboardEffect = (engine: Engine) => {
     if (!keyboard) return
     const workspace =
       engine.workbench.activeWorkspace || engine.workbench.currentWorkspace
+    if (!workspace) return
     keyboard.handleKeyboard(event, workspace.getEventContext())
   })
 }

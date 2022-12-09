@@ -21,7 +21,7 @@ import cls from 'classnames'
 import './styles.less'
 
 const GlobalState = {
-  idleRequest: null,
+  idleRequest: 0,
 }
 
 export const SettingsForm: React.FC<ISettingFormProps> = observer(

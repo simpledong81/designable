@@ -25,7 +25,7 @@ export const useSandbox = (props: React.PropsWithChildren<ISandboxProps>) => {
   const jsAssets = props.jsAssets || []
   const getCSSVar = (name: string) => {
     return getComputedStyle(
-      document.querySelector(`.${appCls}`)
+      document.querySelector(`.${appCls}`) as HTMLElement
     ).getPropertyValue(name)
   }
   useEffect(() => {
@@ -117,6 +117,7 @@ export const renderSandboxContent = (render: (scope?: any) => JSX.Element) => {
 }
 
 export const Sandbox: React.FC<ISandboxProps> = (props) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { cssAssets, jsAssets, scope, style, ...iframeProps } = props
   return React.createElement('iframe', {
     ...iframeProps,

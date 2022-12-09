@@ -56,14 +56,15 @@ export const ResourceWidget: React.FC<IResourceWidgetProps> = observer(
         </div>
       )
     }
-    const sources = props.sources.reduce<IResource[]>((buf, source) => {
-      if (isResourceList(source)) {
-        return buf.concat(source)
-      } else if (isResourceHost(source)) {
-        return buf.concat(source.Resource)
-      }
-      return buf
-    }, [])
+    const sources =
+      props.sources?.reduce<IResource[]>((buf, source) => {
+        if (isResourceList(source)) {
+          return buf.concat(source)
+        } else if (isResourceHost(source)) {
+          return buf.concat(source.Resource || [])
+        }
+        return buf
+      }, []) || []
     const remainItems =
       sources.reduce((length, source) => {
         return length + (source.span ?? 1)

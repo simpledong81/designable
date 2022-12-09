@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
-import { usePrefix, IconWidget } from '@pind/designable-react'
+import { ReactFC } from '@formily/reactive-react'
+import { IconWidget, usePrefix } from '@pind/designable-react'
 import cls from 'classnames'
+import React, { useContext } from 'react'
 import './styles.less'
 
 export interface IInputItemsContext {
@@ -24,11 +25,9 @@ export interface IInputItemProps {
   title?: React.ReactNode
 }
 
-const InputItemsContext = React.createContext<IInputItemsContext>(null)
+const InputItemsContext = React.createContext<IInputItemsContext>({})
 
-export const InputItems: React.FC<IInputItemsProps> & {
-  Item: React.FC<IInputItemProps>
-} = (props) => {
+const InternalInputItems: ReactFC<IInputItemsProps> = (props) => {
   const prefix = usePrefix('input-items')
   return (
     <InputItemsContext.Provider value={props}>
@@ -38,12 +37,7 @@ export const InputItems: React.FC<IInputItemsProps> & {
     </InputItemsContext.Provider>
   )
 }
-
-InputItems.defaultProps = {
-  width: '100%',
-}
-
-InputItems.Item = (props) => {
+const Item: ReactFC<IInputItemProps> = (props) => {
   const prefix = usePrefix('input-items-item')
   const ctx = useContext(InputItemsContext)
   return (
@@ -62,4 +56,12 @@ InputItems.Item = (props) => {
       <div className={prefix + '-controller'}>{props.children}</div>
     </div>
   )
+}
+
+export const InputItems = Object.assign(InternalInputItems, {
+  Item,
+})
+
+InputItems.defaultProps = {
+  width: '100%',
 }

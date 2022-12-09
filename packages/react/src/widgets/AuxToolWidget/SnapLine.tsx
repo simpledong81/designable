@@ -1,7 +1,7 @@
-import React from 'react'
-import { useTransformHelper, useCursor, usePrefix } from '../../hooks'
 import { observer } from '@formily/reactive-react'
 import { CursorStatus } from '@pind/designable-core'
+import React from 'react'
+import { useCursor, usePrefix, useTransformHelper } from '../../hooks'
 
 export const SnapLine = observer(() => {
   const cursor = useCursor()
@@ -29,7 +29,7 @@ export const SnapLine = observer(() => {
           <div
             key={key}
             className={prefix}
-            style={createLineStyle(line.rect)}
+            style={createLineStyle(line.rect as DOMRect)}
           ></div>
         )
       })}

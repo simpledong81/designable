@@ -1,3 +1,4 @@
+import { ReactFC } from '@formily/reactive-react'
 import React from 'react'
 import { usePrefix } from '../hooks'
 
@@ -6,14 +7,11 @@ export interface IWorkspaceItemProps {
   flexable?: boolean
 }
 
-export const WorkspacePanel: React.FC & {
-  Item?: React.FC<IWorkspaceItemProps>
-} = (props) => {
+const InternalWorkspacePanel: ReactFC = (props) => {
   const prefix = usePrefix('workspace-panel')
   return <div className={prefix}>{props.children}</div>
 }
-
-WorkspacePanel.Item = (props) => {
+const Item: ReactFC<IWorkspaceItemProps> = (props) => {
   const prefix = usePrefix('workspace-panel-item')
   return (
     <div
@@ -28,3 +26,6 @@ WorkspacePanel.Item = (props) => {
     </div>
   )
 }
+export const WorkspacePanel = Object.assign(InternalWorkspacePanel, {
+  Item,
+})

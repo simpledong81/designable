@@ -25,12 +25,12 @@ const mapEnum = (dataSource: any[]) => (item: any, index: number) => {
   }
 }
 
-export const useLocales = (node: TreeNode) => {
+export const useLocales = (node?: TreeNode) => {
   onFieldReact('*', (field) => {
     const path = field.path.toString().replace(/\.[\d+]/g, '')
     const takeMessage = (prop?: string) => {
       const token = `settings.${path}${prop ? `.${prop}` : ''}`
-      return node.getMessage(token) || GlobalRegistry.getDesignerMessage(token)
+      return node?.getMessage(token) || GlobalRegistry.getDesignerMessage(token)
     }
     const title = takeMessage('title') || takeMessage()
     const description = takeMessage('description')

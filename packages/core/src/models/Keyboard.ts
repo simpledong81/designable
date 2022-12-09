@@ -20,11 +20,11 @@ export class Keyboard {
   engine: Engine
   shortcuts: Shortcut[] = []
   sequence: KeyCode[] = []
-  keyDown: KeyCode = null
+  keyDown?: KeyCode
   modifiers = {}
-  requestTimer = null
+  requestTimer = 0
 
-  constructor(engine?: Engine) {
+  constructor(engine: Engine) {
     this.engine = engine
     this.shortcuts = engine.props?.shortcuts || []
     this.makeObservable()
@@ -99,7 +99,7 @@ export class Keyboard {
       if (this.isModifier(event.data)) {
         this.sequence = []
       }
-      this.keyDown = null
+      this.keyDown = undefined
     }
   }
 
@@ -109,8 +109,8 @@ export class Keyboard {
 
   requestClean(duration = 320) {
     clearTimeout(this.requestTimer)
-    this.requestTimer = setTimeout(() => {
-      this.keyDown = null
+    this.requestTimer = window.setTimeout(() => {
+      this.keyDown = undefined
       this.sequence = []
       clearTimeout(this.requestTimer)
     }, duration)

@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useMemo } from 'react'
 import { FormItem, IFormItemProps } from '@formily/antd'
-import { useField, observer } from '@formily/react'
+import { useField, observer, ReactFC } from '@formily/react'
 import { observable } from '@formily/reactive'
 import { IconWidget, usePrefix } from '@pind/designable-react'
 import cls from 'classnames'
@@ -8,10 +8,10 @@ import './styles.less'
 
 const ExpandedMap = new Map<string, boolean>()
 
-export const FoldItem: React.FC<IFormItemProps> & {
+const InternalFoldItem: ReactFC<IFormItemProps> & {
   Base?: React.FC
   Extra?: React.FC
-} = observer(({ className, style, children, ...props }) => {
+} = observer(({ className, children, ...props }) => {
   const prefix = usePrefix('fold-item')
   const field = useField()
   const expand = useMemo(
@@ -20,12 +20,13 @@ export const FoldItem: React.FC<IFormItemProps> & {
   )
   const slots = useRef({ base: null, extra: null })
   React.Children.forEach(children, (node) => {
+    const props = node?.['props']
     if (React.isValidElement(node)) {
       if (node?.['type']?.['displayName'] === 'FoldItem.Base') {
-        slots.current.base = node['props'].children
+        slots.current.base = props.children
       }
       if (node?.['type']?.['displayName'] === 'FoldItem.Extra') {
-        slots.current.extra = node['props'].children
+        slots.current.extra = props.children
       }
     }
   })
@@ -68,17 +69,19 @@ export const FoldItem: React.FC<IFormItemProps> & {
   )
 })
 
-const Base: React.FC = () => {
+const Base: ReactFC = () => {
   return <Fragment />
 }
 
 Base.displayName = 'FoldItem.Base'
 
-const Extra: React.FC = () => {
+const Extra: ReactFC = () => {
   return <Fragment />
 }
 
 Extra.displayName = 'FoldItem.Extra'
 
-FoldItem.Base = Base
-FoldItem.Extra = Extra
+export const FoldItem = Object.assign(InternalFoldItem, {
+  Base,
+  Extra,
+})

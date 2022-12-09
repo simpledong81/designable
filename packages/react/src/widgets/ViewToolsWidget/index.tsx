@@ -7,7 +7,7 @@ import { usePrefix, useWorkbench } from '../../hooks'
 import cls from 'classnames'
 
 export interface IViewToolsWidget {
-  use?: WorkbenchTypes[]
+  use: WorkbenchTypes[]
   style?: React.CSSProperties
   className?: string
 }

@@ -72,7 +72,7 @@ export const createResource = (...sources: IResourceCreator[]): IResource[] => {
   }, [])
 }
 
-export const createDesigner = (props: IEngineProps<Engine> = {}) => {
+export const createDesigner = (props: Partial<IEngineProps<Engine>> = {}) => {
   const drivers = props.drivers || []
   const effects = props.effects || []
   const shortcuts = props.shortcuts || []

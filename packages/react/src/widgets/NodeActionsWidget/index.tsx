@@ -1,6 +1,6 @@
 import React from 'react'
 import { Space, Typography, Divider, TypographyProps } from 'antd'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { usePrefix, useTreeNode, useSelected } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { TextWidget } from '../TextWidget'
@@ -22,23 +22,27 @@ export interface INodeActionsWidgetActionProps
   icon?: React.ReactNode
 }
 
-export const NodeActionsWidget: React.FC<INodeActionsWidgetProps> & {
-  Action?: React.FC<INodeActionsWidgetActionProps>
-} = observer((props) => {
-  const node = useTreeNode()
-  const prefix = usePrefix('node-actions')
-  const selected = useSelected()
-  if (selected.indexOf(node.id) === -1 && props.activeShown) return null
-  return (
-    <div className={cls(prefix, props.className)} style={props.style}>
-      <div className={prefix + '-content'}>
-        <Space split={<Divider type="vertical" />}>{props.children}</Space>
+const InternalNodeActionsWidget: ReactFC<INodeActionsWidgetProps> = observer(
+  (props) => {
+    const node = useTreeNode()
+    const prefix = usePrefix('node-actions')
+    const selected = useSelected()
+    if (selected.indexOf(node.id) === -1 && props.activeShown) return null
+    return (
+      <div className={cls(prefix, props.className)} style={props.style}>
+        <div className={prefix + '-content'}>
+          <Space split={<Divider type="vertical" />}>{props.children}</Space>
+        </div>
       </div>
-    </div>
-  )
-})
+    )
+  }
+)
 
-NodeActionsWidget.Action = ({ icon, title, ...props }) => {
+const Action: ReactFC<INodeActionsWidgetActionProps> = ({
+  icon,
+  title,
+  ...props
+}) => {
   const prefix = usePrefix('node-actions-item')
   return (
     <Typography.Link
@@ -53,3 +57,7 @@ NodeActionsWidget.Action = ({ icon, title, ...props }) => {
     </Typography.Link>
   )
 }
+
+export const NodeActionsWidget = Object.assign(InternalNodeActionsWidget, {
+  Action,
+})

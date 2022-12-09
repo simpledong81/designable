@@ -11,13 +11,15 @@ export const FreeSelection = observer(() => {
   const operation = useOperation()
   const prefix = usePrefix('aux-free-selection')
   const createSelectionStyle = () => {
+    const { dragStartPosition, position } = cursor
+    if (!dragStartPosition) return {}
     const startDragPoint = viewport.getOffsetPoint({
-      x: cursor.dragStartPosition.topClientX,
-      y: cursor.dragStartPosition.topClientY,
+      x: dragStartPosition.topClientX as number,
+      y: dragStartPosition.topClientY as number,
     })
     const currentPoint = viewport.getOffsetPoint({
-      x: cursor.position.topClientX,
-      y: cursor.position.topClientY,
+      x: position.topClientX as number,
+      y: position.topClientY as number,
     })
     const rect = calcRectByStartEndPoint(
       startDragPoint,

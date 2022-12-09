@@ -8,28 +8,24 @@ export interface IHoverProps {
 }
 
 export class Hover {
-  node: TreeNode = null
-  operation: Operation
+  node?: TreeNode
+  operation?: Operation
   constructor(props?: IHoverProps) {
     this.operation = props?.operation
     this.makeObservable()
   }
 
   setHover(node?: TreeNode) {
-    if (node) {
-      this.node = node
-    } else {
-      this.node = null
-    }
+    this.node = node
     this.trigger()
   }
 
   clear() {
-    this.node = null
+    this.node = undefined
   }
 
   trigger() {
-    if (this.operation) {
+    if (this.operation && this.node) {
       return this.operation.dispatch(
         new HoverNodeEvent({
           target: this.operation.tree,

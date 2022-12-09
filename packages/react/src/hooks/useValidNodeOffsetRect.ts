@@ -13,12 +13,12 @@ const isEqualRect = (rect1: DOMRect, rect2: DOMRect) => {
   )
 }
 
-export const useValidNodeOffsetRect = (node: TreeNode) => {
+export const useValidNodeOffsetRect = (node?: TreeNode) => {
   const engine = useDesigner()
   const viewport = useViewport()
-  const [, forceUpdate] = useState(null)
+  const [, forceUpdate] = useState<any>(null)
   const rectRef = useMemo(
-    () => ({ current: viewport.getValidNodeOffsetRect(node) }),
+    () => ({ current: viewport.getValidNodeOffsetRect(node) as DOMRect }),
     [viewport]
   )
 
@@ -30,7 +30,7 @@ export const useValidNodeOffsetRect = (node: TreeNode) => {
       engine.cursor.dragType === CursorDragType.Move
     )
       return
-    const nextRect = viewport.getValidNodeOffsetRect(node)
+    const nextRect = viewport.getValidNodeOffsetRect(node) as DOMRect
     if (!isEqualRect(rectRef.current, nextRect) && nextRect) {
       rectRef.current = nextRect
       forceUpdate([])

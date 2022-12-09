@@ -333,7 +333,7 @@ export class Viewport {
     })
   }
 
-  findElementById(id: string): HTMLElement | undefined {
+  findElementById(id?: string): HTMLElement | undefined {
     if (!id) return
     if (this.nodeElementsStore[id]) return this.nodeElementsStore[id][0]
     return this.viewportRoot?.querySelector(
@@ -510,7 +510,7 @@ export class Viewport {
     }
   }
 
-  getValidNodeOffsetRect(node: TreeNode): Rect | undefined {
+  getValidNodeOffsetRect(node?: TreeNode): Rect | undefined {
     if (!node) return
     const rect = this.getElementOffsetRectById(node.id)
     if (node && node === node.root && node.isInOperation) {

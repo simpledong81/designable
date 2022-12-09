@@ -5,19 +5,20 @@ import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
 import { Button } from 'antd'
 import { observer } from '@formily/reactive-react'
+import { globalThisPolyfill } from '@pind/designable-shared'
 
-const useMouseHover = <T extends { current: HTMLElement }>(
+const useMouseHover = <T extends { current: HTMLElement | null }>(
   ref: T,
   enter?: () => void,
   leave?: () => void
 ) => {
   useEffect(() => {
-    let timer = null
+    let timer = 0
     let unmounted = false
     const onMouseOver = (e: MouseEvent) => {
       const target: HTMLElement = e.target as any
       clearTimeout(timer)
-      timer = setTimeout(() => {
+      timer = globalThisPolyfill.setTimeout(() => {
         if (unmounted) return
         if (ref?.current?.contains(target)) {
           enter && enter()

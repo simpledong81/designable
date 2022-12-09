@@ -17,8 +17,8 @@ export interface IOutlineTreeWidgetProps {
 }
 
 export const OutlineTreeWidget: React.FC<IOutlineTreeWidgetProps> = observer(
-  ({ onClose, style, renderActions, renderTitle, className, ...props }) => {
-    const ref = useRef<HTMLDivElement>()
+  ({ style, renderActions, renderTitle, className, ...props }) => {
+    const ref = useRef<HTMLDivElement>(null)
     const prefix = usePrefix('outline-tree')
     const workbench = useWorkbench()
     const current = workbench?.activeWorkspace || workbench?.currentWorkspace

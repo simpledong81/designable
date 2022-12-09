@@ -11,10 +11,10 @@ export interface ICursorEventOriginData {
 }
 
 export interface ICursorEventData extends ICursorEventOriginData {
-  topClientX?: number
-  topClientY?: number
-  topPageX?: number
-  topPageY?: number
+  topClientX: number
+  topClientY: number
+  topPageX: number
+  topPageY: number
 }
 
 export class AbstractCursorEvent {
@@ -23,13 +23,13 @@ export class AbstractCursorEvent {
   context: IEngineContext
 
   constructor(data: ICursorEventOriginData) {
-    this.data = data || {
-      clientX: 0,
-      clientY: 0,
-      pageX: 0,
-      pageY: 0,
-      target: null,
-      view: globalThisPolyfill,
+    this.data = {
+      topClientX: 0,
+      topClientY: 0,
+      topPageX: 0,
+      topPageY: 0,
+      ...data,
+      view: data.view || globalThisPolyfill,
     }
     this.transformCoordinates()
   }

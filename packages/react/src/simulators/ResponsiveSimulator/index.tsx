@@ -19,19 +19,19 @@ import cls from 'classnames'
 import './styles.less'
 
 const useResizeEffect = (
-  container: React.MutableRefObject<HTMLDivElement>,
-  content: React.MutableRefObject<HTMLDivElement>,
+  container: React.RefObject<HTMLDivElement>,
+  content: React.RefObject<HTMLDivElement>,
   engine: Engine
 ) => {
-  let status: ResizeHandleType = null
+  let status: ResizeHandleType | null = null
   let startX = 0
   let startY = 0
   let startWidth = 0
   let startHeight = 0
-  let animationX = null
-  let animationY = null
+  let animationX: (() => void) | void
+  let animationY: (() => void) | void
 
-  const getStyle = (status: ResizeHandleType) => {
+  const getStyle = (status?: ResizeHandleType) => {
     if (status === ResizeHandleType.Resize) return 'nwse-resize'
     if (status === ResizeHandleType.ResizeHeight) return 'ns-resize'
     if (status === ResizeHandleType.ResizeWidth) return 'ew-resize'
@@ -39,24 +39,20 @@ const useResizeEffect = (
 
   const updateSize = (deltaX: number, deltaY: number) => {
     const containerRect = container.current?.getBoundingClientRect()
+    const element = content.current
+    if (!containerRect || !element) return
     if (status === ResizeHandleType.Resize) {
       engine.screen.setSize(startWidth + deltaX, startHeight + deltaY)
-      container.current.scrollBy(
+      element.scrollBy(
         containerRect.width + deltaX,
         containerRect.height + deltaY
       )
     } else if (status === ResizeHandleType.ResizeHeight) {
       engine.screen.setSize(startWidth, startHeight + deltaY)
-      container.current.scrollBy(
-        container.current.scrollLeft,
-        containerRect.height + deltaY
-      )
+      element.scrollBy(element.scrollLeft, containerRect.height + deltaY)
     } else if (status === ResizeHandleType.ResizeWidth) {
       engine.screen.setSize(startWidth + deltaX, startHeight)
-      container.current.scrollBy(
-        containerRect.width + deltaX,
-        container.current.scrollTop
-      )
+      element.scrollBy(containerRect.width + deltaX, element.scrollTop)
     }
   }
 
@@ -70,8 +66,8 @@ const useResizeEffect = (
         engine.props.screenResizeHandlerAttrName
       ) as ResizeHandleType
       engine.cursor.setStyle(getStyle(status))
-      startX = e.data.topClientX
-      startY = e.data.topClientY
+      startX = e.data.topClientX as number
+      startY = e.data.topClientY as number
       startWidth = rect.width
       startHeight = rect.height
       engine.cursor.setDragType(CursorDragType.Resize)
@@ -82,7 +78,7 @@ const useResizeEffect = (
     if (!status) return
     const deltaX = e.data.topClientX - startX
     const deltaY = e.data.topClientY - startY
-    const containerRect = container.current?.getBoundingClientRect()
+    const containerRect = container.current?.getBoundingClientRect() as DOMRect
     const distanceX = Math.floor(containerRect.right - e.data.topClientX)
     const distanceY = Math.floor(containerRect.bottom - e.data.topClientY)
     const factorX = calcSpeedFactor(distanceX, 10)
@@ -134,8 +130,8 @@ export interface IResponsiveSimulatorProps
 
 export const ResponsiveSimulator: React.FC<IResponsiveSimulatorProps> =
   observer((props) => {
-    const container = useRef<HTMLDivElement>()
-    const content = useRef<HTMLDivElement>()
+    const container = useRef<HTMLDivElement>(null)
+    const content = useRef<HTMLDivElement>(null)
     const prefix = usePrefix('responsive-simulator')
     const screen = useScreen()
     useDesigner((engine) => {

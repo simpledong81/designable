@@ -1,20 +1,23 @@
-import React, { useContext, Fragment, useRef, useLayoutEffect } from 'react'
+import { ReactFC } from '@formily/reactive-react'
 import { each } from '@pind/designable-shared'
+import cls from 'classnames'
+import React, { Fragment, useContext, useLayoutEffect, useRef } from 'react'
 import { DesignerLayoutContext } from '../context'
 import { IDesignerLayoutProps } from '../types'
-import cls from 'classnames'
 
-export const Layout: React.FC<IDesignerLayoutProps> = (props) => {
+export const Layout: ReactFC<IDesignerLayoutProps> = (props) => {
   const layout = useContext(DesignerLayoutContext)
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    if (ref.current) {
-      each(props.variables, (value, key) => {
-        ref.current.style.setProperty(`--${key}`, value)
+    const { current } = ref
+    const { variables } = props
+    if (current && variables) {
+      each(variables, (value, key) => {
+        current.style.setProperty(`--${key}`, value)
       })
     }
-  }, [])
+  }, [props.variables])
 
   if (layout) {
     return <Fragment>{props.children}</Fragment>
@@ -30,8 +33,9 @@ export const Layout: React.FC<IDesignerLayoutProps> = (props) => {
       <DesignerLayoutContext.Provider
         value={{
           theme: props.theme,
-          prefixCls: props.prefixCls,
-          position: props.position,
+          prefixCls: props.prefixCls as string,
+          position:
+            props.position as Required<IDesignerLayoutProps>['position'],
         }}
       >
         {props.children}

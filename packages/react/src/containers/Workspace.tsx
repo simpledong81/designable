@@ -1,13 +1,14 @@
 import React, { useMemo, useRef, Fragment } from 'react'
 import { useDesigner } from '../hooks'
 import { WorkspaceContext } from '../context'
+import { ReactFC } from '@formily/reactive-react'
 export interface IWorkspaceProps {
   id?: string
   title?: string
   description?: string
 }
 
-export const Workspace: React.FC<IWorkspaceProps> = ({
+export const Workspace: ReactFC<IWorkspaceProps> = ({
   id,
   title,
   description,
@@ -16,7 +17,10 @@ export const Workspace: React.FC<IWorkspaceProps> = ({
   const oldId = useRef<string>()
   const designer = useDesigner()
   const workspace = useMemo(() => {
-    if (!designer) return
+    if (!designer)
+      return {
+        id: '',
+      }
     if (oldId.current && oldId.current !== id) {
       const old = designer.workbench.findWorkspaceById(oldId.current)
       if (old) old.viewport.detachEvents()
@@ -26,7 +30,7 @@ export const Workspace: React.FC<IWorkspaceProps> = ({
       title,
       description,
     }
-    designer.workbench.ensureWorkspace(workspace)
+    designer.workbench.ensureWorkspace(workspace as any)
     oldId.current = workspace.id
     return workspace
   }, [id, designer])

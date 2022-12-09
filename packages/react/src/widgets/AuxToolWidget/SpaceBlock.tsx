@@ -14,7 +14,7 @@ export const SpaceBlock = observer(() => {
 
   if (cursor.status !== CursorStatus.Dragging) return null
 
-  const renderRulerBox = (distance: number, type: string) => {
+  const renderRulerBox = (distance: number, type?: string) => {
     if (type === 'top' || type === 'bottom') {
       return (
         <div className={prefix + '-ruler-v'}>
@@ -34,7 +34,8 @@ export const SpaceBlock = observer(() => {
     }
   }
 
-  const renderDashedLine = (line: ILineSegment) => {
+  const renderDashedLine = (line?: ILineSegment) => {
+    if (!line) return null
     const rect = calcRectOfAxisLineSegment(line)
     if (!rect) return null
     const width = rect.width || 2

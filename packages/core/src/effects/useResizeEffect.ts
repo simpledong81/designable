@@ -1,6 +1,5 @@
 import { Engine, CursorDragType } from '../models'
 import { DragStartEvent, DragMoveEvent, DragStopEvent } from '../events'
-import { IEngineProps } from '../types'
 
 export const useResizeEffect = (engine: Engine) => {
   const findStartNodeHandler = (target: HTMLElement) => {
@@ -61,6 +60,7 @@ export const useResizeEffect = (engine: Engine) => {
     const currentWorkspace =
       event.context?.workspace ?? engine.workbench.activeWorkspace
     const helper = currentWorkspace?.operation.transformHelper
+    if (!helper) return
     const dragNodes = helper.dragNodes
     if (!dragNodes.length) return
     helper.dragMove()

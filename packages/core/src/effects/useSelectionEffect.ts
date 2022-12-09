@@ -1,7 +1,6 @@
 import { Engine, CursorStatus } from '../models'
 import { MouseClickEvent } from '../events'
 import { KeyCode, Point } from '@pind/designable-shared'
-import { IEngineProps } from '../types'
 
 export const useSelectionEffect = (engine: Engine) => {
   engine.subscribeTo(MouseClickEvent, (event) => {
