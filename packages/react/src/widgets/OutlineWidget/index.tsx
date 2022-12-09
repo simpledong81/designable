@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react'
 import cls from 'classnames'
 import { useTree, usePrefix, useOutline, useWorkbench } from '../../hooks'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { OutlineTreeNode } from './OutlineNode'
 import { Insertion } from './Insertion'
 import { TreeNode, Viewport } from '@pind/designable-core'
@@ -16,7 +16,7 @@ export interface IOutlineTreeWidgetProps {
   renderActions?: (node: TreeNode) => React.ReactNode
 }
 
-export const OutlineTreeWidget: React.FC<IOutlineTreeWidgetProps> = observer(
+export const OutlineTreeWidget: ReactFC<IOutlineTreeWidgetProps> = observer(
   ({ style, renderActions, renderTitle, className, ...props }) => {
     const ref = useRef<HTMLDivElement>(null)
     const prefix = usePrefix('outline-tree')

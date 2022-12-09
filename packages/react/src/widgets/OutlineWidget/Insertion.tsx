@@ -1,13 +1,13 @@
 import React from 'react'
 import { useMoveHelper, usePrefix } from '../../hooks'
 import { ClosestPosition } from '@pind/designable-core'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 
 export interface IInsertionProps {
   workspaceId?: string
 }
 
-export const Insertion: React.FC<IInsertionProps> = observer(
+export const Insertion: ReactFC<IInsertionProps> = observer(
   ({ workspaceId }) => {
     const moveHelper = useMoveHelper(workspaceId)
     const prefix = usePrefix('outline-tree-insertion')

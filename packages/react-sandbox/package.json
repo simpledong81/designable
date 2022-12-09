@@ -20,15 +20,17 @@
     "build": "rimraf -rf lib esm dist && npm run build:cjs && npm run build:esm && npm run build:umd",
     "build:cjs": "tsc --project tsconfig.build.json",
     "build:esm": "tsc --project tsconfig.build.json --module es2015 --outDir esm",
-    "build:umd": "rollup --config"
+    "build:umd": "rollup --config --bundleConfigAsCjs"
   },
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@pind/designable-react": "2.0.0-beta.1",
-    "@pind/designable-shared": "2.0.0-beta.1"
+    "@pind/designable-react": "workspace:2.0.0-beta.1",
+    "@pind/designable-shared": "workspace:2.0.0-beta.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "publishConfig": {
     "access": "public"

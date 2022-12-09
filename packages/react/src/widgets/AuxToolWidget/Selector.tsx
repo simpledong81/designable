@@ -4,7 +4,7 @@ import { useHover, useSelection, usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { NodeTitleWidget } from '../NodeTitleWidget'
 import { Button } from 'antd'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { globalThisPolyfill } from '@pind/designable-shared'
 
 const useMouseHover = <T extends { current: HTMLElement | null }>(
@@ -41,7 +41,7 @@ export interface ISelectorProps {
   style?: React.CSSProperties
 }
 
-export const Selector: React.FC<ISelectorProps> = observer(({ node }) => {
+export const Selector: ReactFC<ISelectorProps> = observer(({ node }) => {
   const hover = useHover()
   const [expand, setExpand] = useState(false)
   const ref = useRef<HTMLDivElement>(null)

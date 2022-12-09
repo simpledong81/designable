@@ -1,7 +1,7 @@
 import React, { Fragment, PropsWithChildren } from 'react'
 import { isStr, isPlainObj } from '@pind/designable-shared'
 import { GlobalRegistry, IDesignerMiniLocales } from '@pind/designable-core'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 
 export interface ITextWidgetProps {
   componentName?: string
@@ -10,7 +10,7 @@ export interface ITextWidgetProps {
   defaultMessage?: string | IDesignerMiniLocales
 }
 
-export const TextWidget: React.FC<PropsWithChildren<ITextWidgetProps>> =
+export const TextWidget: ReactFC<PropsWithChildren<ITextWidgetProps>> =
   observer((props) => {
     const takeLocale = (
       message: string | IDesignerMiniLocales

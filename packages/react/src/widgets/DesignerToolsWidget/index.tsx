@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from 'react'
 import { Button, InputNumber } from 'antd'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { CursorType, ScreenType } from '@pind/designable-core'
 import {
   useCursor,
@@ -21,8 +21,8 @@ export type IDesignerToolsWidgetProps = {
   use: DesignerToolsType[]
 }
 
-export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
-  observer((props) => {
+export const DesignerToolsWidget: ReactFC<IDesignerToolsWidgetProps> = observer(
+  (props) => {
     const screen = useScreen()
     const cursor = useCursor()
     const workbench = useWorkbench()
@@ -199,7 +199,8 @@ export const DesignerToolsWidget: React.FC<IDesignerToolsWidgetProps> =
         {renderResponsiveController()}
       </div>
     )
-  })
+  }
+)
 
 DesignerToolsWidget.defaultProps = {
   use: ['HISTORY', 'CURSOR', 'SCREEN_TYPE'],

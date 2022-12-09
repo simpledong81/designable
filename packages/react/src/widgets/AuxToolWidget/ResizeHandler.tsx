@@ -1,13 +1,14 @@
-import React from 'react'
-import cls from 'classnames'
-import { useDesigner, usePrefix } from '../../hooks'
+import { ReactFC } from '@formily/reactive-react'
 import { TreeNode } from '@pind/designable-core'
+import cls from 'classnames'
+import React from 'react'
+import { useDesigner, usePrefix } from '../../hooks'
 
 export interface IResizeHandlerProps {
   node: TreeNode
 }
 
-export const ResizeHandler: React.FC<IResizeHandlerProps> = (props) => {
+export const ResizeHandler: ReactFC<IResizeHandlerProps> = (props) => {
   const designer = useDesigner()
   const prefix = usePrefix('aux-node-resize-handler')
   const createHandler = (value: string) => {

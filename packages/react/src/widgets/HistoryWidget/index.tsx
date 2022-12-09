@@ -1,12 +1,12 @@
 import React from 'react'
 import format from 'dateformat'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { usePrefix, useWorkbench } from '../../hooks'
 import { TextWidget } from '../TextWidget'
 import cls from 'classnames'
 import './styles.less'
 
-export const HistoryWidget: React.FC = observer(() => {
+export const HistoryWidget: ReactFC = observer(() => {
   const workbench = useWorkbench()
   const currentWorkspace =
     workbench?.activeWorkspace || workbench?.currentWorkspace

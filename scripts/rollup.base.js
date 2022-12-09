@@ -1,10 +1,10 @@
 import typescript from 'rollup-plugin-typescript2'
-import resolve from 'rollup-plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
 import postcss from 'rollup-plugin-postcss'
 import commonjs from '@rollup/plugin-commonjs'
 import NpmImport from 'less-plugin-npm-import'
 import externalGlobals from 'rollup-plugin-external-globals'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 import path from 'path'
 
 const presets = () => {
@@ -85,7 +85,7 @@ export default (filename, targetName, ...plugins) => [
       file: `dist/${filename}.umd.production.min.js`,
       name: targetName,
     },
-    plugins: [...presets(filename, targetName), ...plugins],
+    plugins: [...presets(), ...plugins],
   },
   {
     input: 'src/index.ts',
@@ -94,6 +94,6 @@ export default (filename, targetName, ...plugins) => [
       file: `dist/${filename}.umd.production.js`,
       name: targetName,
     },
-    plugins: [...presets(filename, targetName), terser(), ...plugins],
+    plugins: [...presets(), terser(), ...plugins],
   },
 ]

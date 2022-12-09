@@ -1,21 +1,21 @@
+import { observer, ReactFC } from '@formily/reactive-react'
+import { ClosestPosition, CursorStatus, TreeNode } from '@pind/designable-core'
+import cls from 'classnames'
 import React, { Fragment } from 'react'
 import {
-  useViewport,
-  useMoveHelper,
   useCursor,
-  useValidNodeOffsetRect,
+  useMoveHelper,
   usePrefix,
+  useValidNodeOffsetRect,
+  useViewport,
 } from '../../hooks'
-import { observer } from '@formily/reactive-react'
-import { CursorStatus, ClosestPosition, TreeNode } from '@pind/designable-core'
-import cls from 'classnames'
 interface ICoverRectProps {
   node: TreeNode
   dragging?: boolean
   dropping?: boolean
 }
 
-const CoverRect: React.FC<ICoverRectProps> = (props) => {
+const CoverRect: ReactFC<ICoverRectProps> = (props) => {
   const prefix = usePrefix('aux-cover-rect')
   const rect = useValidNodeOffsetRect(props.node)
   const createCoverStyle = () => {

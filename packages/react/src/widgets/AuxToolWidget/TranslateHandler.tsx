@@ -3,12 +3,13 @@ import cls from 'classnames'
 import { useDesigner, usePrefix } from '../../hooks'
 import { TreeNode } from '@pind/designable-core'
 import { IconWidget } from '../IconWidget'
+import { ReactFC } from '@formily/reactive-react'
 
 export interface ITranslateHandlerProps {
   node: TreeNode
 }
 
-export const TranslateHandler: React.FC<ITranslateHandlerProps> = (props) => {
+export const TranslateHandler: ReactFC<ITranslateHandlerProps> = (props) => {
   const designer = useDesigner()
   const prefix = usePrefix('aux-node-translate-handler')
   const createHandler = (value: string) => {

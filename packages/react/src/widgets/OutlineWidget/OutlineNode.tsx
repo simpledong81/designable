@@ -7,7 +7,7 @@ import {
 } from '@pind/designable-core'
 import { globalThisPolyfill, isFn } from '@pind/designable-shared'
 import { autorun } from '@formily/reactive'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import {
   usePrefix,
   useCursor,
@@ -27,7 +27,7 @@ export interface IOutlineTreeNodeProps {
   workspaceId?: string
 }
 
-export const OutlineTreeNode: React.FC<IOutlineTreeNodeProps> = observer(
+export const OutlineTreeNode: ReactFC<IOutlineTreeNodeProps> = observer(
   ({ node, className, style, workspaceId }) => {
     const prefix = usePrefix('outline-tree-node')
     const engine = useDesigner()

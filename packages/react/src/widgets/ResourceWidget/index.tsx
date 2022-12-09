@@ -6,7 +6,7 @@ import {
   IResource,
 } from '@pind/designable-core'
 import { isFn } from '@pind/designable-shared'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { usePrefix } from '../../hooks'
 import { IconWidget } from '../IconWidget'
 import { TextWidget } from '../TextWidget'
@@ -23,7 +23,7 @@ export interface IResourceWidgetProps {
   children?: SourceMapper | React.ReactElement
 }
 
-export const ResourceWidget: React.FC<IResourceWidgetProps> = observer(
+export const ResourceWidget: ReactFC<IResourceWidgetProps> = observer(
   (props) => {
     const prefix = usePrefix('resource')
     const [expand, setExpand] = useState(props.defaultExpand)

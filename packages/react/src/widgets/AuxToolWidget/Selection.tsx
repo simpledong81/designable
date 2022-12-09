@@ -10,7 +10,7 @@ import {
   usePrefix,
   useDesigner,
 } from '../../hooks'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import { TreeNode } from '@pind/designable-core'
 import { TranslateHandler } from './TranslateHandler'
 export interface ISelectionBoxProps {
@@ -18,7 +18,7 @@ export interface ISelectionBoxProps {
   showHelpers: boolean
 }
 
-export const SelectionBox: React.FC<ISelectionBoxProps> = (props) => {
+export const SelectionBox: ReactFC<ISelectionBoxProps> = (props) => {
   const designer = useDesigner()
   const prefix = usePrefix('aux-selection-box')
   const innerPrefix = usePrefix('aux-selection-box-inner')

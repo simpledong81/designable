@@ -3,7 +3,7 @@ import { useTree, usePrefix, useDesigner, useComponents } from '../../hooks'
 import { TreeNodeContext, DesignerComponentsContext } from '../../context'
 import { IDesignerComponents } from '../../types'
 import { TreeNode, GlobalRegistry } from '@pind/designable-core'
-import { observer } from '@formily/reactive-react'
+import { observer, ReactFC } from '@formily/reactive-react'
 import cls from 'classnames'
 import './styles.less'
 
@@ -18,7 +18,7 @@ export interface ITreeNodeWidgetProps {
   children?: React.ReactChild
 }
 
-export const TreeNodeWidget: React.FC<ITreeNodeWidgetProps> = observer(
+export const TreeNodeWidget: ReactFC<ITreeNodeWidgetProps> = observer(
   (props: ITreeNodeWidgetProps) => {
     const designer = useDesigner(props.node?.designerProps?.effects)
     const components = useComponents()
@@ -71,8 +71,8 @@ export const TreeNodeWidget: React.FC<ITreeNodeWidgetProps> = observer(
   }
 )
 
-export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
-  observer((props: IComponentTreeWidgetProps) => {
+export const ComponentTreeWidget: ReactFC<IComponentTreeWidgetProps> = observer(
+  (props: IComponentTreeWidgetProps) => {
     const tree = useTree()
     const prefix = usePrefix('component-tree')
     const designer = useDesigner()
@@ -94,6 +94,7 @@ export const ComponentTreeWidget: React.FC<IComponentTreeWidgetProps> =
         </DesignerComponentsContext.Provider>
       </div>
     )
-  })
+  }
+)
 
 ComponentTreeWidget.displayName = 'ComponentTreeWidget'

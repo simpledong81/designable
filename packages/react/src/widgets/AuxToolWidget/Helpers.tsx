@@ -8,6 +8,7 @@ import { Delete } from './Delete'
 import { DragHandler } from './DragHandler'
 import cls from 'classnames'
 import { globalThisPolyfill } from '@pind/designable-shared'
+import { ReactFC } from '@formily/reactive-react'
 
 const HELPER_DEBOUNCE_TIMEOUT = 100
 
@@ -24,7 +25,7 @@ export interface IViewportState {
   viewportIsScrollBottom?: boolean
 }
 
-export const Helpers: React.FC<IHelpersProps> = ({ node, nodeRect }) => {
+export const Helpers: ReactFC<IHelpersProps> = ({ node, nodeRect }) => {
   const prefix = usePrefix('aux-helpers')
   const viewport = useViewport()
   const unmountRef = useRef(false)
