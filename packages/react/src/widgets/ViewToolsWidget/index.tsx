@@ -7,13 +7,13 @@ import { usePrefix, useWorkbench } from '../../hooks'
 import cls from 'classnames'
 
 export interface IViewToolsWidget {
-  use: WorkbenchTypes[]
+  use?: WorkbenchTypes[]
   style?: React.CSSProperties
   className?: string
 }
 
 export const ViewToolsWidget: ReactFC<IViewToolsWidget> = observer(
-  ({ use, style, className }) => {
+  ({ use = [], style, className }) => {
     const workbench = useWorkbench()
     const prefix = usePrefix('view-tools')
     return (
