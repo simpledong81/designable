@@ -1,5 +1,6 @@
+import './env'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import {
   Designer,
   IconWidget,
@@ -29,7 +30,6 @@ import {
 import { Space, Button, Radio } from 'antd'
 import { GithubOutlined } from '@ant-design/icons'
 import { Sandbox } from '@pind/designable-react-sandbox'
-import 'antd/dist/antd.less'
 
 const RootBehavior = createBehavior({
   name: 'Root',
@@ -357,12 +357,13 @@ const App = () => {
                   {() => (
                     <Sandbox
                       jsAssets={[
-                        'https://unpkg.com/moment/min/moment-with-locales.js',
+                        'https://unpkg.com/dayjs/dayjs.min.js',
                         'https://unpkg.com/react/umd/react.production.min.js',
                         'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
                         'https://unpkg.com/antd/dist/antd-with-locales.min.js',
-                        './sandbox.bundle.js',
+                        './dist/sandbox.bundle.umd.js',
                       ]}
+                      cssAssets={['./dist/style.css']}
                     />
                   )}
                 </ViewPanel>
@@ -393,12 +394,13 @@ const App = () => {
                   {() => (
                     <Sandbox
                       jsAssets={[
-                        'https://unpkg.com/moment/min/moment-with-locales.js',
+                        'https://unpkg.com/dayjs/dayjs.min.js',
                         'https://unpkg.com/react/umd/react.production.min.js',
                         'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
                         'https://unpkg.com/antd/dist/antd-with-locales.min.js',
-                        './sandbox.bundle.js',
+                        './dist/sandbox.bundle.umd.js',
                       ]}
+                      cssAssets={['./dist/style.css']}
                     />
                   )}
                 </ViewPanel>
@@ -427,4 +429,6 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const container = document.getElementById('root') as HTMLElement
+const root = createRoot(container)
+root.render(<App />)

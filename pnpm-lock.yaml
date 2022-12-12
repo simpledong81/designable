@@ -302,22 +302,37 @@ importers:
 
   examples/sandbox-multi-workspace:
     specifiers:
+      '@formily/antd': 3.0.0-alpha.1
+      '@formily/core': ^2.2.14
+      '@formily/react': ^2.2.14
       '@formily/reactive': ^2.2.14
       '@formily/reactive-react': ^2.2.14
+      '@formily/shared': ^2.2.14
       '@pind/designable-core': workspace:2.0.0-beta.1
       '@pind/designable-react': workspace:2.0.0-beta.1
       '@pind/designable-react-sandbox': workspace:2.0.0-beta.1
       '@pind/designable-react-settings-form': workspace:2.0.0-beta.1
       '@pind/designable-shared': workspace:2.0.0-beta.1
+      '@types/glob': ^7.2.0
+      '@types/react': ^18.0.26
+      '@types/react-dom': ^18.0.9
+      '@types/react-is': ^17.0.3
+      '@vitejs/plugin-basic-ssl': ^0.1.2
+      '@vitejs/plugin-react': ^2.2.0
       antd: ^5.0.5
+      less: ^3.13.1
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-jss: ^10.9.2
       ts-loader: ^7.0.5
       typescript: ^4.9.4
+      vite: ^3.2.5
     dependencies:
+      '@formily/antd': 3.0.0-alpha.1_3djxtplu6vw52wd2gogfcdkfae
+      '@formily/core': 2.2.14
+      '@formily/react': 2.2.14_gy2jcindbd2cqrfc5bqbaxpbry
       '@formily/reactive': 2.2.14
-      '@formily/reactive-react': 2.2.14_7i5myeigehqah43i5u7wbekgba
+      '@formily/reactive-react': 2.2.14_jfvhv3b24ogqbdlaxzhinjpfxi
+      '@formily/shared': 2.2.14
       '@pind/designable-core': link:../../packages/core
       '@pind/designable-react': link:../../packages/react
       '@pind/designable-react-sandbox': link:../../packages/react-sandbox
@@ -326,10 +341,17 @@ importers:
       antd: 5.0.5_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-jss: 10.9.2_react@18.2.0
     devDependencies:
+      '@types/glob': 7.2.0
+      '@types/react': 18.0.26
+      '@types/react-dom': 18.0.9
+      '@types/react-is': 17.0.3
+      '@vitejs/plugin-basic-ssl': 0.1.2_vite@3.2.5
+      '@vitejs/plugin-react': 2.2.0_vite@3.2.5
+      less: 3.13.1
       ts-loader: 7.0.5_typescript@4.9.4
       typescript: 4.9.4
+      vite: 3.2.5_less@3.13.1
 
   formily/antd:
     specifiers:
@@ -598,7 +620,7 @@ packages:
       react-dom: ^16.13.1
     dependencies:
       '@gcanvas/core': 1.0.0
-      classnames: 2.2.6
+      classnames: 2.3.2
       omit.js: 2.0.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -5206,7 +5228,7 @@ packages:
       }
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: true
 
   /@types/eslint/8.4.10:
@@ -5215,7 +5237,7 @@ packages:
         integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==,
       }
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: true
 
@@ -5453,7 +5475,7 @@ packages:
     dependencies:
       '@types/history': 5.0.0
       '@types/react': 18.0.26
-      '@types/react-router': 5.1.12
+      '@types/react-router': 5.1.19
     dev: true
 
   /@types/react-router/5.1.12:
@@ -11774,7 +11796,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.4
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
