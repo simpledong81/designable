@@ -4,9 +4,8 @@ import {
   usePrefix,
   useWorkspace,
 } from '@pind/designable-react'
-import { globalThisPolyfill, isFn } from '@pind/designable-shared'
-import React, { useEffect, useRef } from 'react'
-import { createRoot } from 'react-dom/client'
+import { globalThisPolyfill } from '@pind/designable-shared'
+import { useEffect, useRef } from 'react'
 
 export interface ISandboxProps {
   style?: React.CSSProperties
@@ -104,41 +103,4 @@ export const useSandbox = (props: React.PropsWithChildren<ISandboxProps>) => {
     ref.current.contentDocument.close()
   }, [workspace, designer])
   return ref
-}
-
-export const useSandboxScope = () => {
-  return globalThisPolyfill['__DESIGNABLE_SANDBOX_SCOPE__']
-}
-
-export const renderSandboxContent = (render: (scope?: any) => JSX.Element) => {
-  if (isFn(render)) {
-    const container = document.getElementById('__SANDBOX_ROOT__')
-    if (container) {
-      const root = createRoot(container)
-      root.render(render(useSandboxScope()))
-      globalThisPolyfill.addEventListener('unload', () => {
-        root.unmount()
-      })
-    } else {
-      console.error('dom __SANDBOX_ROOT__ is non-existent')
-    }
-  }
-}
-
-export const Sandbox: React.FC<ISandboxProps> = (props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { cssAssets, jsAssets, scope, style, ...iframeProps } = props
-  return (
-    <iframe
-      {...iframeProps}
-      ref={useSandbox(props)}
-      style={{
-        height: '100%',
-        width: '100%',
-        border: 'none',
-        display: 'block',
-        ...style,
-      }}
-    />
-  )
 }
