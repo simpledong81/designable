@@ -7,10 +7,8 @@
     "npm": ">=14.0.0"
   },
   "scripts": {
-    "start": "vite --host",
-    "preview": "vite preview --host",
-    "build:sandbox": "vite build --config vite.sandbox.ts",
-    "dev:sandbox": "vite build --config vite.sandbox.ts --watch"
+    "start": "vite --host & npm run build:sandbox",
+    "build:sandbox": "vite build --config vite.sandbox.ts --watch"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
