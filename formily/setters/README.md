@@ -1,7 +1,7 @@
-# @formily/designable-antd
+# @pind/designable-formily-setters
 
 ### Install
 
 ```bash
-npm install --save @formily/designable-antd
+npm install --save @pind/designable-formily-setters
 ```
