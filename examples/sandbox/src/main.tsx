@@ -1,34 +1,34 @@
-import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import {
-  Designer,
-  IconWidget,
-  Workbench,
-  ViewPanel,
-  DesignerToolsWidget,
-  ViewToolsWidget,
-  OutlineTreeWidget,
-  ResourceWidget,
-  StudioPanel,
-  CompositePanel,
-  WorkspacePanel,
-  ToolbarPanel,
-  ViewportPanel,
-  SettingsPanel,
-  HistoryWidget,
-} from '@pind/designable-react'
-import { SettingsForm, MonacoInput } from '@pind/designable-react-settings-form'
+import './env'
+import { GithubOutlined } from '@ant-design/icons'
 import { observer } from '@formily/react'
 import {
+  createBehavior,
   createDesigner,
   createResource,
-  createBehavior,
   GlobalRegistry,
 } from '@pind/designable-core'
-import { Space, Button, Radio } from 'antd'
-import { GithubOutlined } from '@ant-design/icons'
+import {
+  CompositePanel,
+  Designer,
+  DesignerToolsWidget,
+  HistoryWidget,
+  IconWidget,
+  OutlineTreeWidget,
+  ResourceWidget,
+  SettingsPanel,
+  StudioPanel,
+  ToolbarPanel,
+  ViewPanel,
+  ViewportPanel,
+  ViewToolsWidget,
+  Workbench,
+  WorkspacePanel,
+} from '@pind/designable-react'
 import { Sandbox } from '@pind/designable-react-sandbox'
-
+import { MonacoInput, SettingsForm } from '@pind/designable-react-settings-form'
+import { Button, Radio, Space } from 'antd'
+import React, { useEffect, useMemo } from 'react'
+import { createRoot } from 'react-dom/client'
 const RootBehavior = createBehavior({
   name: 'Root',
   selector: 'Root',
@@ -327,8 +327,8 @@ const Actions = observer(() => {
   )
 })
 
-const engine = createDesigner()
 const App = () => {
+  const engine = useMemo(() => createDesigner(), [])
   return (
     <Designer engine={engine}>
       <Workbench>
@@ -366,8 +366,9 @@ const App = () => {
                       'https://unpkg.com/react/umd/react.production.min.js',
                       'https://unpkg.com/react-dom/umd/react-dom.production.min.js',
                       'https://unpkg.com/antd/dist/antd-with-locales.min.js',
-                      // './sandbox.bundle.js',
+                      './dist/sandbox.bundle.umd.js',
                     ]}
+                    cssAssets={['./dist/style.css']}
                   />
                 )}
               </ViewPanel>
@@ -395,4 +396,6 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const container = document.getElementById('root') as HTMLElement
+const root = createRoot(container)
+root.render(<App />)

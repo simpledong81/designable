@@ -7,8 +7,10 @@
     "npm": ">=3.0.0"
   },
   "scripts": {
-    "dev": "vite --host",
-    "preview": "vite preview --host"
+    "start": "vite --host",
+    "preview": "vite preview --host",
+    "build:sandbox": "vite build --config vite.sandbox.ts",
+    "dev:sandbox": "vite build --config vite.sandbox.ts --watch"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
@@ -27,6 +29,7 @@
     "@formily/core": "^2.2.14",
     "@formily/react": "^2.2.14",
     "@formily/reactive": "^2.2.14",
+    "@formily/shared": "^2.2.14",
     "@formily/reactive-react": "^2.2.14",
     "@pind/designable-core": "workspace:2.0.0-beta.1",
     "@pind/designable-react": "workspace:2.0.0-beta.1",

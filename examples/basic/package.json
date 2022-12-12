@@ -7,7 +7,7 @@
     "npm": ">=3.0.0"
   },
   "scripts": {
-    "dev": "vite --host",
+    "start": "vite --host",
     "preview": "vite preview --host"
   },
   "devDependencies": {

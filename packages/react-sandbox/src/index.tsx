@@ -6,7 +6,7 @@ import {
 } from '@pind/designable-react'
 import { globalThisPolyfill, isFn } from '@pind/designable-shared'
 import React, { useEffect, useRef } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 export interface ISandboxProps {
   style?: React.CSSProperties
@@ -31,25 +31,28 @@ export const useSandbox = (props: React.PropsWithChildren<ISandboxProps>) => {
   useEffect(() => {
     const contentWindow = ref.current?.contentWindow
     const contentDocument = ref.current?.contentDocument
-    if (contentWindow && contentDocument && workspace) {
-      const styles = cssAssets
-        ?.map?.((css) => {
-          return `<link media="all" rel="stylesheet" href="${css}" />`
-        })
-        .join('\n')
-      const scripts = jsAssets
-        ?.map?.((js) => {
-          return `<script src="${js}" type="text/javascript" ></script>`
-        })
-        .join('\n')
-      contentWindow['__DESIGNABLE_SANDBOX_SCOPE__'] = props.scope
-      contentWindow['__DESIGNABLE_LAYOUT__'] = layout
-      contentWindow['__DESIGNABLE_ENGINE__'] = designer
-      contentWindow['__DESIGNABLE_WORKSPACE__'] = workspace
-      contentWindow['Formily'] = globalThisPolyfill['Formily']
-      contentWindow['Designable'] = globalThisPolyfill['Designable']
-      contentDocument.open()
-      contentDocument.write(`
+    if (!contentWindow || !contentDocument) return
+    if (!workspace || !designer) return
+
+    const styles = cssAssets
+      ?.map?.((css) => {
+        return `<link media="all" rel="stylesheet" href="${css}" />`
+      })
+      .join('\n')
+    const scripts = jsAssets
+      ?.map?.((js) => {
+        return `<script src="${js}" type="text/javascript" ></script>`
+      })
+      .join('\n')
+    contentWindow['__DESIGNABLE_SANDBOX_SCOPE__'] = props.scope
+    contentWindow['__DESIGNABLE_LAYOUT__'] = layout
+    contentWindow['__DESIGNABLE_ENGINE__'] = designer
+    contentWindow['__DESIGNABLE_WORKSPACE__'] = workspace
+    contentWindow['Formily'] = globalThisPolyfill['Formily']
+    contentWindow['Designable'] = globalThisPolyfill['Designable']
+
+    contentDocument.open()
+    contentDocument.write(`
       <!DOCTYPE html>
         <head>
           ${styles}
@@ -85,26 +88,22 @@ export const useSandbox = (props: React.PropsWithChildren<ISandboxProps>) => {
           .inherit-cusor * {
             cursor: inherit !important;
           }
+          #__SANDBOX_ROOT__{
+            width: 100vw;
+            height: 100vh;
+          }
         </style>
+        <script>
+        </script>
         <body>
           <div id="__SANDBOX_ROOT__"></div>
           ${scripts}
         </body>
       </html>
       `)
-      ref.current.contentDocument.close()
-    }
-  }, [workspace])
+    ref.current.contentDocument.close()
+  }, [workspace, designer])
   return ref
-}
-
-if (globalThisPolyfill.frameElement) {
-  //解决iframe内嵌如果iframe被移除，内部React无法回收内存的问题
-  globalThisPolyfill.addEventListener('unload', () => {
-    ReactDOM.unmountComponentAtNode(
-      document.getElementById('__SANDBOX_ROOT__') as HTMLElement
-    )
-  })
 }
 
 export const useSandboxScope = () => {
@@ -113,10 +112,16 @@ export const useSandboxScope = () => {
 
 export const renderSandboxContent = (render: (scope?: any) => JSX.Element) => {
   if (isFn(render)) {
-    ReactDOM.render(
-      render(useSandboxScope()),
-      document.getElementById('__SANDBOX_ROOT__')
-    )
+    const container = document.getElementById('__SANDBOX_ROOT__')
+    if (container) {
+      const root = createRoot(container)
+      root.render(render(useSandboxScope()))
+      globalThisPolyfill.addEventListener('unload', () => {
+        root.unmount()
+      })
+    } else {
+      console.error('dom __SANDBOX_ROOT__ is non-existent')
+    }
   }
 }
 
