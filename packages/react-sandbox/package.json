@@ -1,6 +1,6 @@
 {
   "name": "@pind/designable-react-sandbox",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -32,8 +32,8 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@pind/designable-react": "workspace:2.0.0-beta.3",
-    "@pind/designable-shared": "workspace:2.0.0-beta.3",
+    "@pind/designable-react": "workspace:2.0.0-beta.4",
+    "@pind/designable-shared": "workspace:2.0.0-beta.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

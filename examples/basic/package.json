@@ -1,6 +1,6 @@
 {
   "name": "@pind/designable-basic-example",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "license": "MIT",
   "private": true,
   "engines": {
@@ -27,11 +27,11 @@
     "@formily/react": "^2.2.14",
     "@formily/reactive": "^2.2.14",
     "@formily/reactive-react": "^2.2.14",
-    "@pind/designable-core": "workspace:2.0.0-beta.3",
-    "@pind/designable-react": "workspace:2.0.0-beta.3",
-    "@pind/designable-react-sandbox": "workspace:2.0.0-beta.3",
-    "@pind/designable-react-settings-form": "workspace:2.0.0-beta.3",
-    "@pind/designable-shared": "workspace:2.0.0-beta.3",
+    "@pind/designable-core": "workspace:2.0.0-beta.4",
+    "@pind/designable-react": "workspace:2.0.0-beta.4",
+    "@pind/designable-react-sandbox": "workspace:2.0.0-beta.4",
+    "@pind/designable-react-settings-form": "workspace:2.0.0-beta.4",
+    "@pind/designable-shared": "workspace:2.0.0-beta.4",
     "antd": "^5.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

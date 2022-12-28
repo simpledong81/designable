@@ -1,6 +1,6 @@
 {
   "name": "@pind/designable-react",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -34,8 +34,8 @@
     "@formily/reactive-react": "^2.2.14"
   },
   "dependencies": {
-    "@pind/designable-core": "workspace:2.0.0-beta.3",
-    "@pind/designable-shared": "workspace:2.0.0-beta.3",
+    "@pind/designable-core": "workspace:2.0.0-beta.4",
+    "@pind/designable-shared": "workspace:2.0.0-beta.4",
     "antd": "^5.0.5",
     "classnames": "^2.3.2",
     "dateformat": "^4.6.3"
