@@ -18,6 +18,8 @@ import {
 import '@formily/grid'
 import { createSchemaField } from '@formily/react'
 import { Slider } from 'antd'
+import 'dayjs'
+import '@rc-component/mini-decimal'
 import {
   BackgroundImageInput,
   BackgroundStyleSetter,
