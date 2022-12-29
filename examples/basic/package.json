@@ -22,7 +22,7 @@
     "vite": "^3.2.5"
   },
   "dependencies": {
-    "@formily/antd": "3.0.0-alpha.1",
+    "@formily/antd": "^3.0.0-alpha.1",
     "@formily/core": "^2.2.14",
     "@formily/react": "^2.2.14",
     "@formily/reactive": "^2.2.14",
