@@ -18,7 +18,6 @@ import {
 import '@formily/grid'
 import { createSchemaField } from '@formily/react'
 import { Slider } from 'antd'
-import 'dayjs'
 import {
   BackgroundImageInput,
   BackgroundStyleSetter,
