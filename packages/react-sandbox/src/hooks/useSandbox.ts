@@ -100,7 +100,7 @@ export const useSandbox = (props: React.PropsWithChildren<ISandboxProps>) => {
         </body>
       </html>
       `)
-    ref.current.contentDocument.close()
+    contentDocument.close()
   }, [workspace, designer])
   return ref
 }

@@ -35,6 +35,7 @@ export const OutlineTreeWidget: ReactFC<IOutlineTreeWidgetProps> = observer(
         outline.onMount(ref.current, globalThisPolyfill)
       }
       outlineRef.current = outline
+      if (!outline) return
       return () => {
         outline.onUnmount()
       }
