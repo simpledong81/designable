@@ -8,7 +8,7 @@ export type DnFC<P = {}> = Component<P> & {
   Behavior?: IBehavior[]
 }
 
-export type DnComponent<P = {}> = React.ComponentType<P> & {
+export type DnComponent<P = {}> = Component<P> & {
   Resource?: IResource[]
   Behavior?: IBehavior[]
 }
