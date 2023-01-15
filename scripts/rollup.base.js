@@ -32,6 +32,7 @@ const presets = () => {
     '@pind/designable-shared': 'Designable.Shared',
     '@pind/designable-core': 'Designable.Core',
     '@pind/designable-react': 'Designable.React',
+    '@pind/designable-vue': 'Designable.Vue',
     '@pind/designable-react-sandbox': 'Designable.ReactSandbox',
     '@pind/designable-react-settings-form': 'Designable.ReactSettingsForm',
   }

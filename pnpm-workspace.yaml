@@ -4,3 +4,4 @@ packages:
   - 'designable/**'
   - 'formily/**'
   - 'examples/**'
+  - 'examples-vue/**'

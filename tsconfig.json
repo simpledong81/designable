@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@pind/designable-*": ["./packages/*/src"],
-      "@pind/designable-formily-*": ["./formily/*/src"]
+      "@pind/designable-formily-*": ["./formily/*/src"],
+      "@examples-vue/*": ["./examples-vue/*/src"]
     },
     "lib": ["DOm", "DOM.Iterable"]
   }
