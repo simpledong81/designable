@@ -1,4 +1,4 @@
-import { Alias, defineConfig } from 'vite'
+import { Alias, defineConfig, PluginOption } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import vue from '@vitejs/plugin-vue'
 import { GlobSync } from 'glob'
@@ -29,16 +29,49 @@ const getWorkspaceAlias = () => {
   return alias
 }
 
+/**
+ * 兼容vue jsx和react jsx
+ */
+function jsx(): PluginOption[] {
+  const vueRegex = /(examples-vue\/vue\/).*\.[jt]sx$/
+  const vueJsxPlugin: PluginOption = {
+    ...vueJsx({
+      include: vueRegex,
+    }),
+    config(config) {
+      return {
+        define: {
+          __VUE_OPTIONS_API__: config.define?.__VUE_OPTIONS_API__ ?? true,
+          __VUE_PROD_DEVTOOLS__: config.define?.__VUE_PROD_DEVTOOLS__ ?? false,
+        },
+        esbuild: {
+          exclude: vueRegex,
+        },
+      }
+    },
+  }
+
+  const reactJsxPlugin = react().map<PluginOption>((plugin) => {
+    if (!plugin) return plugin
+    return {
+      ...plugin,
+      transform(code, id, opt) {
+        if (vueRegex.test(id)) {
+          return
+        }
+        if ('transform' in plugin && typeof plugin.transform === 'function') {
+          return plugin.transform.bind(this)(code, id, opt)
+        }
+      },
+    }
+  })
+
+  return [vueJsxPlugin, reactJsxPlugin]
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    basicSsl(),
-    vue(),
-    vueJsx({
-      include: ['@examples-vue/vue'],
-    }),
-  ],
+  plugins: [vue(), jsx(), basicSsl()],
   resolve: {
     alias: [
       { find: /^~/, replacement: '' },
