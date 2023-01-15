@@ -1,6 +1,6 @@
 {
   "name": "@examples-vue/playground",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "license": "MIT",
   "private": true,
   "engines": {
@@ -30,17 +30,17 @@
     "@formily/reactive": "^2.2.16",
     "@formily/reactive-react": "^2.2.16",
     "@formily/reactive-vue": "^2.2.16",
-    "@pind/designable-core": "workspace:2.0.0-beta.4",
-    "@pind/designable-react": "workspace:2.0.0-beta.4",
-    "@pind/designable-vue": "workspace:2.0.0-beta.4",
-    "@pind/designable-react-sandbox": "workspace:2.0.0-beta.4",
-    "@pind/designable-react-settings-form": "workspace:2.0.0-beta.4",
-    "@pind/designable-shared": "workspace:2.0.0-beta.4",
+    "@pind/designable-core": "workspace:2.0.0-beta.5",
+    "@pind/designable-react": "workspace:2.0.0-beta.5",
+    "@pind/designable-react-sandbox": "workspace:2.0.0-beta.5",
+    "@pind/designable-react-settings-form": "workspace:2.0.0-beta.5",
+    "@pind/designable-shared": "workspace:2.0.0-beta.5",
+    "@pind/designable-vue": "workspace:2.0.0-beta.5",
     "antd": "^5.1.2",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
-    "vue": "^3.2.0",
     "react-dom": "^18.2.0",
-    "classnames": "^2.3.2"
+    "vue": "^3.2.0"
   },
   "gitHead": "820790a9ae32c2348bb36b3de7ca5f1051ed392c"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@examples-vue/vue",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "license": "MIT",
   "private": true,
   "engines": {
@@ -10,19 +10,19 @@
     "start": "vite --host"
   },
   "devDependencies": {
-    "vue": "^3.2.0",
-    "typescript": "^4.9.4",
     "eslint": "^8.31.0",
+    "typescript": "^4.9.4",
+    "vue": "^3.2.0",
     "vue-eslint-parser": "^9.0.0"
   },
   "dependencies": {
     "@formily/core": "^2.2.16",
-    "@formily/vue": "^2.2.16",
     "@formily/reactive": "^2.2.16",
     "@formily/reactive-vue": "^2.2.16",
-    "@pind/designable-core": "workspace:2.0.0-beta.4",
-    "@pind/designable-vue": "workspace:2.0.0-beta.4",
-    "@pind/designable-shared": "workspace:2.0.0-beta.4"
+    "@formily/vue": "^2.2.16",
+    "@pind/designable-core": "workspace:2.0.0-beta.5",
+    "@pind/designable-shared": "workspace:2.0.0-beta.5",
+    "@pind/designable-vue": "workspace:2.0.0-beta.5"
   },
   "gitHead": "820790a9ae32c2348bb36b3de7ca5f1051ed392c"
 }
