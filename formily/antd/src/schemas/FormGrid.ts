@@ -61,6 +61,14 @@ export const FormGrid: ISchema & { GridColumn?: ISchema } = {
         defaultChecked: true,
       },
     },
+    strictAutoFit: {
+      type: 'boolean',
+      'x-decorator': 'FormItem',
+      'x-component': 'Switch',
+      'x-component-props': {
+        defaultChecked: true,
+      },
+    },
   },
 }
 
