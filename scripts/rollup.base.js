@@ -28,7 +28,7 @@ const presets = () => {
     '@formily/core': 'Formily.Core',
     '@formily/json-schema': 'Formily.JSONSchema',
     '@formily/react': 'Formily.React',
-    '@formily/antd': 'Formily.Antd',
+    '@formily/antd-v5': 'Formily.Antd',
     '@pind/designable-shared': 'Designable.Shared',
     '@pind/designable-core': 'Designable.Core',
     '@pind/designable-react': 'Designable.React',

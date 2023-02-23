@@ -23,7 +23,7 @@
     "build:umd": "rollup --config --bundleConfigAsCjs"
   },
   "peerDependencies": {
-    "@formily/antd": "next",
+    "@formily/antd-v5": "^1.0.1-rc.1",
     "@formily/core": "^2.2.14",
     "@formily/react": "^2.2.14",
     "@formily/reactive": "^2.2.14",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@babel/parser": "^7.20.7",
-    "@formily/antd": "next",
+    "@formily/antd-v5": "^1.0.1-rc.1",
     "@formily/core": "^2.2.16",
     "@formily/grid": "^2.2.16",
     "@formily/react": "^2.2.16",

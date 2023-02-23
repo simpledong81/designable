@@ -14,7 +14,7 @@ import {
   Space,
   Switch,
   TimePicker,
-} from '@formily/antd'
+} from '@formily/antd-v5'
 import '@formily/grid'
 import { createSchemaField } from '@formily/react'
 import { Slider } from 'antd'

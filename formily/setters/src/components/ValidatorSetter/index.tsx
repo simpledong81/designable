@@ -8,7 +8,7 @@ import {
   ISchema,
 } from '@formily/react'
 import { GlobalRegistry } from '@pind/designable-core'
-import { ArrayItems } from '@formily/antd'
+import { ArrayItems } from '@formily/antd-v5'
 import { FoldItem } from '@pind/designable-react-settings-form'
 import { Select } from 'antd'
 
