@@ -101,7 +101,9 @@ export interface AppProps {
 
 export const App: React.FC<AppProps> = (props) => {
   const engine = useMemo(() => {
-    return createDesigner()
+    return createDesigner({
+      rootComponentName: 'Form',
+    })
   }, [])
   const { Content, sources } = props
   return (

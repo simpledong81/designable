@@ -99,9 +99,11 @@ Card.Resource = createResource({
   icon: 'CardSource',
   elements: [
     {
-      componentName: 'Card',
+      componentName: 'Field',
       props: {
         title: '卡片',
+        type: 'void',
+        'x-component': 'Card',
       },
     },
   ],

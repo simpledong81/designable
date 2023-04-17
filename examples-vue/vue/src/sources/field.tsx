@@ -1,13 +1,179 @@
+import { FormPath } from '@formily/core'
+import { toJS } from '@formily/reactive'
+import { observer } from '@formily/reactive-vue'
+import { each, reduce } from '@formily/shared'
+import {
+  ArrayField,
+  ISchema,
+  Field as InternalField,
+  ObjectField,
+  Schema,
+  VoidField,
+} from '@formily/vue'
 import { createBehavior, createResource } from '@pind/designable-core'
-import { Field as Input } from '../components'
-import { DnFC } from '@pind/designable-vue'
+import { isArr, isStr } from '@pind/designable-shared'
+import {
+  DnFC,
+  useComponents,
+  useDesigner,
+  useTreeNode,
+} from '@pind/designable-vue'
+import { defineComponent } from 'vue'
+Schema.silent(true)
 
-export const Field: DnFC = Input
+const SchemaStateMap = {
+  title: 'title',
+  description: 'description',
+  default: 'value',
+  enum: 'dataSource',
+  readOnly: 'readOnly',
+  writeOnly: 'editable',
+  required: 'required',
+  'x-content': 'content',
+  'x-value': 'value',
+  'x-editable': 'editable',
+  'x-disabled': 'disabled',
+  'x-read-pretty': 'readPretty',
+  'x-read-only': 'readOnly',
+  'x-visible': 'visible',
+  'x-hidden': 'hidden',
+  'x-display': 'display',
+  'x-pattern': 'pattern',
+}
+
+const NeedShownExpression = {
+  title: true,
+  description: true,
+  default: true,
+  'x-content': true,
+  'x-value': true,
+}
+
+const isExpression = (val: any) => isStr(val) && /^\{\{.*\}\}$/.test(val)
+
+const filterExpression = (val: any): any => {
+  if (typeof val === 'object') {
+    const isArray = isArr(val)
+    const results = reduce(
+      val,
+      (buf: any, value, key) => {
+        if (isExpression(value)) {
+          return buf
+        } else {
+          const results = filterExpression(value)
+          if (results === undefined || results === null) return buf
+          if (isArray) {
+            return buf.concat([results])
+          }
+          buf[key] = results
+          return buf
+        }
+      },
+      isArray ? [] : {}
+    )
+    return results
+  }
+  if (isExpression(val)) {
+    return
+  }
+  return val
+}
+
+const toDesignableFieldProps = (
+  schema: ISchema,
+  components: any,
+  nodeIdAttrName: string,
+  id: string
+) => {
+  const results: any = {}
+  each(SchemaStateMap, (fieldKey, schemaKey) => {
+    const value = schema[schemaKey]
+    if (isExpression(value)) {
+      if (!NeedShownExpression[schemaKey]) return
+      if (value) {
+        results[fieldKey] = value
+        return
+      }
+    } else if (value) {
+      results[fieldKey] = filterExpression(value)
+    }
+  })
+  if (!components['FormItem']) {
+    // components['FormItem'] = 'div'
+  }
+  const decorator =
+    schema['x-decorator'] && FormPath.getIn(components, schema['x-decorator'])
+  const component =
+    schema['x-component'] && FormPath.getIn(components, schema['x-component'])
+  const decoratorProps = filterExpression(schema['x-decorator-props'] || {})
+  const componentProps = filterExpression(schema['x-component-props'] || {})
+
+  if (decorator) {
+    results.decorator = [decorator, toJS(decoratorProps)]
+  }
+  if (component) {
+    results.component = [component, toJS(componentProps)]
+  }
+  if (decorator) {
+    FormPath.setIn(results['decorator'][1], nodeIdAttrName, id)
+  } else if (component) {
+    FormPath.setIn(results['component'][1], nodeIdAttrName, id)
+  }
+  results.title = results.title && (
+    <span data-content-editable="title">{results.title}</span>
+  )
+  results.description = results.description && (
+    <span data-content-editable="description">{results.description}</span>
+  )
+  return results
+}
+
+const _Field = observer(
+  defineComponent({
+    name: 'Field',
+    setup(_, { slots, attrs }) {
+      const designerRef = useDesigner()
+      const componentsRef = useComponents()
+      const nodeRef = useTreeNode()
+      return () => {
+        const designer = designerRef.value
+        const components = componentsRef.value
+        const node = nodeRef.value
+        const fieldProps = toDesignableFieldProps(
+          attrs,
+          components,
+          designer.props.nodeIdAttrName,
+          node.id
+        )
+        if (attrs.type === 'object') {
+          return (
+            <div>
+              <ObjectField {...fieldProps} name={node.id}>
+                {slots.default?.()}
+              </ObjectField>
+            </div>
+          )
+        } else if (attrs.type === 'array') {
+          return <ArrayField {...fieldProps} name={node.id} />
+        } else if (node.props.type === 'void') {
+          return (
+            <VoidField {...fieldProps} name={node.id}>
+              {slots.default?.()}
+            </VoidField>
+          )
+        }
+        return <InternalField {...fieldProps} name={node.id} />
+      }
+    },
+  })
+)
+
+export const Field: DnFC = _Field
 
 Field.Behavior = createBehavior(
   {
-    name: 'Root',
-    selector: 'Root',
+    name: 'Form',
+    selector: 'Form',
     designerProps: {
       droppable: true,
     },
