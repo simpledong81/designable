@@ -10,7 +10,7 @@ import {
   Schema,
   VoidField,
 } from '@formily/vue'
-import { createBehavior, createResource } from '@pind/designable-core'
+import { createBehavior } from '@pind/designable-core'
 import { isArr, isStr } from '@pind/designable-shared'
 import {
   DnFC,
@@ -346,23 +346,3 @@ Field.Behavior = createBehavior(
     },
   }
 )
-
-Field.Resource = createResource({
-  title: {
-    'zh-CN': '输入框',
-    'en-US': 'Field',
-    'ko-KR': '입력 상자',
-  },
-  icon: 'InputSource',
-  elements: [
-    {
-      componentName: 'Field',
-      props: {
-        title: '输入框',
-        type: 'string',
-        'x-decorator': 'FormItem',
-        'x-component': 'Input',
-      },
-    },
-  ],
-})
