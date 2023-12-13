@@ -1,1 +1,1 @@
-# @pind/designable-core
+# @rapid/designable-core

@@ -1,1 +1,1 @@
-# @pind/designable-shared
+# @rapid/designable-shared

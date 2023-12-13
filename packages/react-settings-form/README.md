@@ -1,1 +1,1 @@
-# @pind/designable-react-settings-form
+# @rapid/designable-react-settings-form

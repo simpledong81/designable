@@ -1,1 +1,1 @@
-# @pind/designable-react
+# @rapid/designable-react

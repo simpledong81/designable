@@ -1,4 +1,4 @@
-import { createLocales } from '@pind/designable-core'
+import { createLocales } from '@rapid/designable-core'
 
 export const DatePicker = {
   'zh-CN': {

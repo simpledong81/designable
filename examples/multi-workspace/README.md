@@ -1,1 +1,1 @@
-# @pind/designable-playground
+# @rapid/designable-playground

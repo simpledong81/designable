@@ -17,15 +17,18 @@ import {
   ViewportPanel,
   SettingsPanel,
   HistoryWidget,
-} from '@pind/designable-react'
-import { SettingsForm, MonacoInput } from '@pind/designable-react-settings-form'
+} from '@rapid/designable-react'
+import {
+  SettingsForm,
+  MonacoInput,
+} from '@rapid/designable-react-settings-form'
 import { observer } from '@formily/react'
 import {
   createDesigner,
   createResource,
   createBehavior,
   GlobalRegistry,
-} from '@pind/designable-core'
+} from '@rapid/designable-core'
 import { Content } from './content'
 import { Space, Button, Radio } from 'antd'
 import { GithubOutlined } from '@ant-design/icons'
@@ -312,7 +315,7 @@ const Actions = observer(() => (
         GlobalRegistry.setDesignerLanguage(e.target.value)
       }}
     />
-    <Button href="https://github.com/pindjs/designable" target="_blank">
+    <Button href="https://github.com/simpledong81/designable" target="_blank">
       <GithubOutlined />
       Github
     </Button>

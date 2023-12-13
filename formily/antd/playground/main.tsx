@@ -16,17 +16,17 @@ import {
   SettingsPanel,
   ComponentTreeWidget,
   ResourceListWidget,
-} from '@pind/designable-react'
+} from '@rapid/designable-react'
 import {
   SettingsForm,
   setNpmCDNRegistry,
-} from '@pind/designable-react-settings-form'
+} from '@rapid/designable-react-settings-form'
 import {
   createDesigner,
   GlobalRegistry,
   Shortcut,
   KeyCode,
-} from '@pind/designable-core'
+} from '@rapid/designable-core'
 import {
   LogoWidget,
   ActionsWidget,
@@ -35,7 +35,7 @@ import {
   MarkupSchemaWidget,
 } from './widgets'
 import { saveSchema } from './service'
-import { sources } from '@pind/designable-formily-antd'
+import { sources } from '@rapid/designable-formily-antd'
 import { Alert } from 'antd'
 setNpmCDNRegistry('//unpkg.com')
 const { ErrorBoundary } = Alert

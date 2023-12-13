@@ -1,5 +1,5 @@
-import { createBehavior, createResource } from '@pind/designable-core'
-import { DnFC } from '@pind/designable-vue'
+import { createBehavior, createResource } from '@rapid/designable-core'
+import { DnFC } from '@rapid/designable-vue'
 import { Card as InCard } from '../components'
 
 export const Card: DnFC = InCard
