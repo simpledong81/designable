@@ -236,6 +236,7 @@ const Input = createResource({
     'zh-CN': '输入框',
     'en-US': 'Input',
     'ko-KR': '입력 상자',
+    'ja-JP': 'テキストボックス',
   },
   icon: 'InputSource',
   elements: [
@@ -256,6 +257,7 @@ const Card = createResource({
     'zh-CN': '卡片',
     'en-US': 'Card',
     'ko-KR': '카드 상자',
+    'ja-JP': 'カード',
   },
   icon: 'CardSource',
   elements: [

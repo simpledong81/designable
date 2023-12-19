@@ -15,7 +15,7 @@ import {
 
 const LernaJSON = fs.readJSONSync(path.resolve(__dirname, '../../lerna.json'))
 
-const ReleaseTitle = 'Designable Release 🚀'
+const ReleaseTitle = 'Rapid Release 🚀'
 
 const GithubRepo = 'https://github.com/simpledong81/designable'
 

@@ -1,21 +1,21 @@
 import React, { useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
-  Designer,
-  DesignerToolsWidget,
-  ViewToolsWidget,
-  Workspace,
-  OutlineTreeWidget,
-  HistoryWidget,
-  StudioPanel,
-  CompositePanel,
-  WorkspacePanel,
-  ToolbarPanel,
-  ViewportPanel,
-  ViewPanel,
-  SettingsPanel,
-  ComponentTreeWidget,
-  ResourceListWidget,
+  Designer, //设计器根组件，主要用于下发上下文
+  DesignerToolsWidget, //画板工具挂件
+  ViewToolsWidget, //视图切换工具挂件
+  Workspace, //工作区组件，核心组件，用于管理工作区内的拖拽行为，树节点数据等等
+  OutlineTreeWidget, //大纲树组件，它会自动识别当前工作区，展示出工作区内树节点
+  ResourceListWidget, //拖拽源挂件
+  HistoryWidget, //历史记录挂件
+  StudioPanel, //主布局面板
+  CompositePanel, //左侧组合布局面板
+  WorkspacePanel, //工作区布局面板
+  ToolbarPanel, //工具栏布局面板
+  ViewportPanel, //视口布局面板
+  ViewPanel, //视图布局面板
+  SettingsPanel, //右侧配置表单布局面板
+  ComponentTreeWidget, //组件树渲染器
 } from '@rapid/designable-react'
 import {
   SettingsForm,
@@ -37,6 +37,7 @@ import {
 import { saveSchema } from './service'
 import { sources } from '@rapid/designable-formily-antd'
 import { Alert } from 'antd'
+
 setNpmCDNRegistry('//unpkg.com')
 const { ErrorBoundary } = Alert
 GlobalRegistry.registerDesignerLocales({
@@ -46,6 +47,7 @@ GlobalRegistry.registerDesignerLocales({
       Layouts: '布局组件',
       Arrays: '自增组件',
       Displays: '展示组件',
+      OKS: 'Okaya',
     },
   },
   'en-US': {
@@ -54,6 +56,7 @@ GlobalRegistry.registerDesignerLocales({
       Layouts: 'Layouts',
       Arrays: 'Arrays',
       Displays: 'Displays',
+      OKS: 'Okaya',
     },
   },
   'ko-KR': {
@@ -62,6 +65,16 @@ GlobalRegistry.registerDesignerLocales({
       Layouts: '레이아웃',
       Arrays: '배열',
       Displays: '디스플레이',
+      OKS: 'Okaya',
+    },
+  },
+  'ja-JP': {
+    sources: {
+      Inputs: '入力コンポーネント',
+      Layouts: 'レイアウトコンポーネント',
+      Arrays: 'リストコンポーネント',
+      Displays: 'プレゼンテーションコンポーネント',
+      OKS: '岡谷システム',
     },
   },
 })
@@ -128,7 +141,7 @@ const App = () => {
           </WorkspacePanel>
         </Workspace>
         <SettingsPanel title="panels.PropertySettings">
-          <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+          <SettingsForm uploadAction="https://run.mocky.io/v3/b97508e9-0f26-4254-8531-a0fa1b8b6348" />
         </SettingsPanel>
       </StudioPanel>
     </Designer>

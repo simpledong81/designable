@@ -31,6 +31,22 @@ export default {
       from_node: 'Update Child Tree',
     },
   },
+  'ja-JP': {
+    operations: {
+      default_state: 'デフォルト状態',
+      append_node: 'ノードを追加',
+      prepend_node: 'ノードを先頭に追加',
+      clone_node: 'ノードをクローン',
+      update_node_props: 'ノードプロパティを更新',
+      insert_after: '後にノードを挿入',
+      insert_before: '前にノードを挿入',
+      insert_children: '子ノードを挿入',
+      update_children: '子ノードを更新',
+      remove_node: 'ノードを削除',
+      wrap_node: 'ノードをラップ',
+      from_node: '子ツリーを更新',
+    },
+  },
   'ko-KR': {
     operations: {
       default_state: '초기 상태',

@@ -12,7 +12,15 @@ export default {
       Component: 'Component',
       OutlinedTree: 'Outlined Tree',
       PropertySettings: 'Property Settings',
-      History: 'History',
+      History: '履歴',
+    },
+  },
+  'ja-JP': {
+    panels: {
+      Component: 'コンポーネント',
+      OutlinedTree: 'アウトラインツリー',
+      PropertySettings: 'プロパティ設定',
+      History: '履歴',
     },
   },
   'ko-KR': {
