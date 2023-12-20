@@ -26,6 +26,21 @@ export const FormCollapse = {
       },
     },
   },
+  'ja-JP': {
+    title: '折りたたみパネル',
+    addCollapsePanel: 'パネルを追加',
+    settings: {
+      'x-component-props': {
+        accordion: 'アコーディオンモード',
+        collapsible: {
+          title: '折り畳みエリア',
+          dataSource: ['ヘッダー', '無効'],
+        },
+        ghost: 'ゴーストモード',
+        bordered: 'ボーダーを表示',
+      },
+    },
+  },
   'ko-KR': {
     title: '드롭다운',
     addCollapsePanel: '패널 추가',
@@ -64,6 +79,19 @@ export const FormCollapsePanel = {
         },
         header: 'Header Title',
         extra: 'Extra Content',
+      },
+    },
+  },
+  'ja-JP': {
+    title: 'パネル',
+    settings: {
+      'x-component-props': {
+        collapsible: {
+          title: '折り畳みエリア',
+          dataSource: ['ヘッダー', '無効'],
+        },
+        header: 'タイトル',
+        extra: 'タイトルの右側',
       },
     },
   },

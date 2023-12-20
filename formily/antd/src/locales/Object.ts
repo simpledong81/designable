@@ -5,6 +5,9 @@ export const ObjectLocale = {
   'en-US': {
     title: 'Object',
   },
+  'ja-JP': {
+    title: 'オブジェクト',
+  },
   'ko-KR': {
     title: '오브젝트',
   },

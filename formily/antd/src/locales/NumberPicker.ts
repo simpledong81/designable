@@ -52,6 +52,33 @@ export const NumberPicker = {
       },
     },
   },
+  'ja-JP': {
+    title: '数値入力',
+    settings: {
+      'x-component-props': {
+        formatter: {
+          title: 'フォーマットコンバーター',
+          tooltip: 'フォーマット：function(value: number | string): string',
+        },
+        keyboard: 'ショートカットキーを有効',
+        parser: {
+          title: 'フォーマットパーサー',
+          tooltip:
+            'フォーマットコンバーターから数値に戻す方法を指定し、フォーマットコンバーターと組み合わせて使用します。フォーマット: function(string): number',
+        },
+        decimalSeparator: '小数点',
+        precision: '数値精度',
+        max: '最大値',
+        min: '最小値',
+        step: 'ステップ',
+        stringMode: {
+          title: '文字列フォーマット',
+          tooltip:
+            '有効にすると、高精度の小数がサポートされます。 同時に、onChange は文字列型を返します。',
+        },
+      },
+    },
+  },
   'ko-KR': {
     title: '숫자 입력',
     settings: {

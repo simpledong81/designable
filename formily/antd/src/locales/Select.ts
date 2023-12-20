@@ -70,6 +70,48 @@ export const Select = {
       },
     },
   },
+  'ja-JP': {
+    title: 'セレクトボックス',
+    settings: {
+      'x-component-props': {
+        mode: {
+          title: 'モード',
+          dataSource: ['複数選択', 'タグ', '単一選択'],
+        },
+        autoClearSearchValue: {
+          title: '検索ボックス自動クリア',
+          tooltip: '複数選択モードまたはタグモードでのみサポートされます',
+        },
+        defaultActiveFirstOption: '最初のオプションを強調表示',
+        dropdownMatchSelectWidth: {
+          title: 'ドロップダウンメニューはセレクターと同じ幅',
+          tooltip:
+            'min-width はデフォルトで設定され、値が選択ボックスの幅より小さい場合は無視されます。false は仮想スクロールをオフにします',
+        },
+        defaultOpen: 'デフォルトで展開',
+        filterOption: 'オプションフィルター',
+        filterSort: 'オプションソーター',
+        labelInValue: {
+          title: 'ラベル値',
+          tooltip:
+            '各オプションのラベルを value にラップするかどうかにより、値の型が string から { value: string, label: ReactNode } の形式に変更されます。',
+        },
+        listHeight: 'ポップアップの高さ',
+        maxTagCount: {
+          title: 'タグの最大数',
+          tooltip:
+            '表示するタグの最大数。応答モードではパフォーマンスが低下します。',
+        },
+        maxTagPlaceholder: {
+          title: 'タグプレースホルダー',
+          tooltip: 'タグ非表示時の表示内容',
+        },
+        maxTagTextLength: 'タグテキストの最大長',
+        showArrow: '矢印を表示',
+        virtual: '仮想スクロールを有効',
+      },
+    },
+  },
   'ko-KR': {
     title: '선택',
     settings: {

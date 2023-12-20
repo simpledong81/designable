@@ -49,6 +49,30 @@ export const DatePicker = {
       },
     },
   },
+  'ja-JP': {
+    title: '日付の選択',
+    settings: {
+      'x-component-props': {
+        disabledDate: {
+          title: '選択できない日付',
+          tooltip: 'フォーマット (currentDate: moment) => boolean',
+        },
+        disabledTime: {
+          title: '選択できない時間',
+          tooltip: 'フォーマット (currentDate: moment) => boolean',
+        },
+        inputReadOnly: '読み取り専用',
+        format: 'フォーマット',
+        picker: {
+          title: 'タイプ',
+          dataSource: ['時間', '日付', '月', '年', '四半期', '会計年度'],
+        },
+        showNow: '現在の選択を表示',
+        showTime: '時間の選択を表示',
+        showToday: '今日の選択を表示',
+      },
+    },
+  },
   'ko-KR': {
     title: '날짜 선택 상자',
     settings: {
@@ -81,6 +105,9 @@ export const DateRangePicker = createLocales(DatePicker, {
   },
   'en-US': {
     title: 'DateRange',
+  },
+  'ja-JP': {
+    title: '日付範囲の選択',
   },
   'ko-KR': {
     title: '날짜범위 선택 상자',

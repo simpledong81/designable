@@ -17,6 +17,18 @@ export const RadioGroup = {
       },
     },
   },
+  'ja-JP': {
+    title: 'ラジオボタン',
+    settings: {
+      'x-component-props': {
+        buttonStyle: { title: 'ボタンスタイル', dataSource: ['中空', '中実'] },
+        optionType: {
+          title: 'オプションタイプ',
+          dataSource: ['デフォルト', 'ボタン'],
+        },
+      },
+    },
+  },
   'ko-KR': {
     title: '라디오',
     settings: {

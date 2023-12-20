@@ -14,7 +14,7 @@ export const ActionsWidget = observer(() => {
   const supportLocales = ['zh-cn', 'en-us', 'ja-jp']
   useEffect(() => {
     if (!supportLocales.includes(GlobalRegistry.getDesignerLanguage())) {
-      GlobalRegistry.setDesignerLanguage('zh-cn')
+      GlobalRegistry.setDesignerLanguage('ja-jp')
     }
   }, [])
   return (
@@ -23,9 +23,9 @@ export const ActionsWidget = observer(() => {
         value={GlobalRegistry.getDesignerLanguage()}
         optionType="button"
         options={[
+          { label: '日本語', value: 'ja-jp' },
           { label: 'English', value: 'en-us' },
           { label: '简体中文', value: 'zh-cn' },
-          { label: '日本語', value: 'ja-jp' },
         ]}
         onChange={(e) => {
           GlobalRegistry.setDesignerLanguage(e.target.value)

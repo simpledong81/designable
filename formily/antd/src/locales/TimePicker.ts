@@ -26,7 +26,7 @@ export const TimePicker = createLocales(DatePicker, {
     settings: {
       'x-component-props': {
         clearText: 'Clear Text',
-        disabledHours: 'Disbaled Hours',
+        disabledHours: 'Disabled Hours',
         disabledMinutes: 'Disabled Minutes',
         disabledSeconds: 'Disabled Seconds',
         hideDisabledOptions: 'Hide Disabled Options',
@@ -37,6 +37,25 @@ export const TimePicker = createLocales(DatePicker, {
         inputReadOnly: 'Input ReadOnly',
         showNow: 'Show Now',
         format: 'Format',
+      },
+    },
+  },
+  'ja-JP': {
+    title: '時間の選択',
+    settings: {
+      'x-component-props': {
+        clearText: 'クリア可能',
+        disabledHours: '時間の選択無効',
+        disabledMinutes: '分の選択無効',
+        disabledSeconds: '秒の選択無効',
+        hideDisabledOptions: '禁止されたオプション非表示',
+        hourStep: '時間間隔',
+        minuteStep: '分間隔',
+        secondStep: '秒間隔',
+        use12Hours: '12時間時計',
+        inputReadOnly: '読み取り専用',
+        showNow: '現在の選択を表示',
+        format: 'フォーマット',
       },
     },
   },
@@ -67,6 +86,9 @@ export const TimeRangePicker = createLocales(TimePicker, {
   },
   'en-US': {
     title: 'Time Range',
+  },
+  'ja-JP': {
+    title: '時間範囲',
   },
   'ko-KR': {
     title: '시간 범위',

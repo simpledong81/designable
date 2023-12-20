@@ -30,6 +30,20 @@ export const Space = {
       },
     },
   },
+  'ja-JP': {
+    title: '弾性間隔',
+    settings: {
+      'x-component-props': {
+        direction: { title: '方向', dataSource: ['垂直', '水平'] },
+        split: '分割コンテンツ',
+        wrap: '自動改行',
+        align: {
+          title: '位置合わせ',
+          dataSource: ['ヘッダー', 'タール', '中央揃え', 'ベースライン'],
+        },
+      },
+    },
+  },
   'ko-KR': {
     title: '간격',
     settings: {

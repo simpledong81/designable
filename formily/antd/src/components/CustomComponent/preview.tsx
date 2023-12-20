@@ -67,6 +67,15 @@ CustomComponent.Behavior = createBehavior({
         },
       },
     },
+    'ja-JP': {
+      title: 'サンプル入力ボックス',
+      settings: {
+        'x-component-props': {
+          customFieldName: 'フィールド名１',
+          customFieldName2: 'フィールド名２',
+        },
+      },
+    },
   },
 })
 
@@ -80,12 +89,12 @@ CustomComponent.Resource = createResource('OKS', {
       // 下面的传参 就是formily的Field的属性配置。具体见此链接的文末：https://www.formilyjs.org/zh-CN/guide/quick-start#%E5%85%B7%E4%BD%93%E7%94%A8%E4%BE%8B
       props: {
         type: 'String', // 返回的数据类型，
-        title: '你好呀', // 对应“属性设置”里的标题字段
+        title: 'HELLO', // 对应“属性设置”里的标题字段
         'x-decorator': 'FormItem', // 目前只有`FormItem`值会改变组件形态为“表单字段”，填其它值跟没写没有两样。如果不希望组件以表单字段的形式呈现，不写x-decorator和title字段即可。
         'x-component': 'CustomComponent', // 对应的组件
         // 组件“属性设置”的默认值，也会体现在组件的props中。
         'x-component-props': {
-          placeholder: '占位占位',
+          placeholder: 'OKS COMP',
           maxLength: 3,
         },
       },

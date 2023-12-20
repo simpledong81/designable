@@ -19,6 +19,16 @@ export const Rate = {
       },
     },
   },
+  'ja-JP': {
+    title: 'レート',
+    settings: {
+      'x-component-props': {
+        allowHalf: '半分の選択可',
+        tooltips: { title: 'ツールチップ', tooltip: 'フォーマット：string[]' },
+        count: '総数',
+      },
+    },
+  },
   'ko-KR': {
     title: '비율',
     settings: {

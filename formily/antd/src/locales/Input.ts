@@ -32,6 +32,25 @@ export const Input = {
       },
     },
   },
+  'ja-JP': {
+    title: 'テキストボックス',
+    settings: {
+      'x-component-props': {
+        addonAfter: 'サフィックスラベル',
+        addonBefore: 'プレフィックスラベル',
+        maxLength: '最大長さ',
+        prefix: 'プレフィックス',
+        suffix: 'サフィックス',
+        autoSize: {
+          title: '自動サイズ',
+          tooltip:
+            'true | false またはオブジェクトに設定できます: { minRows: 2, maxRows: 6 }',
+        },
+        showCount: '文字数を表示',
+        checkStrength: '強度を確認',
+      },
+    },
+  },
   'ko-KR': {
     title: '입력',
     settings: {

@@ -9,7 +9,7 @@ export const Cascader = {
         },
         displayRender: {
           title: '渲染函数',
-          tooltip: '选择后展示的渲染函数，默认为label => label.join("/")	',
+          tooltip: '选择后展示的渲染函数，默认为label => label.join("/")',
         },
         fieldNames: {
           title: '自定义字段名',
@@ -30,12 +30,34 @@ export const Cascader = {
         displayRender: {
           title: 'Display Render',
           tooltip:
-            'The rendering function displayed after selection, the default is label => label.join("/")	',
+            'The rendering function displayed after selection, the default is label => label.join("/")',
         },
         fieldNames: {
           title: 'Field Names',
           tooltip:
             'Defaults：{ label: "label", value: "value", children: "children" }',
+        },
+      },
+    },
+  },
+  'ja-JP': {
+    title: 'カスケード',
+    settings: {
+      'x-component-props': {
+        changeOnSelect: {
+          title: '選択時に変更',
+          tooltip:
+            'メニューの各レベルをクリックするとオプションの値が変わります',
+        },
+        displayRender: {
+          title: '表示レンダリング',
+          tooltip:
+            '選択後に表示されるレンダリング関数。デフォルトは label => label.join("/") です。',
+        },
+        fieldNames: {
+          title: 'フィールド定義',
+          tooltip:
+            'デフォルト：{ label: "label", value: "value", children: "children" }',
         },
       },
     },

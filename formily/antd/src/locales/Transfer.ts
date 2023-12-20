@@ -23,6 +23,24 @@ export const Transfer = {
       },
     },
   },
+  'ja-JP': {
+    title: 'シャトル選択ボックス',
+    settings: {
+      'x-component-props': {
+        oneWay: '一方向表示',
+        operations: {
+          title: 'アクションボタン',
+          tooltip: '上から順に並べる。フォーマット：string[]',
+        },
+        titles: {
+          title: 'タイトル',
+          tooltip: '左から順に並べる。フォーマット：string[]',
+        },
+        showSearchAll: 'すべて選択可',
+        filterOption: 'オプションフィルター',
+      },
+    },
+  },
   'ko-KR': {
     title: '전송',
     settings: {

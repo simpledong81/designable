@@ -49,6 +49,31 @@ export const ArrayTable = {
       },
     },
   },
+  'ja-JP': {
+    title: 'テーブル',
+    addSortHandle: 'ソートハンドルを追加',
+    addColumn: '列を追加',
+    addIndex: 'インデックスを追加',
+    addOperation: '操作を追加',
+    settings: {
+      'x-component-props': {
+        showHeader: 'ヘッダーを表示',
+        sticky: '上部に固定',
+        align: {
+          title: 'コンテンツの水平方向',
+          dataSource: ['左', '右', '中央'],
+        },
+        colSpan: '列スパン',
+        fixed: { title: '列固定', dataSource: ['左', '右', 'なし'] },
+        width: '幅',
+        defaultValue: 'デフォルト値',
+        tableLayout: {
+          title: 'レイアウト',
+          dataSource: ['自動', '固定'],
+        },
+      },
+    },
+  },
   'ko-KR': {
     title: '배열 테이블',
     addSortHandle: '정렬 핸들 추가',
@@ -105,6 +130,24 @@ export const ArrayTableColumn = {
         fixed: {
           title: 'Fixed',
           dataSource: ['Left', 'Right', 'None'],
+        },
+      },
+    },
+  },
+  'ja-JP': {
+    title: 'テーブル列',
+    settings: {
+      'x-component-props': {
+        title: 'タイトル',
+        align: {
+          title: 'コンテンツの水平方向',
+          dataSource: ['左', '右', '中央'],
+        },
+        colSpan: '列スパン',
+        width: '幅',
+        fixed: {
+          title: '固定',
+          dataSource: ['左', '右', 'なし'],
         },
       },
     },

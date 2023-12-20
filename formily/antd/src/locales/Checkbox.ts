@@ -5,6 +5,9 @@ export const CheckboxGroup = {
   'en-US': {
     title: 'Checkbox',
   },
+  'ja-JP': {
+    title: 'チェックボックス',
+  },
   'ko-KR': {
     title: '체크박스',
   },

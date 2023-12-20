@@ -46,6 +46,33 @@ export const Upload = {
       },
     },
   },
+  'ja-JP': {
+    title: 'アップロード',
+    settings: {
+      'x-component-props': {
+        accept: 'ファイル種類',
+        action: 'アップロードURL',
+        data: 'データ/パラメータ',
+        directory: 'ディレクトリ可',
+        headers: 'リクエストヘッダー',
+        listType: {
+          title: 'リストタイプ',
+          dataSource: ['テキスト', '画像', 'カード'],
+        },
+        multiple: '複数選択可',
+        name: 'パラメータ名',
+        openFileDialogOnClick: {
+          title: 'クリックしてファイルダイアログを開く',
+          tooltip: 'クリックしてファイルダイアログを開く',
+        },
+        showUploadList: 'ファイル一覧を表示',
+        withCredentials: 'クッキーを送信',
+        maxCount: 'ファイル上限',
+        method: 'HTTPメソッド',
+        textContent: 'アップロードテキスト',
+      },
+    },
+  },
   'ko-KR': {
     title: '업로드',
     settings: {
@@ -81,6 +108,12 @@ export const UploadDragger = createLocales(Upload, {
   },
   'en-US': {
     title: 'UploadDragger',
+    settings: {
+      'x-component-props': {},
+    },
+  },
+  'ja-JP': {
+    title: 'ドラッグ＆ドロップでアップロード',
     settings: {
       'x-component-props': {},
     },

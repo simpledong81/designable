@@ -123,6 +123,77 @@ export const TreeSelect = {
       },
     },
   },
+  'ja-JP': {
+    title: 'ツリーセレクトボックス',
+    settings: {
+      'x-component-props': {
+        mode: {
+          title: 'モード',
+          dataSource: ['複数選択', 'タグ', '単一選択'],
+        },
+        autoClearSearchValue: {
+          title: '検索ボックス自動クリア',
+          tooltip: '複数選択モードまたはタグモードでのみサポートされます',
+        },
+        defaultActiveFirstOption: '最初のオプションを強調表示',
+        defaultOpen: 'デフォルトで展開',
+        filterOption: 'オプションフィルター',
+        filterSort: 'オプションソーター',
+        labelInValue: {
+          title: 'ラベル値',
+          tooltip:
+            '各オプションのラベルを value にラップするかどうかにより、値の型が string から { value: string, label: ReactNode } の形式に変更されます。',
+        },
+        listHeight: 'ポップアップの高さ',
+        maxTagCount: {
+          title: 'タグの最大数',
+          tooltip:
+            '表示するタグの最大数。応答モードではパフォーマンスが低下します。',
+        },
+        maxTagPlaceholder: {
+          title: 'タグプレースホルダー',
+          tooltip: 'タグ非表示時の表示内容',
+        },
+        maxTagTextLength: 'タグテキストの最大長',
+        showArrow: '矢印を表示',
+        virtual: '仮想スクロールを有効',
+        dropdownMatchSelectWidth: {
+          title: 'ドロップダウンメニューはセレクターと同じ幅',
+          tooltip:
+            'min-width はデフォルトで設定され、値が選択ボックスの幅より小さい場合は無視されます。false は仮想スクロールをオフにします',
+        },
+        showCheckedStrategy: {
+          title: '複数選択表示',
+          tooltip:
+            'チェックボックスを表示するときに、選択した項目を表示する方法を定義します。TreeSelect.SHOW_ALL: 選択されたすべてのノード (親ノードを含む) を表示します。 TreeSelect.SHOW_PARENT: 親ノードのみを表示します(親ノードの下にあるすべての子ノードが選択されている場合)。 デフォルトでは、子ノードのみが表示されます',
+          dataSource: [
+            'すべて表示する',
+            '親ノードを表示する',
+            '子ノードを表示する',
+          ],
+        },
+        treeCheckable: 'チェックボックスを表示',
+        treeDefaultExpandAll: 'すべて展開',
+        treeDefaultExpandedKeys: {
+          title: '展開するツリーノード',
+          tooltip: 'フォーマット：Array<string | number>',
+        },
+        treeNodeFilterProp: {
+          title: 'ノードフィルターのプロパティ',
+          tooltip: '入力フィルタリングに対応するtreeNode属性',
+        },
+        treeDataSimpleMode: {
+          title: 'シンプルデータモード',
+          tooltip: `単純な形式でtreeDataを使用します。具体的な設定については、設定可能なタイプを参照してください(treeDataは次のようなデータ構造である必要があります: [{id:1, pId:0, value:'1', title:"test1",. ..} ,...]、pId は親ノードの ID です)`,
+        },
+        treeNodeLabelProp: {
+          title: 'ラベル表示名',
+          tooltip: 'デフォルト: title',
+        },
+        filterTreeNode: 'ノードフィルター',
+      },
+    },
+  },
   'ko-KR': {
     title: '트리 셀렉터',
     settings: {

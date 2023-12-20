@@ -27,6 +27,20 @@ export const Card = {
       },
     },
   },
+  'ja-JP': {
+    title: 'カード',
+    settings: {
+      'x-component-props': {
+        type: 'タイプ',
+        title: 'タイトル',
+        extra: 'タイトルの右側',
+        cardTypes: [
+          { label: '内側', value: 'inner' },
+          { label: 'デフォルト', value: '' },
+        ],
+      },
+    },
+  },
   'ko-KR': {
     title: '카드',
     settings: {

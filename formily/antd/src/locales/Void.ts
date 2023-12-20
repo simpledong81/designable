@@ -5,6 +5,9 @@ export const Void = {
   'en-US': {
     title: 'Void',
   },
+  'ja-JP': {
+    title: '仮想コンテナ',
+  },
   'ko-KR': {
     title: '비어있음',
   },

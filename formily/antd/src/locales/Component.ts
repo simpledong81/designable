@@ -33,6 +33,23 @@ export const Component = {
       },
     },
   },
+  'ja-JP': {
+    settings: {
+      style: {
+        width: '幅',
+        height: '高さ',
+        display: '表示',
+        background: '背景',
+        boxShadow: 'ボックスシャドウ',
+        font: 'フォント',
+        margin: 'マージン',
+        padding: 'パディング',
+        borderRadius: '角丸の円の半径',
+        border: 'ボーダー',
+        opacity: '不透明度',
+      },
+    },
+  },
   'ko-KR': {
     settings: {
       style: {

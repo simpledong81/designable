@@ -76,6 +76,43 @@ export const Form = createLocales(Component, {
       },
     },
   },
+  'ja-JP': {
+    title: 'フォーム',
+    settings: {
+      labelCol: 'ラベルのグリッド幅',
+      wrapperCol: 'コンポーネントのグリッド幅',
+      colon: 'コロンを表示',
+      labelAlign: {
+        title: 'ラベルの配置',
+        dataSource: ['左揃え', '右揃え', '継承'],
+      },
+      wrapperAlign: {
+        title: 'コンポーネントの配置',
+        dataSource: ['左揃え', '右揃え', '継承'],
+      },
+      labelWrap: 'ラベルラップ',
+      wrapperWrap: 'コンポーネントラップ',
+      labelWidth: 'ラベル幅',
+      wrapperWidth: 'コンポーネントの幅',
+      fullness: 'フルレイアウト',
+      inset: 'インラインレイアウト',
+      shallow: '浅いレンダラー',
+      bordered: 'ボーダーを表示',
+      size: { title: 'サイズ', dataSource: ['大', '小', 'デフォルト', '継承'] },
+      layout: {
+        title: '布局',
+        dataSource: ['垂直', '水平', 'インライン', '継承'],
+      },
+      feedbackLayout: {
+        title: 'フィードバックレイアウト',
+        dataSource: ['ルーズ', '簡潔', 'ポップアップ', 'なし', '継承'],
+      },
+      tooltipLayout: {
+        title: 'ツールチップレイアウト',
+        dataSource: ['アイコン', 'テキスト', '継承'],
+      },
+    },
+  },
   'ko-KR': {
     title: '폼',
     settings: {

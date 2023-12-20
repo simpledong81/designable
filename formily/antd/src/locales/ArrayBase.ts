@@ -12,6 +12,28 @@ GlobalRegistry.registerDesignerLocales({
       addOperation: '添加操作',
     },
   },
+  'en-US': {
+    Previews: {
+      droppable: 'Droppable',
+      addTabPane: 'Add Tab Panel',
+      addCollapsePanel: 'Add Collapse Panel',
+      addTableColumn: 'Add Table Column',
+      addTableSortHandle: 'Add Table Sort Handle',
+      addIndex: 'Add Index',
+      addOperation: 'Add Operation',
+    },
+  },
+  'ja-JP': {
+    Previews: {
+      droppable: 'ドロップ可能',
+      addTabPane: 'タブパネルを追加',
+      addCollapsePanel: '折りたたみパネルを追加',
+      addTableColumn: 'テーブル列を追加',
+      addTableSortHandle: 'テーブルソートハンドルを追加',
+      addIndex: 'インデックスを追加',
+      addOperation: '操作を追加',
+    },
+  },
 })
 
 export const ArrayAddition = {
@@ -24,6 +46,24 @@ export const ArrayAddition = {
       },
     },
   },
+  'en-US': {
+    title: 'Add Button',
+    settings: {
+      'x-component-props': {
+        method: 'Method',
+        defaultValue: 'Default Value',
+      },
+    },
+  },
+  'ja-JP': {
+    title: '追加ボタン',
+    settings: {
+      'x-component-props': {
+        method: 'メソッド',
+        defaultValue: 'デフォルト値',
+      },
+    },
+  },
 }
 
 export const ArrayRemove = {
@@ -32,6 +72,9 @@ export const ArrayRemove = {
   },
   'en-US': {
     title: 'Remove',
+  },
+  'ja-JP': {
+    title: '削除',
   },
   'ko-KR': {
     title: '삭제',
@@ -45,6 +88,9 @@ export const ArrayMoveUp = {
   'en-US': {
     title: 'Move Up',
   },
+  'ja-JP': {
+    title: '上に移動',
+  },
   'ko-KR': {
     title: '위로 옮기기',
   },
@@ -56,6 +102,9 @@ export const ArrayMoveDown = {
   },
   'en-US': {
     title: 'Move Down',
+  },
+  'ja-JP': {
+    title: '下に移動',
   },
   'ko-KR': {
     title: '아래로 옮기기',
@@ -69,6 +118,9 @@ export const ArrayIndex = {
   'en-US': {
     title: 'Index',
   },
+  'ja-JP': {
+    title: 'インデックス',
+  },
   'ko-KR': {
     title: '색인',
   },
@@ -80,6 +132,9 @@ export const ArraySortHandle = {
   },
   'en-US': {
     title: 'Sort Handle',
+  },
+  'ja-JP': {
+    title: 'ソートハンドル',
   },
   'ko-KR': {
     title: '정렬 핸들',

@@ -5,6 +5,9 @@ export const Switch = {
   'en-US': {
     title: 'Switch',
   },
+  'ja-JP': {
+    title: 'スイッチ',
+  },
   'ko-KR': {
     title: '스위치',
   },

@@ -23,6 +23,18 @@ export const Text = {
       },
     },
   },
+  'ja-JP': {
+    title: 'ラベル',
+    settings: {
+      'x-component-props': {
+        content: 'コンテンツ',
+        mode: {
+          title: 'タイプ',
+          dataSource: ['H1', 'H2', 'H3', 'Paragraph', 'Normal'],
+        },
+      },
+    },
+  },
   'ko-KR': {
     title: '텍스트',
     settings: {

@@ -33,6 +33,23 @@ export const FormGrid = {
       },
     },
   },
+  'ja-JP': {
+    title: 'グリッド',
+    addGridColumn: 'グリッド列を追加',
+    settings: {
+      'x-component-props': {
+        minWidth: '最小幅',
+        minColumns: '最小列数',
+        maxWidth: '最大幅',
+        maxColumns: '最大列数',
+        breakpoints: 'ブレークポイント',
+        columnGap: '列間隔',
+        rowGap: '行間隔',
+        colWrap: '自動改行',
+        strictAutoFit: '自動フィット',
+      },
+    },
+  },
   'ko-KR': {
     title: '그리드 열',
     addGridColumn: '그리드 열 추가',
@@ -66,6 +83,14 @@ export const FormGridColumn = {
     settings: {
       'x-component-props': {
         gridSpan: 'Grid Span',
+      },
+    },
+  },
+  'ja-JP': {
+    title: 'グリッド列',
+    settings: {
+      'x-component-props': {
+        gridSpan: 'グリッドスパン',
       },
     },
   },

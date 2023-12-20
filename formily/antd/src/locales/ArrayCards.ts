@@ -12,6 +12,11 @@ export const ArrayCards = createLocales(Card, {
     addIndex: 'Add Index',
     addOperation: 'Add Operations',
   },
+  'ja-JP': {
+    title: 'カードリスト',
+    addIndex: 'インデックスを追加',
+    addOperation: '操作を追加',
+  },
   'ko-KR': {
     title: '배열 카드',
     addIndex: '색인 추가',

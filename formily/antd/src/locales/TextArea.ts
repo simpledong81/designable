@@ -22,6 +22,20 @@ export const TextArea = {
       },
     },
   },
+  'ja-JP': {
+    title: 'テキストエリア',
+    settings: {
+      'x-component-props': {
+        maxLength: '最大長さ',
+        autoSize: {
+          title: '自動サイズ',
+          tooltip:
+            'true | false またはオブジェクトに設定できます: { minRows: 2, maxRows: 6 }',
+        },
+        showCount: '文字数を表示',
+      },
+    },
+  },
   'ko-KR': {
     title: '텍스트 상자',
     settings: {

@@ -35,6 +35,24 @@ export const FormTab = {
       },
     },
   },
+  'ja-JP': {
+    title: 'タブ',
+    addTabPane: 'タブを追加',
+    settings: {
+      'x-component-props': {
+        animated: 'アニメーションを有効',
+        centered: 'ラベルを中央揃え',
+        tab: 'タブ名',
+        type: {
+          title: 'タイプ',
+          dataSource: [
+            { label: 'ライン', value: 'line' },
+            { label: 'カード', value: 'card' },
+          ],
+        },
+      },
+    },
+  },
   'ko-KR': {
     title: '탭',
     addTabPane: '패널 추가',
@@ -69,6 +87,14 @@ export const FormTabPane = {
     settings: {
       'x-component-props': {
         tab: 'Panel Title',
+      },
+    },
+  },
+  'ja-JP': {
+    title: 'タブパネル',
+    settings: {
+      'x-component-props': {
+        tab: 'パネルタイトル',
       },
     },
   },

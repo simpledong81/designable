@@ -47,6 +47,38 @@ export const Slider = {
       },
     },
   },
+  'ja-JP': {
+    title: 'スライダー',
+    settings: {
+      'x-component-props': {
+        dots: 'スケール固定',
+        range: 'ダブルスライダー',
+        reverse: '逆座標系',
+        vertical: '縦型レイアウト',
+        tooltipPlacement: {
+          title: 'ツールチップ配置',
+          tooltip: 'ツールチップ配置を設定します。参照 Tooltip',
+        },
+        tooltipVisible: {
+          title: 'ツールチップ表示',
+          tooltip:
+            '値が true の場合、ツールチップは常に表示されます。それ以外の場合、ドラッグして移動してもツールチップは表示されません。',
+        },
+        max: '最大値',
+        min: '最小値',
+        step: {
+          title: 'ステップ',
+          tooltip:
+            '値は 0 より大きく、(最大値 - 最小値) で割り切れる必要があります。目盛り が空のオブジェクトでない場合は、step を null に設定することができますが、このとき Slider のオプションの値は 目盛り でマークされた部分のみとなります。',
+        },
+        marks: {
+          title: '目盛り',
+          tooltip:
+            'keyの型は数値である必要があり、値は閉じた間隔 [最小値、最大値] 内にある必要があります。各ラベルは個別にスタイル設定できます。フォーマット: { number: ReactNode } or { number: { style: CSSProperties, label: ReactNode } }',
+        },
+      },
+    },
+  },
   'ko-KR': {
     title: '슬라이더',
     settings: {

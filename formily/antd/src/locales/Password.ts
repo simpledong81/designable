@@ -8,6 +8,9 @@ export const Password = createLocales(Input, {
   'en-US': {
     title: 'Password',
   },
+  'ja-JP': {
+    title: 'パスワード入力',
+  },
   'ko-KR': {
     title: '비밀번호',
   },
